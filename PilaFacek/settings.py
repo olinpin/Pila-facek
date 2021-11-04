@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-tr4++72&t9n_(&(p+#69rn_ya460lgc&v!0x!%yh=kvl&gcd^='
+SECRET_KEY = 'django-insecure-tr4++72&t9n_(&(p+#69rn_ya460lgc&v!0x!%yh=kvl&gcd^='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,7 +88,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': 'heroku_database_postgresql',
+        'NAME': 'postgres',
 
         'USER': 'skzfypxplmxisa',
 
