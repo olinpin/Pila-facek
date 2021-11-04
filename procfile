@@ -1,1 +1,1 @@
-web: gunicorn PilaFacek.wsgi --log-file -
+web: gunicorn PilaFacek.wsgi
