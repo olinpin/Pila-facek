@@ -13,15 +13,16 @@ from django.contrib.auth.decorators import login_required
 
 rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
 hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
-info = Rozmitacka.objects.get(id=rozmitacka_model[0].id)
+info = Rozmitacka.objects.get(id=rozmitacka_model.first().id)
 
 # Create your views here.
 
 # check if user is logged in and if not, redirect to login page
 @login_required
 def index(request):
-
     # show the index page
+    rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
+    hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
     return render(request, "orders/index.html", {
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
