@@ -13,7 +13,6 @@ from django.contrib.auth.decorators import login_required
 
 rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
 hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
-info = Rozmitacka.objects.get(id=rozmitacka_model.first().id)
 
 # Create your views here.
 
@@ -149,6 +148,7 @@ def getMaterial(request):
 
 @login_required
 def material(request):
+    info = Rozmitacka.objects.get(id=rozmitacka_model.first().id)
     return render(request, "orders/material.html", {
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
