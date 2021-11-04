@@ -1,0 +1,44 @@
+{% extends "orders/layout.html" %}
+
+{% block head %}
+<title>Login</title>
+<style>
+    body {
+        text-align: center;
+        list-style-type: none;
+    }
+    ul > li {
+        list-style-type: none;
+        padding: 10px
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+	<aside class="col-sm-4 mx-auto">
+
+<div class="card">
+<article class="card-body">
+<!--<a href="" class="float-right btn btn-outline-primary">Sign up</a> -->
+<h4 class="card-title mb-4 mt-1">Sign in</h4>
+<form action="{% url 'orders:login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    	<label>Your username</label>
+        <input name="username" class="form-control" placeholder="Username" type="Username">
+    </div> <!-- form-group// -->
+    <div class="form-group">
+    	<label>Your password</label>
+        <input name="password" class="form-control" placeholder="******" type="password">
+    </div> <!-- form-group// --> 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+    </div> <!-- form-group// -->                                                           
+</form>
+</article>
+</div> <!-- card.// -->
+
+
+
+{% endblock %}

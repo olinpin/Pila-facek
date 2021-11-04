@@ -1,0 +1,210 @@
+{% load custom_tags %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- CSS and JS -->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <!-- Add Ajax -->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+
+        <style>
+            .mx-auto {
+                text-align: center;
+            }
+            .heading {
+              margin-top: 1rem;
+              margin-left: 0.5rem;
+              margin-top: 1rem;
+              margin-left: 0.5rem;
+            }
+            .mb-0 {
+                font-size: xx-large;
+            }
+            .col-sm-9 {
+                font-size: xx-large;
+            }
+            .details {
+                margin-left: 1rem;
+            }
+        </style>
+
+        <script>
+    let counter = {{order.ks_hotovo}};
+  
+  
+  function increase(by) {
+      // increment the counter on the screen 
+      counter += by
+      document.querySelector("#c_done").innerHTML = counter;
+
+      count()
+  }
+
+  function decrease(by) {
+      // decrement the counter on the screen 
+      if (counter > 0+by-1) {
+          counter -= by
+      }
+      else {
+        counter = 0
+      }
+      document.querySelector("#c_done").innerHTML = counter;
+      count()
+  }
+
+  function count() {
+      // set the right URL and give the current counter value to the server
+      var URL = "{% url 'orders:count' %}"
+      $.ajax({
+          type: 'POST',
+          url: URL,
+          data:{
+            id:{{order.id}},
+            table:"{% block table %}{% endblock%}",
+            counter: counter,
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+          },
+          success: function(data){
+            // alert(data)
+          }
+      })
+
+  }
+  
+  function done() {
+      // set the URL and the id
+      var URL = "{% url 'orders:done' %}"
+      // give the id of the order to the server
+      
+      $.ajax({
+          type: 'POST',
+          url: URL,
+          data:{
+            id:{{order.id}},
+            table:"{% block table1 %}{% endblock%}",
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+          },
+          success: function(data){
+            // alert(data)
+          }
+      })
+      document.querySelector("#hotovo").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+      document.querySelector("#c_done").innerHTML = {{ order.ks }}
+  }
+
+  function material() {
+  $.ajax({
+    type: 'POST',
+    url: "{% url 'orders:needMaterial' %}",
+    data:{
+      order_id:{{ order.id }},
+      table:"{% block table2 %}{% endblock %}",
+      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success: function(data){
+      document.querySelector("#get_material").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+    }
+  })
+}
+  function arraysEqual(a, b) {
+    if (a === b) return true;
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (var i = 0; i < a.length; ++i) {
+      if (a[i] !== b[i]) return false;
+    }
+    return true;
+  }
+
+
+        </script>
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" style="padding-left:1vw">
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <span class="navbar-brand" href="">{{ request.user.username }}</span>
+          
+            <div class="collapse navbar-collapse" id="navbar">
+              <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'orders:index' %}">Domů</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Rozmítačka
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for order in rozmitacka|slice:":10" %}
+                        <a class="dropdown-item" href="{% url 'orders:r_info' order.id %}">{{ order.zakaznik }} - {{ order.pozadovane_datum_vyroby }}</a>
+                        {% endfor %}
+                    </div>
+                  </li>
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Hoblování
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for order in hoblovani|slice:":10" %}
+                        <a class="dropdown-item" href="{% url 'orders:h_info' order.id %}">{{ order.zakaznik }} - {{ order.pozadovane_datum_vyroby }}</a>
+                        {% endfor %}
+                    </div>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'orders:material' %}">Materiál</a>
+                  </li>
+                  {% endif %}
+                  {% if not request.user|has_group:"Zaměstnanci" %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+              </ul>
+              <ul class="navbar-nav ms-auto" style="margin-right: 10px">
+                <li class="nav-item">
+                    <a href="{% url 'orders:logout' %}" class="nav-link">Log Out</a>
+
+                  </li>
+              </ul>
+              <!--<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>-->
+          </nav>
+
+
+        {% if good %}
+        <div class="row">
+        <div class="mx-auto">
+            <div class="alert alert-success div-style alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+        
+        {% elif bad %}
+        <div class="col-md-10 col-md-offset-1">
+            <div class="alert alert-danger div-style alert-dismissible fade show">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+        {% endif %}
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

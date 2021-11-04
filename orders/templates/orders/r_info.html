@@ -1,0 +1,143 @@
+{% extends "orders/layout.html" %}
+
+{% block head %}
+<title>Rozmítačka info</title>
+<!--{% block table %}r{% endblock %}
+{% block table1 %}r{% endblock %}
+{% block table2 %}r{% endblock %}-->
+<style>
+    
+    #buttons {
+        margin: auto;
+        text-align: center;
+    }
+    .btn-square-xl {
+        width: 21vw !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        height: 21vw !important;
+        text-align: center;
+        padding: 0px;
+        font-size: 4vw !important;
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<h1  class="heading">Rozmítačka</h1>
+<div class="details">
+    <div class="row" style="margin-top: 1rem;">
+        <div class="col-sm-3">
+            <h5 class="mb-0">Zákazník:</h5>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.zakaznik }}</h3></div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Materiál:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.material }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Umístění materiálu:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.umisteni_materialu }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Požadovaný rozměr:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.pozadovany_rozmer }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Požadovaná délka:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.pozadovana_delka }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Poznámka:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.poznamka }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0" >Množství ks:</h6>
+        </div>
+        <div class="col-sm-9 text-secondary">
+            <div id="c_done" style="display:inline-block"> {{ order.ks_hotovo }}</div>/{{ order.ks }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kvalita:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.kvalita }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Balení (proklad):</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.baleni }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Impregnace:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {% if order.impregnace %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kapování:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {% if order.kapovani %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Požadované datum výroby:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.pozadovane_datum_vyroby|date:'d.m.Y' }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Hotovo:</h6>
+        </div>
+        <div class="col-sm-9 text-secondary" id="hotovo"> {% if order.hotovo %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+    </div>
+    <hr>
+  <div class="row">
+      <div class="col-sm-3">
+        <h6 class="mb-0">Dovést materiál:</h6>
+    </div>
+    <div class="col-sm-9 text-secondary" id="get_material"> {% if order.get_material %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+  </div>
+  <hr>
+</div>
+
+{% csrf_token %}
+<div id="buttons">
+  {% csrf_token %}
+  <button type="button" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
+  <button type="button" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
+  <button type="button" class="btn btn-warning btn-square-xl" onclick="done()">Hotovo</button>
+  <button type="button" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
+</div>
+
+<div style="margin-bottom: 2rem;">
+    <a href="{% url 'orders:index' %}">Domů</a>
+</div>
+{% endblock %}

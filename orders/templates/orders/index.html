@@ -1,0 +1,192 @@
+{% extends "orders/layout.html" %}
+
+{% block head %}
+<title>Orders</title>
+<style>
+    .welcome {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .bi {
+        font-size: 2rem;
+    }
+    .bi-check-circle-fill {
+        color:green;
+    }
+    .bi-x-circle-fill {
+        color:red;
+    }
+    .table-wrap {
+        max-height: 30rem;
+    }
+    .py-3 {
+        font-size: x-large;
+    }
+    .px-3 {
+        font-size: larger;
+        font-size: x-large;
+    }
+    .bi {
+        font-size: 6vmin
+    }
+</style>
+<style>
+body {
+    margin-top:20px;
+    background:#eee;
+}
+.ui-w-40 {
+    width: 40px !important;
+    height: auto;
+}
+
+.card{
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);    
+}
+
+.ui-product-color {
+    display: inline-block;
+    overflow: hidden;
+    margin: .144em;
+    width: .875rem;
+    height: .875rem;
+    border-radius: 10rem;
+    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
+    vertical-align: middle;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="welcome">
+<h1 id="welcome"> Vítej, {{ request.user.username }}</h1>
+<a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Log Out</a>
+</div>
+
+<div class="container px-3 my-5 clearfix ">
+    <!-- Rozmitacka table -->
+    <div class="card">
+        <div class="card-header">
+            <h1>Rozmítačka</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive table-wrap">
+              <table class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Zákazník</th>
+                    <th class="text-right py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Hotovo</th>
+                    <!--<th class="text-right py-3 px-4" style="width: fit-content;">Kontrola</th>-->
+                    <th class="text-right py-3 px-4" style="width: fit-content;">Detaily</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order in rozmitacka %}
+                {% if not order.kontrola %}
+                    <tr>
+                    <td class="p-4">
+                        <div class="media align-items-center">
+                        <div class="media-body">
+                            <a href="{% url 'orders:r_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
+                            <small>
+                            <span class="text-muted">Kusů hotovo:</span>
+                            {{order.ks_hotovo}}/{{order.ks}} &nbsp;
+                            <span class="text-muted">Poznámka: </span> {{order.poznamka}}
+                            </small>
+                        </div>
+                        </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">{{order.pozadovane_datum_vyroby}}</td>
+                    <td class="text-right font-weight-semibold align-middle p-4">
+                        {% if order.hotovo %}
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% else %}
+                        <i class="bi bi-x-circle-fill"></i>
+                        {% endif %}
+                    </td>
+                    <!--<td class="text-right font-weight-semibold align-middle p-4">
+                        {% if order.kontrola %}
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% else %}
+                        <i class="bi bi-x-circle-fill"></i>
+                        {% endif %}
+                    </td>-->
+                    <td class="text-right font-weight-semibold align-middle p-4"><a href="{% url 'orders:r_info' order.id %}"><i class="bi bi-arrow-right-circle-fill"></i></a></td>
+                    </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- / Rozmitacka table -->
+      </div>
+  </div>
+</div>
+
+
+
+<div class="container px-3 my-5 clearfix">
+    <!-- Hoblovani table -->
+    <div class="card">
+        <div class="card-header">
+            <h1>Hoblování</h1>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive table-wrap">
+              <table class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Zákazník</th>
+                    <th class="text-right py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Hotovo</th>
+                    <!--<th class="text-right py-3 px-4" style="width: fit-content;">Kontrola</th>-->
+                    <th class="text-right py-3 px-4" style="width: fit-content;">Detaily</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for order in hoblovani %}
+                {% if not order.kontrola %}
+                    <tr>
+                    <td class="p-4">
+                        <div class="media align-items-center">
+                        <div class="media-body">
+                            <a href="{% url 'orders:h_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
+                            <small>
+                            <span class="text-muted">Kusů hotovo:</span>
+                            {{order.ks_hotovo}}/{{order.ks}} &nbsp;
+                            <span class="text-muted">Poznámka: </span> {{order.poznamka}}
+                            </small>
+                        </div>
+                        </div>
+                    </td>
+                    <td class="text-right font-weight-semibold align-middle p-4">{{order.pozadovane_datum_vyroby}}</td>
+                    <td class="text-right font-weight-semibold align-middle p-4">
+                        {% if order.hotovo %}
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% else %}
+                        <i class="bi bi-x-circle-fill"></i>
+                        {% endif %}
+                    </td>
+                    <!--<td class="text-right font-weight-semibold align-middle p-4">
+                        {% if order.kontrola %}
+                        <i class="bi bi-check-circle-fill"></i>
+                        {% else %}
+                        <i class="bi bi-x-circle-fill"></i>
+                        {% endif %}
+                    </td>-->
+                    <td class="text-right font-weight-semibold align-middle p-4"><a href="{% url 'orders:h_info' order.id %}"><i class="bi bi-arrow-right-circle-fill"></i></a></td>
+                    </tr>
+                  {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <!-- / Hoblovani table -->
+      </div>
+  </div>
+</div>
+{% endblock %}
