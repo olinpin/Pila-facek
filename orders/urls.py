@@ -10,6 +10,7 @@ urlpatterns = [
     path("r/<int:r_id>", views.r_info, name="r_info"),
     path("h/<int:h_id>", views.h_info, name="h_info"),
     path("material", views.material, name="material"),
+    path("odvoz", views.odvoz, name="odvoz"),
     
 
     # functions
@@ -17,5 +18,7 @@ urlpatterns = [
     path("count", views.count, name="count"),
     path('needMaterial', views.needMaterial, name="needMaterial"),
     path('getMaterial', views.getMaterial, name="getMaterial"),
+    path('needOdvoz', views.needOdvoz, name="needOdvoz"),
+    path('getOdvoz', views.getOdvoz, name="getOdvoz"),
     #path('getMaterial/<str:table>/<int:id>', views.getMaterial, name="getMaterial"),
 ]

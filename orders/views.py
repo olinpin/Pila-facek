@@ -148,10 +148,53 @@ def getMaterial(request):
 
 @login_required
 def material(request):
-    info = Rozmitacka.objects.get(id=rozmitacka_model.first().id)
     return render(request, "orders/material.html", {
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
-        "order":info,
     })
     
+@login_required
+def odvoz(request):
+    return render(request, "orders/odvoz.html", {
+        "rozmitacka": rozmitacka_model,
+        "hoblovani": hoblovani_model,
+    })
+
+def needOdvoz(request):
+    if request.method == "POST":
+        order_id = request.POST["order_id"]
+        table = request.POST["table"]
+        if table == "r":
+            order = Rozmitacka.objects.get(id=order_id)
+            order.get_zbytek = True
+            order.save()
+        elif table == "h":
+            order = Hoblovani.objects.get(id=order_id)
+            order.get_zbytek = True
+            order.save()
+        else:
+            pass
+
+    return HttpResponse(f"{order_id} from {table} - was succesfull")
+
+def getOdvoz(request):
+    if request.method == "GET":
+        r = Rozmitacka.objects.filter(get_zbytek=True)
+        r_list = [order.id for order in r]
+        h = Hoblovani.objects.filter(get_zbytek=True)
+        h_list = [order.id for order in h]
+        return JsonResponse({"r":r_list, "h":h_list})
+    elif request.method == "POST":
+        order_id = request.POST["id"]
+        table = request.POST["table"]
+        if table == "r":
+            order = Rozmitacka.objects.get(id=order_id)
+            order.get_zbytek = False
+            order.save()
+        elif table == "h":
+            order = Hoblovani.objects.get(id=order_id)
+            order.get_zbytek = False
+            order.save()
+        else:
+            pass
+        return JsonResponse({"code":400})

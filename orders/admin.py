@@ -23,10 +23,10 @@ class RozmitackaAdmin(admin.ModelAdmin):
     list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola")
     list_editable = ("hotovo", "kontrola")
     # filter and search the list
-    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material")
+    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material", "get_zbytek")
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
-    exclude = ("ks_hotovo", )
+    exclude = ("ks_hotovo", "get_material", "get_zbytek")
 
 
     class Meta:
@@ -53,10 +53,10 @@ class HoblovaniAdmin(admin.ModelAdmin):
     list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola")
     list_editable = ("hotovo", "kontrola")
     # filter and search the list
-    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material")
+    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material", "get_zbytek")
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
-    exclude = ("ks_hotovo", )
+    exclude = ("ks_hotovo", "get_material", "get_zbytek",)
 
     class Meta:
         ordering = ("pozadovane_datum_vyroby", "zakaznik",)

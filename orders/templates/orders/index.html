@@ -61,7 +61,7 @@ body {
 {% block body %}
 <div class="welcome">
 <h1 id="welcome"> Vítej, {{ request.user.username }}</h1>
-<a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Log Out</a>
+<a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Odhlásit se</a>
 </div>
 
 <div class="container px-3 my-5 clearfix ">

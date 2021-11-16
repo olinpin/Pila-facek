@@ -1,10 +1,8 @@
 {% extends "orders/layout.html" %}
 
+<!--{% with table='h' %}-->
 {% block head %}
 <title>Hoblování info</title>
-<!--{% block table %}h{% endblock %}
-{% block table1 %}h{% endblock %}
-{% block table2 %}h{% endblock %}-->
 <style>
     .mb-0 {
         font-size: xx-large;
@@ -14,19 +12,6 @@
     }
     .details {
         margin-left: 1rem;
-    }
-    #buttons {
-        margin: auto;
-        text-align: center;
-    }
-    .btn-square-xl {
-        width: 21vw !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        height: 21vw !important;
-        text-align: center;
-        padding: 0px;
-        font-size: 4vw !important;
     }
 </style>
 
@@ -135,6 +120,13 @@
     <div class="col-sm-9 text-secondary" id="get_material"> {% if order.get_material %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
   </div>
   <hr>
+  <div class="row">
+    <div class="col-sm-3">
+      <h6 class="mb-0">Odvoz:</h6>
+  </div>
+  <div class="col-sm-9 text-secondary" id="get_odvoz"> {% if order.get_zbytek %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+</div>
+<hr>
 </div>
 
 <div id="buttons">
@@ -143,9 +135,11 @@
       <button type="button" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
       <button type="button" class="btn btn-warning btn-square-xl" onclick="done()">Hotovo</button>
       <button type="button" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
+      <button type="button" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
 </div>
 
 <div style="margin-bottom: 2rem;">
     <a href="{% url 'orders:index' %}">Domů</a>
 </div>
 {% endblock %}
+{% endwith %}

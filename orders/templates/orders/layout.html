@@ -1,5 +1,8 @@
 {% load custom_tags %}
 {% load static %}
+
+{% with table="r" %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,10 +35,24 @@
             .details {
                 margin-left: 1rem;
             }
+            .btn-square-xl {
+                width: 19vw !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 19vw !important;
+                text-align: center;
+                padding: 0px;
+                font-size: 4vw !important;
+                margin-bottom: 5px;
+            }
+            #buttons {
+                margin: auto;
+                text-align: center;
+            }
         </style>
 
-        <script>
-    let counter = {{order.ks_hotovo}};
+<script>
+    let counter = {{ order.ks_hotovo }};
   
   
   function increase(by) {
@@ -66,7 +83,7 @@
           url: URL,
           data:{
             id:{{order.id}},
-            table:"{% block table %}{% endblock%}",
+            table:"{{ table }}",
             counter: counter,
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
           },
@@ -87,7 +104,7 @@
           url: URL,
           data:{
             id:{{order.id}},
-            table:"{% block table1 %}{% endblock%}",
+            table:"{{ table }}",
             csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
           },
           success: function(data){
@@ -98,13 +115,14 @@
       document.querySelector("#c_done").innerHTML = {{ order.ks }}
   }
 
+  // these functions are used for changing the material and odvoz fields in the table
   function material() {
   $.ajax({
     type: 'POST',
     url: "{% url 'orders:needMaterial' %}",
     data:{
       order_id:{{ order.id }},
-      table:"{% block table2 %}{% endblock %}",
+      table:"{{ table }}",
       csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
     },
     success: function(data){
@@ -112,6 +130,22 @@
     }
   })
 }
+
+function odvoz() {
+  $.ajax({
+    type: 'POST',
+    url: "{% url 'orders:needOdvoz' %}",
+    data:{
+      order_id:{{ order.id }},
+      table:"{{ table }}",
+      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success: function(data){
+      document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+    }
+  })
+}
+
   function arraysEqual(a, b) {
     if (a === b) return true;
     if (a == null || b == null) return false;
@@ -165,6 +199,9 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'orders:material' %}">Materiál</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'orders:odvoz' %}">Odvoz</a>
+                  </li>
                   {% endif %}
                   {% if not request.user|has_group:"Zaměstnanci" %}
                 <li class="nav-item">
@@ -174,7 +211,7 @@
               </ul>
               <ul class="navbar-nav ms-auto" style="margin-right: 10px">
                 <li class="nav-item">
-                    <a href="{% url 'orders:logout' %}" class="nav-link">Log Out</a>
+                    <a href="{% url 'orders:logout' %}" class="nav-link">Odhlásit se</a>
 
                   </li>
               </ul>
@@ -208,3 +245,5 @@
         {% endblock %}
     </body>
 </html>
+
+{% endwith %}
