@@ -34,6 +34,7 @@ def r_info(request, r_id):
         "order": info,
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
+        "table": "r",
     })
 @login_required
 def h_info(request, h_id):
@@ -43,6 +44,7 @@ def h_info(request, h_id):
         "order": info,
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
+        "table": "h",
     })
 
 def login_view(request):

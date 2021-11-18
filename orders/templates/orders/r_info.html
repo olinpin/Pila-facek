@@ -1,5 +1,5 @@
 {% extends "orders/layout.html" %}
-<!--{% with table="r" %}-->
+
 {% block head %}
 <title>Rozmítačka info</title>
 {% endblock %}
@@ -118,11 +118,10 @@
 {% csrf_token %}
 <div id="buttons">
   {% csrf_token %}
-  <button type="button" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
-  <button type="button" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
-  <button type="button" class="btn btn-warning btn-square-xl" onclick="done()">Hotovo</button>
-  <button type="button" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
-  <button type="button" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
+  <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
+  <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
+  <button type="button" id="done" class="btn btn-warning btn-square-xl" onclick="done()">Hotovo</button>
+  <button type="button" id="material" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
+  <button type="button" id="odvoz" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
 </div>
 {% endblock %}
-{% endwith %}

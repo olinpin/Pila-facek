@@ -26,10 +26,12 @@
 <h1 class="heading">Materiál</h1>
 
 
+<!-- Creates a big button that sets the attention to false and the background color to white-->
 <div class="button">
     <button type="button" class="btn btn-danger btn-square-xl" onclick="attention = false; document.body.style.background = '#FFFFFF'">Vidím</button>
 </div>
 {% csrf_token %}
+<!-- Just the usual headings that dissappear when nothing is there to show-->
 <h1  class="heading" id="rozmitacka_heading">Rozmítačka</h1>
 <div id="rozmitacka">
 </div>
@@ -38,6 +40,7 @@
 </div>
 
 <script>
+    // this function returns true if arrays have the exact same things inside in python if arr1 == arr2
     function arraysEqual(a, b) {
     if (a === b) return true;
     if (a == null || b == null) return false;
@@ -48,6 +51,7 @@
     }
     return true;
   }
+    // innitializing a bunch of variables that are needed later
     var r = [];
     var h = [];
     var attention = false;
@@ -60,6 +64,7 @@
     document.addEventListener("click", event => {
         const element = event.target;
         // if the clicked element has "hide" class name, we delete its parent element
+        // it sents an ajax POST request, that will set the order's material field to false
         if (element.className.includes("hide")) {
             $.ajax({
                 type:"POST",
@@ -73,6 +78,7 @@
                     document.body.style.background = "#FFFFFF"
                 }
             })
+            // check which table is it
             id = parseInt(element.parentElement.id);
             if (element.parentElement.className == "r") {
                 if (r_visible.includes(id)) {
