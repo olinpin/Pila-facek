@@ -10,7 +10,8 @@ import datetime
 from .models import Rozmitacka, Hoblovani
 import json
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from .groups import group_required
 
 # get all the models for the navbar and sort them
 # so that it can display 10 latest orders from each
@@ -29,6 +30,7 @@ def index(request):
     })
 
 @login_required
+@group_required('Rozmitack',)
 def r_info(request, r_id):
     # shows info for a particular rozmitacka order
     info = Rozmitacka.objects.get(id=r_id)
@@ -211,3 +213,10 @@ def getOdvoz(request):
         else:
             pass
         return JsonResponse({"code":400})
+
+
+def permissionNG(request):
+    return render(request, "orders/permissionNG.html", {
+        "rozmitacka": rozmitacka_model,
+        "hoblovani": hoblovani_model,
+    })

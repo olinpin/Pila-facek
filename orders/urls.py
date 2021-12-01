@@ -11,6 +11,7 @@ urlpatterns = [
     path("h/<int:h_id>", views.h_info, name="h_info"),
     path("material", views.material, name="material"),
     path("odvoz", views.odvoz, name="odvoz"),
+    path("permissionNG", views.permissionNG, name="permissionNG"),
     
 
     # functions

@@ -20,10 +20,10 @@ cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 @admin.register(Rozmitacka)
 class RozmitackaAdmin(admin.ModelAdmin):
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola")
-    list_editable = ("hotovo", "kontrola")
+    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola", "do_vyroby",)
+    list_editable = ("hotovo", "kontrola", "do_vyroby",)
     # filter and search the list
-    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material", "get_zbytek")
+    list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek")
@@ -50,10 +50,10 @@ class RozmitackaAdmin(admin.ModelAdmin):
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola")
-    list_editable = ("hotovo", "kontrola")
+    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", "kontrola", "do_vyroby")
+    list_editable = ("hotovo", "kontrola", "do_vyroby",)
     # filter and search the list
-    list_filter = ("hotovo", "vytvoreno", "kontrola", "get_material", "get_zbytek")
+    list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby",)
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek",)
