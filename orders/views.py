@@ -1,3 +1,4 @@
+# import needed modules
 from django.contrib import auth
 from django.forms.forms import Form
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
@@ -11,6 +12,8 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
+# get all the models for the navbar and sort them
+# so that it can display 10 latest orders from each
 rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
 hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
 
@@ -19,16 +22,15 @@ hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
 # check if user is logged in and if not, redirect to login page
 @login_required
 def index(request):
-    # show the index page
-    rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
-    hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
+    # show the index page and paste the models
     return render(request, "orders/index.html", {
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
     })
+
 @login_required
 def r_info(request, r_id):
-    # shows info for a particular order
+    # shows info for a particular rozmitacka order
     info = Rozmitacka.objects.get(id=r_id)
     return render(request, 'orders/r_info.html', {
         "order": info,
@@ -38,7 +40,7 @@ def r_info(request, r_id):
     })
 @login_required
 def h_info(request, h_id):
-    # shows info for a particular order
+    # shows info for a particular hoblovani order
     info = Hoblovani.objects.get(id=h_id)
     return render(request, 'orders/h_info.html', {
         "order": info,
@@ -64,7 +66,6 @@ def login_view(request):
                 "message": "Invalid credentials",
                 "bad": "yes",
             })
-
     return render(request, "orders/login.html")
 
 def logout_view(request):
@@ -75,11 +76,13 @@ def logout_view(request):
         "good": "yes",
     })
 
+# this function makes the "done" attribute of order True
 def done(request):
     if request.method == "POST":
-        # get the id of the order
+        # extract the variables
         id = request.POST["id"]
         table = request.POST["table"]
+        # check which table is it
         if table == "r":
             r = Rozmitacka.objects.get(id=id)
         elif table == "h":
@@ -93,26 +96,32 @@ def done(request):
         # return successful http response
         return JsonResponse({"code": 400})
 
+# this function makes the "ks_hotovo" attribute of order to the right amount of ks
 def count(request):
     if request.method == "POST":
-        # get the count
+        # extract the variables
         counter = request.POST["counter"]
         id = request.POST["id"]
         table = request.POST["table"]
+        # check which tables
         if table == "r":
             r = Rozmitacka.objects.get(id=id)
         elif table == "h":
             r = Hoblovani.objects.get(id=id)
         else:
             return JsonResponse({"code": 500})
+        # change the number to the counter variable
         r.ks_hotovo = counter
         r.save()
         return JsonResponse({"code": 400})
 
+# this function changes order's field "get_material" to True if it's called
 def needMaterial(request):
     if request.method == "POST":
+        # extract the variables
         order_id = request.POST["order_id"]
         table = request.POST["table"]
+        # get the right table and change the variable to True
         if table == "r":
             order = Rozmitacka.objects.get(id=order_id)
             order.get_material = True
@@ -126,8 +135,10 @@ def needMaterial(request):
 
     return HttpResponse(f"{order_id} from {table} - was succesfull")
 
+# this function gets back what orders currently need material
 def getMaterial(request):
     if request.method == "GET":
+        # get the orders that have "get_material" field True
         r = Rozmitacka.objects.filter(get_material=True)
         r_list = [order.id for order in r]
         h = Hoblovani.objects.filter(get_material=True)
