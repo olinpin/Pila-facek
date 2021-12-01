@@ -15,14 +15,16 @@ from .groups import group_required
 
 # get all the models for the navbar and sort them
 # so that it can display 10 latest orders from each
-rozmitacka_model = Rozmitacka.objects.all().order_by("vytvoreno")
-hoblovani_model = Hoblovani.objects.all().order_by("vytvoreno")
+rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
 
 # Create your views here.
 
 # check if user is logged in and if not, redirect to login page
 @login_required
 def index(request):
+    rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+    hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
     # show the index page and paste the models
     return render(request, "orders/index.html", {
         "rozmitacka": rozmitacka_model,
