@@ -15,16 +15,19 @@ from .groups import group_required
 
 # get all the models for the navbar and sort them
 # so that it can display 10 latest orders from each
-rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
-hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+
+def update_models():
+    global rozmitacka_model
+    global hoblovani_model
+    rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+    hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
 
 # Create your views here.
 
 # check if user is logged in and if not, redirect to login page
 @login_required
 def index(request):
-    rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
-    hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+    update_models()
     # show the index page and paste the models
     return render(request, "orders/index.html", {
         "rozmitacka": rozmitacka_model,
@@ -32,8 +35,9 @@ def index(request):
     })
 
 @login_required
-@group_required('Rozmitack',)
+@group_required('Rozmitacka',)
 def r_info(request, r_id):
+    update_models()
     # shows info for a particular rozmitacka order
     info = Rozmitacka.objects.get(id=r_id)
     return render(request, 'orders/r_info.html', {
@@ -44,6 +48,7 @@ def r_info(request, r_id):
     })
 @login_required
 def h_info(request, h_id):
+    update_models()
     # shows info for a particular hoblovani order
     info = Hoblovani.objects.get(id=h_id)
     return render(request, 'orders/h_info.html', {
@@ -78,6 +83,28 @@ def logout_view(request):
     return render(request, "orders/login.html",{
         "message": "You've been logout.",
         "good": "yes",
+    })
+
+@login_required
+def material(request):
+    update_models()
+    return render(request, "orders/material.html", {
+        "rozmitacka": rozmitacka_model,
+        "hoblovani": hoblovani_model,
+    })
+    
+@login_required
+def odvoz(request):
+    update_models()
+    return render(request, "orders/odvoz.html", {
+        "rozmitacka": rozmitacka_model,
+        "hoblovani": hoblovani_model,
+    })
+
+def permissionNG(request):
+    return render(request, "orders/permissionNG.html", {
+        "rozmitacka": rozmitacka_model,
+        "hoblovani": hoblovani_model,
     })
 
 # this function makes the "done" attribute of order True
@@ -163,20 +190,6 @@ def getMaterial(request):
             pass
         return JsonResponse({"code":400})
 
-@login_required
-def material(request):
-    return render(request, "orders/material.html", {
-        "rozmitacka": rozmitacka_model,
-        "hoblovani": hoblovani_model,
-    })
-    
-@login_required
-def odvoz(request):
-    return render(request, "orders/odvoz.html", {
-        "rozmitacka": rozmitacka_model,
-        "hoblovani": hoblovani_model,
-    })
-
 def needOdvoz(request):
     if request.method == "POST":
         order_id = request.POST["order_id"]
@@ -215,10 +228,3 @@ def getOdvoz(request):
         else:
             pass
         return JsonResponse({"code":400})
-
-
-def permissionNG(request):
-    return render(request, "orders/permissionNG.html", {
-        "rozmitacka": rozmitacka_model,
-        "hoblovani": hoblovani_model,
-    })

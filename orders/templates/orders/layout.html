@@ -28,20 +28,38 @@
               margin-top: 1rem;
               margin-left: 0.5rem;
             }
-            .mb-0 {
+            .col-sm-9, .mb-0 {
                 font-size: xx-large;
+                text-align: center;
             }
-            .col-sm-9 {
-                font-size: xx-large;
+            #rozmitacka, #hoblovani {
+              width: 40%;
             }
             .details {
                 margin-left: 1rem;
+                width: 60%;
+                float: left;
+            }
+            .detailsMO {
+                margin-left: 1rem;
+                width: 100%;
+                float: left;
             }
             .btn-square-xl {
-                width: 19vw !important;
+                width: 18vw !important;
                 max-width: 100% !important;
                 max-height: 100% !important;
-                height: 19vw !important;
+                height: 18vw !important;
+                text-align: center;
+                padding: 0px;
+                font-size: 4vw !important;
+                margin-bottom: 5px;
+            }
+            .btn-square-xxl {
+                width: 36vw !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                height: 18vw !important;
                 text-align: center;
                 padding: 0px;
                 font-size: 4vw !important;
@@ -201,14 +219,17 @@ function odvoz() {
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'orders:material' %}">Materiál</a>
                   </li>
+                  {% if request.user|has_group:"Admin" %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'orders:odvoz' %}">Odvoz</a>
                   </li>
                   {% endif %}
-                  {% if not request.user|has_group:"Zaměstnanci" %}
+                  
+                  {% if request.user.is_staff %}
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
                 </li>
+                {% endif %}
                 {% endif %}
               </ul>
               <ul class="navbar-nav ms-auto" style="margin-right: 10px">

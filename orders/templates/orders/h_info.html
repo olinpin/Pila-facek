@@ -24,7 +24,7 @@
         <div class="col-sm-3">
             <h5 class="mb-0">Zákazník:</h5>
           </div>
-          <div class="col-sm-9 text-secondary"> {{ order.zakaznik }}</h3></div>
+          <div class="col-sm-9 text-secondary"> {{ order.zakaznik }}</div>
         </div>
         <hr>
   <div class="row">
@@ -132,9 +132,9 @@
       {% csrf_token %}
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
-  <button type="button" id="done" class="btn btn-warning btn-square-xl" onclick="done()">Hotovo</button>
   <button type="button" id="material" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
   <button type="button" id="odvoz" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
+  <button type="button" id="done" class="btn btn-warning btn-square-xxl" onclick="done()">Hotovo</button>
 </div>
 
 <div style="margin-bottom: 2rem;">
