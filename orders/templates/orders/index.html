@@ -1,4 +1,6 @@
 {% extends "orders/layout.html" %}
+{% load custom_tags %}
+{% load static %}
 
 {% block head %}
 <title>Orders</title>
@@ -61,6 +63,7 @@
 <a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Odhlásit se</a>
 </div>
 
+{% if request.user|has_group:"Admin" %}
 <div class="container px-3 my-5 clearfix ">
     <!-- Rozmitacka table -->
     <div class="card">
@@ -122,9 +125,9 @@
       </div>
   </div>
 </div>
+{% endif %}
 
-
-
+{% if request.user|has_group:"Admin" %}
 <div class="container px-3 my-5 clearfix">
     <!-- Hoblovani table -->
     <div class="card">
@@ -186,4 +189,5 @@
       </div>
   </div>
 </div>
+{% endif %}
 {% endblock %}
