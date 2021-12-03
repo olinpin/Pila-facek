@@ -13,9 +13,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required, permission_required
 from .groups import group_required
 
+### FUNCTIONS IN THIS FILE ###
+
 # get all the models for the navbar and sort them
 # so that it can display 10 latest orders from each
-
 def update_models():
     global rozmitacka_model
     global hoblovani_model
@@ -23,6 +24,8 @@ def update_models():
     hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
 
 # Create your views here.
+
+### PAGES ###
 
 # check if user is logged in and if not, redirect to login page
 @login_required
@@ -35,7 +38,7 @@ def index(request):
     })
 
 @login_required
-@group_required('Rozmitacka',)
+@group_required('Rozmitacka', 'Admin')
 def r_info(request, r_id):
     update_models()
     # shows info for a particular rozmitacka order
@@ -47,6 +50,7 @@ def r_info(request, r_id):
         "table": "r",
     })
 @login_required
+@group_required('Hoblovani', 'Admin')
 def h_info(request, h_id):
     update_models()
     # shows info for a particular hoblovani order
@@ -86,6 +90,7 @@ def logout_view(request):
     })
 
 @login_required
+@group_required('Material', 'Admin')
 def material(request):
     update_models()
     return render(request, "orders/material.html", {
@@ -94,6 +99,7 @@ def material(request):
     })
     
 @login_required
+@group_required('Odvoz', 'Admin')
 def odvoz(request):
     update_models()
     return render(request, "orders/odvoz.html", {
@@ -106,6 +112,8 @@ def permissionNG(request):
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
     })
+
+### FUNCTIONS ###
 
 # this function makes the "done" attribute of order True
 def done(request):
