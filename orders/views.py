@@ -22,7 +22,6 @@ def update_models():
     global hoblovani_model
     rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
     hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
-    print("model updated")
 
 # Create your views here.
 
