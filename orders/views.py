@@ -22,6 +22,7 @@ def update_models():
     global hoblovani_model
     rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
     hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("vytvoreno")
+    print("model updated")
 
 # Create your views here.
 
@@ -108,6 +109,7 @@ def odvoz(request):
     })
 
 def permissionNG(request):
+    update_models()
     return render(request, "orders/permissionNG.html", {
         "rozmitacka": rozmitacka_model,
         "hoblovani": hoblovani_model,
@@ -117,6 +119,7 @@ def permissionNG(request):
 
 # this function makes the "done" attribute of order True
 def done(request):
+    update_models()
     if request.method == "POST":
         # extract the variables
         id = request.POST["id"]
@@ -137,6 +140,7 @@ def done(request):
 
 # this function makes the "ks_hotovo" attribute of order to the right amount of ks
 def count(request):
+    update_models()
     if request.method == "POST":
         # extract the variables
         counter = request.POST["counter"]
@@ -156,6 +160,7 @@ def count(request):
 
 # this function changes order's field "get_material" to True if it's called
 def needMaterial(request):
+    update_models()
     if request.method == "POST":
         # extract the variables
         order_id = request.POST["order_id"]
@@ -176,6 +181,7 @@ def needMaterial(request):
 
 # this function gets back what orders currently need material
 def getMaterial(request):
+    update_models()
     if request.method == "GET":
         # get the orders that have "get_material" field True
         r = Rozmitacka.objects.filter(get_material=True)
@@ -199,6 +205,7 @@ def getMaterial(request):
         return JsonResponse({"code":400})
 
 def needOdvoz(request):
+    update_models()
     if request.method == "POST":
         order_id = request.POST["order_id"]
         table = request.POST["table"]
@@ -216,6 +223,7 @@ def needOdvoz(request):
     return HttpResponse(f"{order_id} from {table} - was succesfull")
 
 def getOdvoz(request):
+    update_models()
     if request.method == "GET":
         r = Rozmitacka.objects.filter(get_zbytek=True)
         r_list = [order.id for order in r]

@@ -2,4 +2,5 @@
     "python.pythonPath": "/Users/oliverhnat/Desktop/Programming/Python/VIRTUAL_ENVIRONMENTS/Work/PilaEnv/bin/python3",
     "editorUnnecessaryCode.border": "#FF0000",
     "python.languageServer": "Pylance",
+    "terminal.integrated.shellArgs.osx": ["source ~/Desktop/Programming/Python/VIRTUAL_ENVIRONMENTS/Work/PilaEnv/bin/activate"]
 }
