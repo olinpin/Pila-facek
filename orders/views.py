@@ -178,31 +178,6 @@ def needMaterial(request):
 
     return HttpResponse(f"{order_id} from {table} - was succesfull")
 
-# this function gets back what orders currently need material
-def getMaterial(request):
-    update_models()
-    if request.method == "GET":
-        # get the orders that have "get_material" field True
-        r = Rozmitacka.objects.filter(get_material=True)
-        r_list = [order.id for order in r]
-        h = Hoblovani.objects.filter(get_material=True)
-        h_list = [order.id for order in h]
-        return JsonResponse({"r":r_list, "h":h_list})
-    elif request.method == "POST":
-        order_id = request.POST["id"]
-        table = request.POST["table"]
-        if table == "r":
-            order = Rozmitacka.objects.get(id=order_id)
-            order.get_material = False
-            order.save()
-        elif table == "h":
-            order = Hoblovani.objects.get(id=order_id)
-            order.get_material = False
-            order.save()
-        else:
-            pass
-        return JsonResponse({"code":400})
-
 def needOdvoz(request):
     update_models()
     if request.method == "POST":
@@ -224,22 +199,40 @@ def needOdvoz(request):
 def getOdvoz(request):
     update_models()
     if request.method == "GET":
-        r = Rozmitacka.objects.filter(get_zbytek=True)
-        r_list = [order.id for order in r]
-        h = Hoblovani.objects.filter(get_zbytek=True)
-        h_list = [order.id for order in h]
-        return JsonResponse({"r":r_list, "h":h_list})
+        r_odvoz = Rozmitacka.objects.filter(get_zbytek=True)
+        r_odvoz_list = [order.id for order in r_odvoz]
+        h_odvoz = Hoblovani.objects.filter(get_zbytek=True)
+        h_odvoz_list = [order.id for order in h_odvoz]
+
+        r_dovoz = Rozmitacka.objects.filter(get_material=True)
+        r_dovoz_list = [order.id for order in r_dovoz]
+        h_dovoz = Hoblovani.objects.filter(get_material=True)
+        h_dovoz_list = [order.id for order in h_dovoz]
+        return JsonResponse({"r_odvoz":r_odvoz_list,
+                            "h_odvoz":h_odvoz_list, 
+                            "r_dovoz": r_dovoz_list, 
+                            "h_dovoz": h_dovoz_list,})
     elif request.method == "POST":
         order_id = request.POST["id"]
         table = request.POST["table"]
-        if table == "r":
-            order = Rozmitacka.objects.get(id=order_id)
-            order.get_zbytek = False
-            order.save()
-        elif table == "h":
-            order = Hoblovani.objects.get(id=order_id)
-            order.get_zbytek = False
-            order.save()
-        else:
-            pass
+        DorO = table.split("+")[1]
+        table = table.split("+")[0]
+        if DorO == "odvoz":
+            if table == "r":
+                order = Rozmitacka.objects.get(id=order_id)
+                order.get_zbytek = False
+                order.save()
+            elif table == "h":
+                order = Hoblovani.objects.get(id=order_id)
+                order.get_zbytek = False
+                order.save()
+        elif DorO == "dovoz":
+            if table == "r":
+                order = Rozmitacka.objects.get(id=order_id)
+                order.get_material = False
+                order.save()
+            elif table == "h":
+                order = Hoblovani.objects.get(id=order_id)
+                order.get_material = False
+                order.save()
         return JsonResponse({"code":400})

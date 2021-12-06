@@ -221,12 +221,7 @@ function odvoz() {
                   {% endif %}
                   {% if request.user|has_group:"Admin" %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'orders:material' %}">Materiál</a>
-                  </li>
-                  {% endif %}
-                  {% if request.user|has_group:"Admin" %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{% url 'orders:odvoz' %}">Odvoz</a>
+                    <a class="nav-link" href="{% url 'orders:odvoz' %}">Dovoz a Odvoz</a>
                   </li>
                   {% endif %}
                   

@@ -18,8 +18,6 @@ urlpatterns = [
     path("done", views.done, name="done"),
     path("count", views.count, name="count"),
     path('needMaterial', views.needMaterial, name="needMaterial"),
-    path('getMaterial', views.getMaterial, name="getMaterial"),
     path('needOdvoz', views.needOdvoz, name="needOdvoz"),
     path('getOdvoz', views.getOdvoz, name="getOdvoz"),
-    #path('getMaterial/<str:table>/<int:id>', views.getMaterial, name="getMaterial"),
 ]
