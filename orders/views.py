@@ -38,7 +38,7 @@ def index(request):
     })
 
 @login_required
-@group_required('Rozmitacka', 'Admin')
+@group_required('Rozmitac', 'Admin')
 def r_info(request, r_id):
     update_models()
     # shows info for a particular rozmitacka order
@@ -50,7 +50,7 @@ def r_info(request, r_id):
         "table": "r",
     })
 @login_required
-@group_required('Hoblovani', 'Admin')
+@group_required('Hoblovac', 'Admin')
 def h_info(request, h_id):
     update_models()
     # shows info for a particular hoblovani order
@@ -88,18 +88,8 @@ def logout_view(request):
         "message": "You've been logout.",
         "good": "yes",
     })
-
 @login_required
-@group_required('Material', 'Admin')
-def material(request):
-    update_models()
-    return render(request, "orders/material.html", {
-        "rozmitacka": rozmitacka_model,
-        "hoblovani": hoblovani_model,
-    })
-    
-@login_required
-@group_required('Odvoz', 'Admin')
+@group_required('Vozickar', 'Admin')
 def odvoz(request):
     update_models()
     return render(request, "orders/odvoz.html", {

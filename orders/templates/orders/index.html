@@ -63,7 +63,7 @@
 <a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Odhlásit se</a>
 </div>
 
-{% if request.user|has_group:"Admin" %}
+{% if request.user|has_group:"Rozmitac" %}
 <div class="container px-3 my-5 clearfix ">
     <!-- Rozmitacka table -->
     <div class="card">
@@ -128,7 +128,7 @@
 </div>
 {% endif %}
 
-{% if request.user|has_group:"Admin" %}
+{% if request.user|has_group:"Hoblovac" %}
 <div class="container px-3 my-5 clearfix">
     <!-- Hoblovani table -->
     <div class="card">

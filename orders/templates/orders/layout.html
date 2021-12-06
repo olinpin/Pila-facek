@@ -195,7 +195,7 @@ function odvoz() {
                   <a class="nav-link" href="{% url 'orders:index' %}">Domů</a>
                 </li>
                 {% if user.is_authenticated %}
-                {% if request.user|has_group:"Admin" %}
+                {% if request.user|has_group:"Rozmitac" %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Rozmítačka
@@ -207,7 +207,7 @@ function odvoz() {
                     </div>
                   </li>
                   {% endif %}
-                  {% if request.user|has_group:"Admin" %}
+                  {% if request.user|has_group:"Hoblovac" %}
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Hoblování
@@ -219,7 +219,7 @@ function odvoz() {
                     </div>
                   </li>
                   {% endif %}
-                  {% if request.user|has_group:"Admin" %}
+                  {% if request.user|has_group:"Vozickar" %}
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'orders:odvoz' %}">Dovoz a Odvoz</a>
                   </li>
