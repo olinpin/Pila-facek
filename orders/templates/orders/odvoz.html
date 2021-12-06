@@ -29,7 +29,7 @@
 
 
 <div class="button">
-    <button type="button" class="btn btn-danger btn-square-xl" onclick="attention = false; document.body.style.background = '#FFFFFF'"">Vidím</button>
+    <button type="button" class="btn btn-danger btn-square-xl" onclick="attention = false; document.body.style.background = '#FFFFFF'">Vidím</button>
 </div>
 {% csrf_token %}
 <div id="rozmitacka">
@@ -112,7 +112,6 @@
                     if (!arraysEqual(r_visible, r) || !arraysEqual(h_visible, h)) {
                         if (r_visible != [] || h_visible != []){
                             attention = true;
-                            console.log("Attention is true")
                         }
                     }
                     // if a table has something inside it, flash the screen
