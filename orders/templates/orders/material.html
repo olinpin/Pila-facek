@@ -30,7 +30,7 @@
 
 <!-- Creates a big button that sets the attention to false and the background color to white-->
 <div class="button">
-    <button type="button" class="btn btn-danger btn-square-xl" onclick="attention = false; document.body.style.background = '#FFFFFF'">Vidím</button>
+    <button type="button" class="btn btn-danger btn-square-xl" onclick="attention = false; console.log(attention); console.log('is false'); document.body.style.background = '#FFFFFF'">Vidím</button>
 </div>
 {% csrf_token %}
 <!-- Just the usual headings that dissappear when nothing is there to show-->
@@ -118,6 +118,7 @@
                     if (!arraysEqual(r_visible, r) || !arraysEqual(h_visible, h)) {
                         if (r_visible != [] || h_visible != []){
                             attention = true;
+                            console.log("attention is true")
                         }
                     }
                     // if a table has something inside it, flash the screen
