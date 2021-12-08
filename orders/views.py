@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required, permission_required
 from .groups import group_required
 
-### FUNCTIONS IN THIS FILE ###
+### FUNCTIONS IN THIS FILE ### 
 
 # get all the models for the navbar and sort them
 # so that it can display 10 latest orders from each
