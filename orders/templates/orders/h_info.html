@@ -5,18 +5,6 @@
 
 {% block head %}
 <title>Hoblování info</title>
-<style>
-    .mb-0 {
-        font-size: xx-large;
-    }
-    .col-sm-9 {
-        font-size: xx-large;
-    }
-    .details {
-        margin-left: 1rem;
-    }
-</style>
-
 {% endblock %}
 
 {% block body %}
@@ -130,6 +118,7 @@
 <hr>
 </div>
 
+{% if not request.user|group:"Vozickar" %}
 <div id="buttons">
       {% csrf_token %}
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
@@ -138,8 +127,5 @@
   <button type="button" id="odvoz" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
   <button type="button" id="done" class="btn btn-warning btn-square-xxl" onclick="done()">Hotovo</button>
 </div>
-
-<div style="margin-bottom: 2rem;">
-    <a href="{% url 'orders:index' %}">Domů</a>
-</div>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,15 @@
+.btn-square-xl {
+    width: 21vw !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 21vw !important;
+    text-align: center;
+    padding: 0px;
+    font-size: 4vw !important;
+    margin-bottom: 5px;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

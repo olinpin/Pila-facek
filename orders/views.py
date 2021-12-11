@@ -1,17 +1,11 @@
 # import needed modules
-from django.contrib import auth
-from django.forms.forms import Form
 from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render
-from django import forms
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
-import datetime
-from .models import Rozmitacka, Hoblovani
-import json
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
 from .groups import group_required
+from .models import Rozmitacka, Hoblovani
 
 ### FUNCTIONS IN THIS FILE ### 
 
@@ -38,7 +32,7 @@ def index(request):
     })
 
 @login_required
-@group_required('Rozmitac', 'Admin')
+@group_required('Rozmitac', 'Admin', 'Vozickar')
 def r_info(request, r_id):
     update_models()
     # shows info for a particular rozmitacka order
@@ -50,7 +44,7 @@ def r_info(request, r_id):
         "table": "r",
     })
 @login_required
-@group_required('Hoblovac', 'Admin')
+@group_required('Hoblovac', 'Admin', 'Vozickar')
 def h_info(request, h_id):
     update_models()
     # shows info for a particular hoblovani order
@@ -76,7 +70,7 @@ def login_view(request):
         else:
             # invalid credentials error
             return render(request, "orders/login.html", {
-                "message": "Invalid credentials",
+                "message": "Špatné přihlašovací údaje",
                 "bad": "yes",
             })
     return render(request, "orders/login.html")

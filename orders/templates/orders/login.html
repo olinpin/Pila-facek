@@ -4,16 +4,8 @@
 
 {% block head %}
 <title>Login</title>
-<style>
-    body {
-        text-align: center;
-        list-style-type: none;
-    }
-    ul > li {
-        list-style-type: none;
-        padding: 10px
-    }
-</style>
+<!-- My own CSS -->
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -22,23 +14,23 @@
 
 <div class="card">
     {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
+    <p>Omlouváme se, vaše uživatelské jméno a heslo se neshodují. Prosím zkuste to znovu.</p>
   {% endif %}
 <article class="card-body">
 <!--<a href="" class="float-right btn btn-outline-primary">Sign up</a> -->
-<h4 class="card-title mb-4 mt-1">Sign in</h4>
+<h4 class="card-title mb-4 mt-1">Přihlásit se</h4>
 <form action="{% url 'orders:login' %}" method="post">
     {% csrf_token %}
     <div class="form-group">
-    	<label>Your username</label>
-        <input name="username" class="form-control" placeholder="Username" type="Username">
+    	<label>Vaše uživatelské jméno:</label>
+        <input name="username" class="form-control" placeholder="Uživatelské jméno" type="Username">
     </div> <!-- form-group// -->
     <div class="form-group">
-    	<label>Your password</label>
-        <input name="password" class="form-control" placeholder="******" type="password">
+    	<label>Vaše heslo:</label>
+        <input name="password" class="form-control" placeholder="********" type="password">
     </div> <!-- form-group// --> 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+        <button type="submit" class="btn btn-primary btn-block"> Přihlásit se  </button>
     </div> <!-- form-group// -->                                                           
 </form>
 </article>

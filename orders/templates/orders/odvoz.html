@@ -3,25 +3,9 @@
 {% load static %}
 
 {% block head %}
-<title>Materiál</title>
-<style>
-    .btn-square-xl {
-        width: 21vw !important;
-        max-width: 100% !important;
-        max-height: 100% !important;
-        height: 21vw !important;
-        text-align: center;
-        padding: 0px;
-        font-size: 4vw !important;
-        margin-bottom: 5px;
-    }
-    .button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-
+<title>Odvoz a dovoz</title>
+<!-- My own CSS -->
+<link rel="stylesheet" href="{% static 'css/odvoz.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -33,169 +17,61 @@
 </div>
 {% csrf_token %}
 <div id="rozmitacka">
-    <h1  class="heading" id="rozmitacka_heading">Rozmítačka</h1>
+    <h1 class="heading" id="rozmitacka_heading" style="display:none;">Rozmítačka</h1>
 </div>
 <div id="hoblovani">
-    <h1 class="heading" id="hoblovani_heading">Hoblování</h1>
+    <h1 class="heading" id="hoblovani_heading" style="display:none;">Hoblování</h1>
 </div>
 
 <script>
-    var r_odvoz = [];
-    var h_odvoz = [];
-    var r_dovoz = [];
-    var h_dovoz = [];
+    var URLgo = "{% url 'orders:getOdvoz' %}";
+</script>
+<script type="text/javascript" src="{% static 'js/odvoz.js' %}"></script>
+<script>
 
-    var attention = false;
-    var flash = true;
-    let rozmitacka = document.getElementById("rozmitacka");
-    let hoblovani = document.getElementById("hoblovani")
-    var r_dovoz_visible = [];
-    var h_dovoz_visible = [];
-    var r_odvoz_visible = [];
-    var h_odvoz_visible = [];
-    var visible = 0;
-    var c_visible = 0;
-    // create event listener, that looks for clicks
-    document.addEventListener("click", event => {
-        const element = event.target;
-        // if the clicked element has "hide" class name, we delete its parent element
-        if (element.className.includes("hide")) {
-            $.ajax({
-                type:"POST",
-                url: "{% url 'orders:getOdvoz' %}",
-                data:{
-                    id:element.parentElement.id,
-                    table:element.parentElement.className,
-                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-                },
-                success: function(data){
-                    document.body.style.background = "#eee"
-                }
-            })
-            id = parseInt(element.parentElement.id);
-
-            if (element.parentElement.className == "r+odvoz") {
-                if (r_odvoz_visible.includes(id)) {
-                    const index = r_odvoz_visible.indexOf(id)
-                    if (index > -1){
-                        r_odvoz_visible.splice(index, 1);
-                        element.parentElement.remove();
-                        c_visible--
-                    }
-                    
-                }
-            } if (element.parentElement.className == "h+odvoz") {
-                if (h_odvoz_visible.includes(id)) {
-                    const index = h_odvoz_visible.indexOf(id)
-                    if (index > -1){
-                        h_odvoz_visible.splice(index, 1);
-                        element.parentElement.remove();
-                        c_visible--
-                    }
-                }
+    // had to put the jinja2 loops in the html folder in order for it to work
+    // ODVOZ //
+    function rozmitackaO(){
+        {% for order in rozmitacka %}
+            if (r_odvoz.includes({{ order.id }}) && !r_odvoz_visible.includes({{ order.id }})){
+                var temp = '<div class="r+odvoz" id="{{ order.id }}"> <h1>Odvoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:r_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Umístění materiálu:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.umisteni_materialu }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr><div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Impregnace:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.impregnace %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Kapování:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.kapovani %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <hr style="height:5px; opacity:1;"> </div><br> <div>';
+                rozmitacka.innerHTML += temp;
+                r_odvoz_visible.push({{ order.id }});
+                c_visible++
             }
-            if (element.parentElement.className == "r+dovoz") {
-                if (r_dovoz_visible.includes(id)) {
-                    const index = r_dovoz_visible.indexOf(id)
-                    if (index > -1){
-                        r_dovoz_visible.splice(index, 1);
-                        element.parentElement.remove();
-                        c_visible--
-                    }
-                    
-                }
-            } if (element.parentElement.className == "h+dovoz") {
-                if (h_dovoz_visible.includes(id)) {
-                    const index = h_dovoz_visible.indexOf(id)
-                    if (index > -1){
-                        h_dovoz_visible.splice(index, 1);
-                        element.parentElement.remove();
-                        c_visible--
-                    }
-                }
+        {% endfor %}
+    }
+    function hoblovaniO(){
+        {% for order in hoblovani %}
+            if (h_odvoz.includes({{ order.id }}) && !h_odvoz_visible.includes({{ order.id }})){
+                var temp = '<div class="h+odvoz" id="{{ order.id }}"> <h1>Odvoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:h_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Skladový materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.skladovy_material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div><hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Impregnace:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.impregnace %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Kapování:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.kapovani %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <hr style="height:5px; opacity:1;"> </div> </div>';
+                hoblovani.innerHTML += temp;
+                h_odvoz_visible.push({{ order.id }});
+                c_visible++
             }
-            
-        }
-    });
-    $(document).ready(function(){
-        // create a reccuring function
-        setInterval(function(){
-            // get the orders, that need to get rid of material
-            $.ajax({
-                type:'GET',
-                url: "{% url 'orders:getOdvoz' %}",
-                success: function(response){
-                    // set the variables to the results from the GET method
-                    r_odvoz = response.r_odvoz
-                    h_odvoz  = response.h_odvoz
-                    r_dovoz = response.r_dovoz
-                    h_dovoz = response.h_dovoz
+        {% endfor %}
+    }
 
-                    visible = r_odvoz.length + h_odvoz.length + r_dovoz.length + h_dovoz.length
-                    if (visible != c_visible) {
-                        if (r_dovoz_visible != [] || h_dovoz_visible != []){
-                            attention = true;
-                        }
-                    }
-                    // if a table has something inside it, flash the screen
-                    if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0) {
-                        document.getElementById("rozmitacka_heading").style.display = "block";
-                        document.getElementById("hoblovani_heading").style.display = "block";
-                        // run 4 for loops that add information for each order from both tables
-                        
-                        // ODVOZ //
-                        {% for order in rozmitacka %}
-                        if (r_odvoz.includes({{ order.id }}) && !r_odvoz_visible.includes({{ order.id }})){
-                            var temp = '<div class="r+odvoz" id="{{ order.id }}"> <h1>Odvoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:r_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Umístění materiálu:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.umisteni_materialu }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr><div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Impregnace:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.impregnace %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Kapování:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.kapovani %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <hr style="height:5px; opacity:1;"> </div><br> <div>';
-                            rozmitacka.innerHTML += temp;
-                            r_odvoz_visible.push({{ order.id }});
-                            c_visible++
-                        }
-                        {% endfor %}
-                        {% for order in hoblovani %}
-                        if (h_odvoz.includes({{ order.id }}) && !h_odvoz_visible.includes({{ order.id }})){
-                            var temp = '<div class="h+odvoz" id="{{ order.id }}"> <h1>Odvoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:h_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Skladový materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.skladovy_material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div><hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Impregnace:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.impregnace %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Kapování:</h6> </div> <div class="col-sm-9 text-secondary"> {% if order.kapovani %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div> </div> <hr> <hr style="height:5px; opacity:1;"> </div> </div>';
-                            hoblovani.innerHTML += temp;
-                            h_odvoz_visible.push({{ order.id }});
-                            c_visible++
-                        }
-                        {% endfor %}
-                        
-
-                        // DOVOZ //
-                        {% for order in rozmitacka %}
-                        if (r_dovoz.includes({{ order.id }}) && !r_dovoz_visible.includes({{ order.id }})){
-                            var temp = '<div class="r+dovoz" id="{{ order.id }}"> <h1> Dovoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:r_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Umístění materiálu:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.umisteni_materialu }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr style="height:5px; opacity:1;"> </div><br> <div>';
-                            rozmitacka.innerHTML += temp;
-                            r_dovoz_visible.push({{ order.id }});
-                            c_visible++
-                        }
-                        {% endfor %}
-                        {% for order in hoblovani %}
-                        if (h_dovoz.includes({{ order.id }}) && !h_dovoz_visible.includes({{ order.id }})){
-                            var temp = '<div class="h+dovoz" id="{{ order.id }}"> <h1> Dovoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:h_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Skladový materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.skladovy_material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr style="height:5px; opacity:1;"> </div> </div>';
-                            hoblovani.innerHTML += temp;
-                            h_dovoz_visible.push({{ order.id }});
-                            c_visible++
-                        }
-                        {% endfor %}
-
-                        if (attention == true) {
-                            if (flash == true) {
-                                document.body.style.background = "#FF0000"
-                                flash = !flash;
-                            }else {
-                                document.body.style.background = "#eee"
-                                flash = !flash;
-                            }
-                        }
-                    } else {
-                        document.getElementById("rozmitacka_heading").style.display = "none";
-                        document.getElementById("hoblovani_heading").style.display = "none";
-                    }
-                }
-            });
-        },300);
-    });
+    // DOVOZ //
+    function rozmitackaD(){
+        {% for order in rozmitacka %}
+            if (r_dovoz.includes({{ order.id }}) && !r_dovoz_visible.includes({{ order.id }})){
+                var temp = '<div class="r+dovoz" id="{{ order.id }}"> <h1> Dovoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:r_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Umístění materiálu:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.umisteni_materialu }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr style="height:5px; opacity:1;"> </div><br> <div>';
+                rozmitacka.innerHTML += temp;
+                r_dovoz_visible.push({{ order.id }});
+                c_visible++
+            }
+        {% endfor %}
+    }
+    function hoblovaniD(){
+        {% for order in hoblovani %}
+            if (h_dovoz.includes({{ order.id }}) && !h_dovoz_visible.includes({{ order.id }})){
+                var temp = '<div class="h+dovoz" id="{{ order.id }}"> <h1> Dovoz - <a class="mb-0" style="color: #00F; text-decoration: none;" href="{% url "orders:h_info" order.id %}">Objednávka číslo {{order.id}}</a></h1><button type="button" class="btn btn-primary btn-square-s hide">Smazat</button> <div class="detailsMO" id="r{{ order.id }}"> <div class="row" style="margin-top: 1rem;"> <div class="col-sm-3"> <h1 class="mb-0">Zákazník:</h1></div> <div class="col-sm-9   text-secondary"> {{ order.zakaznik }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Skladový materiál:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.skladovy_material }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaný rozměr:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovany_rozmer }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Požadovaná délka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.pozadovana_delka }}</div> </div> <hr> <div class="row"> <div class="col-sm-3"> <h6 class="mb-0">Poznámka:</h6> </div> <div class="col-sm-9   text-secondary"> {{ order.poznamka }}</div> </div> <hr style="height:5px; opacity:1;"> </div> </div>';
+                hoblovani.innerHTML += temp;
+                h_dovoz_visible.push({{ order.id }});
+                c_visible++
+            }
+        {% endfor %}
+    }
 </script>
 {% endblock %}
