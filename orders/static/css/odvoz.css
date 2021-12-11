@@ -8,8 +8,36 @@
     font-size: 4vw !important;
     margin-bottom: 5px;
 }
+
+.btn-square-m {
+    width: 10vw !important;
+    height: 10vw !important;
+    font-size: 2vw !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin-bottom: 5px;
+}
+
 .button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.orders {
+    padding: 20px;
+}
+
+#hoblovani {
+    width: 50%;
+    float: right;
+    padding: 20px;
+}
+#rozmitacka {
+    width: 50%;
+    float: left;
+    padding: 20px;
+}
+.parent .heading {
+    margin-left: 0;
 }

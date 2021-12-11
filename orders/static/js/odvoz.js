@@ -105,9 +105,13 @@ $(document).ready(function(){
                     // display the headings appropriate
                     if (r_odvoz.length != 0 ||r_dovoz.length != 0) {
                         document.getElementById("rozmitacka_heading").style.display = "block";
+                    } else {
+                        document.getElementById("rozmitacka_heading").style.display = "none";
                     }
                     if (h_odvoz.length != 0 ||h_dovoz.length != 0) {
                         document.getElementById("hoblovani_heading").style.display = "block";
+                    } else {
+                        document.getElementById("hoblovani_heading").style.display = "none";
                     }
                     // run 4 for loops that add information for each order from both tables
                     // running them in odvoz.html, because they are jinja2 loops
