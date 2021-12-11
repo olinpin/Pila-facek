@@ -14,65 +14,10 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <!-- Add Ajax -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
-
-        <style>
-          body {
-            background:#eee;
-          }
-            .mx-auto {
-                text-align: center;
-            }
-            .heading {
-              margin-top: 1rem;
-              margin-left: 0.5rem;
-              margin-top: 1rem;
-              margin-left: 0.5rem;
-            }
-            .col-sm-9, .mb-0 {
-                font-size: xx-large;
-                text-align: center;
-            }
-            #rozmitacka, #hoblovani {
-              width: 40%;
-            }
-            .details {
-                margin-left: 1rem;
-                width: 60%;
-                float: left;
-            }
-            .detailsMO {
-                margin-left: 1rem;
-                width: 100%;
-                float: left;
-            }
-            .btn-square-xl {
-                width: 18vw !important;
-                max-width: 100% !important;
-                max-height: 100% !important;
-                height: 18vw !important;
-                text-align: center;
-                padding: 0px;
-                font-size: 4vw !important;
-                margin-bottom: 5px;
-            }
-            .btn-square-xxl {
-                width: 36vw !important;
-                max-width: 100% !important;
-                max-height: 100% !important;
-                height: 18vw !important;
-                text-align: center;
-                padding: 0px;
-                font-size: 4vw !important;
-                margin-bottom: 5px;
-            }
-            #buttons {
-                margin: auto;
-                text-align: center;
-            }
-        </style>
+        <link rel="stylesheet" href="{% static 'css/layout.css'%}">
 
 <script>
-    let counter = {{ order.ks_hotovo }};
+  let counter = {{ order.ks_hotovo }};
   
   
   function increase(by) {
@@ -137,48 +82,37 @@
 
   // these functions are used for changing the material and odvoz fields in the table
   function material() {
-  $.ajax({
-    type: 'POST',
-    url: "{% url 'orders:needMaterial' %}",
-    data:{
-      order_id:{{ order.id }},
-      table:"{{ table }}",
-      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-    },
-    success: function(data){
-      document.querySelector("#get_material").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
-    }
-  })
-}
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'orders:needMaterial' %}",
+      data:{
+        order_id:{{ order.id }},
+        table:"{{ table }}",
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        document.querySelector("#get_material").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+      }
+    })
+  }
 
-function odvoz() {
-  $.ajax({
-    type: 'POST',
-    url: "{% url 'orders:needOdvoz' %}",
-    data:{
-      order_id:{{ order.id }},
-      table:"{{ table }}",
-      csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-    },
-    success: function(data){
-      document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
-    }
-  })
-}
-
-  function arraysEqual(a, b) {
-    if (a === b) return true;
-    if (a == null || b == null) return false;
-    if (a.length !== b.length) return false;
-
-    for (var i = 0; i < a.length; ++i) {
-      if (a[i] !== b[i]) return false;
-    }
-    return true;
+  function odvoz() {
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'orders:needOdvoz' %}",
+      data:{
+        order_id:{{ order.id }},
+        table:"{{ table }}",
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+      },
+      success: function(data){
+        document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+      }
+    })
   }
 
 
-        </script>
+</script>
         {% block head %}
         {% endblock %}
     </head>

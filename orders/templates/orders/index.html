@@ -4,64 +4,10 @@
 
 {% block head %}
 <title>Orders</title>
-<style>
-    .welcome {
-        text-align: center;
-        margin-top: 1rem;
-    }
-    .bi {
-        font-size: 2rem;
-    }
-    .bi-check-circle-fill {
-        color:green;
-    }
-    .bi-x-circle-fill {
-        color:red;
-    }
-    .table-wrap {
-        max-height: 30rem;
-    }
-    .py-3 {
-        font-size: x-large;
-    }
-    .px-3 {
-        font-size: larger;
-        font-size: x-large;
-    }
-    .bi {
-        font-size: 6vmin
-    }
-</style>
-<style>
-
-.ui-w-40 {
-    width: 40px !important;
-    height: auto;
-}
-
-.card{
-    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);    
-}
-
-.ui-product-color {
-    display: inline-block;
-    overflow: hidden;
-    margin: .144em;
-    width: .875rem;
-    height: .875rem;
-    border-radius: 10rem;
-    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
-    vertical-align: middle;
-}
-</style>
+<link rel="stylesheet" href="{% static 'css/index.css'%}">
 {% endblock %}
 
 {% block body %}
-<div class="welcome">
-<h1 id="welcome"> Vítej, {{ request.user.username }}</h1>
-<a href="{% url 'orders:logout' %}" class="btn btn-primary btn-block">Odhlásit se</a>
-</div>
 
 {% if request.user|has_group:"Rozmitac" %}
 <div class="container px-3 my-5 clearfix ">
@@ -77,10 +23,10 @@
                   <tr>
                     <!-- Set columns width -->
                     <th class="text-center py-3 px-4" style="width: fit-content;">Zákazník</th>
-                    <th class="text-right py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
                     <th class="text-center py-3 px-4" style="width: fit-content;">Hotovo</th>
                     <!--<th class="text-right py-3 px-4" style="width: fit-content;">Kontrola</th>-->
-                    <th class="text-right py-3 px-4" style="width: fit-content;">Detaily</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Detaily</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -142,10 +88,10 @@
                   <tr>
                     <!-- Set columns width -->
                     <th class="text-center py-3 px-4" style="width: fit-content;">Zákazník</th>
-                    <th class="text-right py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Požadované datum výroby</th>
                     <th class="text-center py-3 px-4" style="width: fit-content;">Hotovo</th>
                     <!--<th class="text-right py-3 px-4" style="width: fit-content;">Kontrola</th>-->
-                    <th class="text-right py-3 px-4" style="width: fit-content;">Detaily</th>
+                    <th class="text-center py-3 px-4" style="width: fit-content;">Detaily</th>
                   </tr>
                 </thead>
                 <tbody>
