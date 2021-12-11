@@ -12,16 +12,20 @@ $(document).ready(function() {
             },
             success: function(data){
                 if (data.get_material == false){
-                    document.querySelector("#get_material").innerHTML = '<i style="color:red" class="bi bi-x-circle-fill">'
+                    document.querySelector("#get_material").innerHTML = '<i style="color:red" class="bi bi-x-circle-fill">';
+                    document.getElementById("material").style.backgroundColor = "#0d6efd";
                 }
                 else {
-                    document.querySelector("#get_material").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+                    document.querySelector("#get_material").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">';
+                    document.getElementById("material").style.backgroundColor = "#06377e";
                 }
                 if (data.get_zbytek == false) {
-                    document.querySelector("#get_odvoz").innerHTML = '<i style="color:red" class="bi bi-x-circle-fill">'
+                    document.querySelector("#get_odvoz").innerHTML = '<i style="color:red" class="bi bi-x-circle-fill">';
+                    document.getElementById("odvoz").style.backgroundColor = "#6c757d";
                 }
                 else {
-                    document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+                    document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">';
+                    document.getElementById("odvoz").style.backgroundColor = "#202325";
                 }
             }
         })
