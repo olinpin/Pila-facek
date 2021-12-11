@@ -220,3 +220,16 @@ def getOdvoz(request):
                 order.get_material = False
                 order.save()
         return JsonResponse({"code":400})
+
+def check(request):
+    if request.method == "POST":
+        table = request.POST["table"]
+        id = request.POST["id"]
+        if table == 'r':
+            order = Rozmitacka.objects.get(id=id)
+        elif table == 'h':
+            order = Hoblovani.objects.get(id=id)
+        return JsonResponse({
+            "get_material": order.get_material,
+            "get_zbytek": order.get_zbytek,
+            })

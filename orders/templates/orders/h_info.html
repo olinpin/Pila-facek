@@ -5,6 +5,10 @@
 
 {% block head %}
 <title>Hoblování info</title>
+<script>
+  var URLch = "{% url 'orders:check' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/info.js' %}"></script>
 {% endblock %}
 
 {% block body %}

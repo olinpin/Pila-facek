@@ -4,6 +4,10 @@
 
 {% block head %}
 <title>Rozmítačka info</title>
+<script>
+  var URLch = "{% url 'orders:check' %}"
+</script>
+<script type="text/javascript" src="{% static 'js/info.js' %}"></script>
 {% endblock %}
 
 {% block body %}
@@ -116,10 +120,9 @@
 </div>
 <hr>
 </div>
-
+{% csrf_token %}
 {% if not request.user|group:"Vozickar" %}
 <div id="buttons">
-  {% csrf_token %}
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
   <button type="button" id="material" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
@@ -127,4 +130,5 @@
   <button type="button" id="done" class="btn btn-warning btn-square-xxl" onclick="done()">Hotovo</button>
 </div>
 {% endif %}
+
 {% endblock %}

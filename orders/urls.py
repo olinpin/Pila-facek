@@ -19,4 +19,5 @@ urlpatterns = [
     path('needMaterial', views.needMaterial, name="needMaterial"),
     path('needOdvoz', views.needOdvoz, name="needOdvoz"),
     path('getOdvoz', views.getOdvoz, name="getOdvoz"),
+    path('check', views.check, name="check"),
 ]
