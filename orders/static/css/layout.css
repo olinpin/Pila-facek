@@ -64,3 +64,24 @@ background:#eee;
 .navbar {
   font-size: larger;
 }
+.btn-square-m {
+  width: 10vw !important;
+  height: 10vw !important;
+  font-size: 2vw !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin-bottom: 5px;
+}
+.btn-square-mx {
+  width: 100% !important;
+  height: 15vw !important;
+  font-size: 3vw !important;
+  margin-bottom: 5px;
+  background-color: rgb(85, 0, 255);
+}
+.btn-p {
+  background-color: rgb(85, 0, 255);
+}
+.btn-p:hover {
+  background-color: rgba(85, 0, 255, 0.9);
+}

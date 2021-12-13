@@ -46,15 +46,18 @@ function done() {
         data:{
         id:id,
         table:table,
+        counter:counter,
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success: function(data){
-        // alert(data)
         }
     })
     // change the number of ks and change the hotovo to green checkmark
     document.querySelector("#hotovo").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
-    document.querySelector("#c_done").innerHTML = ks;
+    if (document.querySelector("#c_done").innerHTML == 0){
+        document.querySelector("#c_done").innerHTML = ks;
+        counter = ks;
+    }
 }
 
 // these functions are used for changing the material and odvoz fields in the table

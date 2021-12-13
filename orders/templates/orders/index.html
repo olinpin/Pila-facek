@@ -39,7 +39,7 @@
                         <div class="media-body">
                             <a href="{% url 'orders:r_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
                             <small>
-                            <span class="text-muted">Kusů hotovo:</span>
+                            <span class="text-muted">{{ order.jednotky }} hotovo:</span>
                             {{order.ks_hotovo}}/{{order.ks}} &nbsp;
                             <span class="text-muted">Poznámka: </span> {{order.poznamka}} &nbsp;
                             <span class="text-muted">Rozměry: </span> {{order.pozadovany_rozmer}}
@@ -104,7 +104,7 @@
                         <div class="media-body">
                             <a href="{% url 'orders:h_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
                             <small>
-                            <span class="text-muted">Kusů hotovo:</span>
+                            <span class="text-muted">{{ order.jednotky }} hotovo:</span>
                             {{order.ks_hotovo}}/{{order.ks}} &nbsp;
                             <span class="text-muted">Poznámka: </span> {{order.poznamka}} &nbsp;
                             <span class="text-muted">Rozměry: </span> {{order.pozadovany_rozmer}}

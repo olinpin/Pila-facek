@@ -107,6 +107,7 @@ def done(request):
         # extract the variables
         id = request.POST["id"]
         table = request.POST["table"]
+        counter = int(request.POST["counter"])
         # check which table is it
         if table == "r":
             r = Rozmitacka.objects.get(id=id)
@@ -116,8 +117,10 @@ def done(request):
             return JsonResponse({"code": 500})
         # change the hotovo value for the order to "True"
         r.hotovo = True
-        r.ks_hotovo = r.ks
+        if counter == 0:
+            r.ks_hotovo = r.ks
         r.save()
+        print(r)
         # return successful http response
         return JsonResponse({"code": 400})
 

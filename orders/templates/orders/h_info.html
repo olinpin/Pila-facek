@@ -51,7 +51,7 @@
         <hr>
   <div class="row">
           <div class="col-sm-3">
-            <h6 class="mb-0" >Množství ks:</h6>
+            <h6 class="mb-0" >Množství {{ order.jednotky }}:</h6>
         </div>
         <div class="col-sm-9 text-secondary">
             <div id="c_done" style="display:inline-block"> {{ order.ks_hotovo }}</div>/{{ order.ks }}</div>
@@ -127,9 +127,12 @@
       {% csrf_token %}
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
+  <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(10)">-10</button>
+  <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(10)">+10</button>
   <button type="button" id="material" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
   <button type="button" id="odvoz" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
-  <button type="button" id="done" class="btn btn-warning btn-square-xxl" onclick="done()">Hotovo</button>
+  <button type="button" id="done" class="btn btn-warning btn-square-xxl" onclick="done(); odvoz();">Hotovo</button>
+  <a href="{% url 'orders:index' %}" ><button type="button" class="btn btn-primary btn-square-xxl btn-p hide">Domů</button></a>
 </div>
 {% endif %}
 {% endblock %}
