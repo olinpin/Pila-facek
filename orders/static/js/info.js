@@ -27,6 +27,11 @@ $(document).ready(function() {
                     document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">';
                     document.getElementById("odvoz").style.backgroundColor = "#202325";
                 }
+                if (data.odpad == false) {
+                    document.getElementById("odpad").style.backgroundColor = "#0d6efd";
+                } else {
+                    document.getElementById("odpad").style.backgroundColor = "#094db1";
+                }
             }
         })
     },300);

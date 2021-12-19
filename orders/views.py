@@ -165,22 +165,37 @@ def needMaterial(request):
 
     return HttpResponse(f"{order_id} from {table} - was succesfull")
 
-def needOdvoz(request):
+def need(request):
     update_models()
     if request.method == "POST":
         order_id = request.POST["order_id"]
         table = request.POST["table"]
+        function = request.POST["function"]
         if table == "r":
             order = Rozmitacka.objects.get(id=order_id)
-            order.get_zbytek = True
-            order.save()
+            if function == "odvoz":
+                order.get_zbytek = True
+                order.save()
+            elif function == "material":
+                order.get_material = True
+                order.save()
+            elif function == "odpad":
+                order.odpad = True
+                order.save()
+                print(order.odpad)
         elif table == "h":
             order = Hoblovani.objects.get(id=order_id)
-            order.get_zbytek = True
-            order.save()
+            if function == "odvoz":
+                order.get_zbytek = True
+                order.save()
+            elif function == "material":
+                order.get_material = True
+                order.save()
+            elif function == "odpad":
+                order.odpad = True
+                order.save()
         else:
             pass
-
     return HttpResponse(f"{order_id} from {table} - was succesfull")
 
 def getOdvoz(request):
@@ -190,15 +205,24 @@ def getOdvoz(request):
         r_odvoz_list = [order.id for order in r_odvoz]
         h_odvoz = Hoblovani.objects.filter(get_zbytek=True)
         h_odvoz_list = [order.id for order in h_odvoz]
+        
 
         r_dovoz = Rozmitacka.objects.filter(get_material=True)
         r_dovoz_list = [order.id for order in r_dovoz]
         h_dovoz = Hoblovani.objects.filter(get_material=True)
         h_dovoz_list = [order.id for order in h_dovoz]
+
+        r_odpad = Rozmitacka.objects.filter(odpad=True)
+        r_odpad_list = [order.id for order in r_odpad]
+        h_odpad = Hoblovani.objects.filter(odpad=True)
+        h_odpad_list = [order.id for order in h_odpad]
         return JsonResponse({"r_odvoz":r_odvoz_list,
                             "h_odvoz":h_odvoz_list, 
                             "r_dovoz": r_dovoz_list, 
-                            "h_dovoz": h_dovoz_list,})
+                            "h_dovoz": h_dovoz_list,
+                            "r_odpad": r_odpad_list,
+                            "h_odpad": h_odpad_list,
+                            })
     elif request.method == "POST":
         order_id = request.POST["id"]
         table = request.POST["table"]
@@ -222,6 +246,15 @@ def getOdvoz(request):
                 order = Hoblovani.objects.get(id=order_id)
                 order.get_material = False
                 order.save()
+        elif DorO == "odpad":
+            if table == "r":
+                order = Rozmitacka.objects.get(id=order_id)
+                order.odpad = False
+                order.save()
+            elif table == "h":
+                order = Hoblovani.objects.get(id=order_id)
+                order.odpad = False
+                order.save()
         return JsonResponse({"code":400})
 
 def check(request):
@@ -235,4 +268,5 @@ def check(request):
         return JsonResponse({
             "get_material": order.get_material,
             "get_zbytek": order.get_zbytek,
+            "odpad": order.odpad,
             })

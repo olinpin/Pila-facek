@@ -64,10 +64,11 @@ function done() {
 function material() {
     $.ajax({
         type: 'POST',
-        url: URLnm,
+        url: URLn,
         data:{
         order_id:id,
         table:table,
+        function: "material",
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success: function(data){
@@ -80,10 +81,11 @@ function material() {
 function odvoz() {
 $.ajax({
     type: 'POST',
-    url: URLno,
+    url: URLn,
     data:{
     order_id:id,
     table:table,
+    function: "odvoz",
     csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
     },
     success: function(data){
@@ -91,4 +93,17 @@ $.ajax({
         document.querySelector("#get_odvoz").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
     }
 })
+}
+
+function odpad() {
+    $.ajax({
+        type: 'POST',
+        url: URLn,
+        data:{
+        order_id:id,
+        table:table,
+        function: "odpad",
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        }
+    })
 }
