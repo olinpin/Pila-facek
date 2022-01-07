@@ -25,7 +25,6 @@ class Rozmitacka(models.Model):
     do_vyroby = models.BooleanField("Do výroby", default=False)
     get_material = models.BooleanField("Materiál", default=False)
     get_zbytek = models.BooleanField("Zbytek", default=False)
-    odpad = models.BooleanField("Odpad", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
 
 
@@ -57,7 +56,6 @@ class Hoblovani(models.Model):
     do_vyroby = models.BooleanField("Do výroby", default=False)
     get_material = models.BooleanField("Materiál", default=False)
     get_zbytek = models.BooleanField("Odvoz", default=False)
-    odpad = models.BooleanField("Odpad", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
 
     def __str__(self):

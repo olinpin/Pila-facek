@@ -16,7 +16,8 @@ urlpatterns = [
     # functions
     path("done", views.done, name="done"),
     path("count", views.count, name="count"),
-    path('need', views.need, name="need"),
+    path('needMaterial', views.needMaterial, name="needMaterial"),
+    path('needOdvoz', views.needOdvoz, name="needOdvoz"),
     path('getOdvoz', views.getOdvoz, name="getOdvoz"),
     path('check', views.check, name="check"),
 ]
