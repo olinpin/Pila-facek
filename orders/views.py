@@ -82,6 +82,7 @@ def logout_view(request):
         "message": "You've been logout.",
         "good": "yes",
     })
+
 @login_required
 @group_required('Vozickar', 'Admin')
 def odvoz(request):

@@ -1,0 +1,95 @@
+body {
+background:#eee;
+}
+.mx-auto {
+    text-align: center;
+}
+.heading {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+.col-sm-9, .mb-0 {
+    font-size: xx-large;
+    text-align: center;
+}
+#rozmitacka, #hoblovani {
+  width: 40%;
+}
+.details {
+    margin-left: 1rem;
+    width: 60%;
+    float: left;
+}
+.detailsMO {
+    margin-left: 1rem;
+    width: 100%;
+    float: left;
+}
+.btn-square-xl {
+    width: 16vw !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 10vw !important;
+    text-align: center;
+    padding: 0px;
+    font-size: 3.5vw !important;
+    margin-bottom: 5px;
+}
+.btn-square-xxl {
+    width: 32vw !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    height: 10vw !important;
+    text-align: center;
+    padding: 0px;
+    font-size: 4vw !important;
+    margin-bottom: 5px;
+}
+.btn-square-l {
+  width: 15vw !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  height: 15vw !important;
+  text-align: center;
+  padding: 0px;
+  font-size: 4vw !important;
+  margin-bottom: 5px;
+}
+#buttons {
+    margin: auto;
+    text-align: center;
+}
+.navbar {
+  font-size: larger;
+}
+.btn-square-m {
+  width: 10vw !important;
+  height: 7.5vw !important;
+  font-size: 2vw !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin-bottom: 5px;
+}
+.btn-square-mx {
+  width: 100% !important;
+  height: 15vw !important;
+  font-size: 3vw !important;
+  margin-bottom: 5px;
+  background-color: rgb(85, 0, 255);
+}
+.btn-p {
+  background-color: rgb(85, 0, 255);
+}
+.btn-p:hover {
+  background-color: rgba(85, 0, 255, 0.9);
+}
+
+.btn-o {
+  background-color: #0d6efd;
+  color: #FFFFFF;
+}
+.btn-o:hover {
+  color: #FFFFFF;
+}
