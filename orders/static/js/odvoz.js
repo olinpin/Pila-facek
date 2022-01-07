@@ -18,7 +18,7 @@ var h_odpad_visible = [];
 var visible = 0;
 var c_visible = 0;
 // create event listener, that looks for clicks
-document.addEventListener("click", event => {
+document.addEventListener("click", event => { // NEED TO CHANGE THIS PART OF THE CODE
     const element = event.target;
     // if the clicked element has "hide" class name, we delete its parent element
     if (element.className.includes("hide")) {
