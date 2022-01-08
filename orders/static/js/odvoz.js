@@ -80,6 +80,7 @@ document.addEventListener("click", event => {
         
     }
 });
+
 $(document).ready(function(){
     // create a reccuring function
     setInterval(function(){
@@ -97,8 +98,6 @@ $(document).ready(function(){
                 // check if the visible and c_visible arrays are the same and if the arrays are not empty
                 if (visible != c_visible) {
                     if (r_dovoz_visible != [] || h_dovoz_visible != []){
-                        console.log(r_dovoz_visible)
-                        console.log(h_dovoz_visible)
                         attention = true;
                     }
                 }
@@ -106,10 +105,11 @@ $(document).ready(function(){
                 if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0) {
                     // display the headings appropriate
                     if (r_odvoz.length != 0 ||r_dovoz.length != 0) {
+                        console.log(r_dovoz)
+                        console.log(r_odvoz)
                         console.log("rozmitacka not visible 1")
                         document.getElementById("rozmitacka_heading").style.display = "block";
                     } else {
-                        console.log("rozmitacka visible")
                         document.getElementById("rozmitacka_heading").style.display = "none";
                     }
                     if (h_odvoz.length != 0 ||h_dovoz.length != 0) {
@@ -143,7 +143,6 @@ $(document).ready(function(){
                     // if the arrays are empty, hide the headings
                     document.getElementById("rozmitacka_heading").style.display = "none";
                     document.getElementById("hoblovani_heading").style.display = "none";
-                    console.log("rozmitacka not visible 2")
                 }
             }
         });
