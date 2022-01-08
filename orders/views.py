@@ -186,16 +186,14 @@ def needOdvoz(request):
 def getOdvoz(request):
     update_models()
     if request.method == "GET":
-        r_odvoz = Rozmitacka.objects.filter(get_zbytek=True)
+        r_odvoz = Rozmitacka.objects.filter(get_zbytek=True).filter(do_vyroby=True)
         r_odvoz_list = [order.id for order in r_odvoz]
-        print(r_odvoz)
-        print(r_odvoz_list)
-        h_odvoz = Hoblovani.objects.filter(get_zbytek=True)
+        h_odvoz = Hoblovani.objects.filter(get_zbytek=True).filter(do_vyroby=True)
         h_odvoz_list = [order.id for order in h_odvoz]
 
-        r_dovoz = Rozmitacka.objects.filter(get_material=True)
+        r_dovoz = Rozmitacka.objects.filter(get_material=True).filter(do_vyroby=True)
         r_dovoz_list = [order.id for order in r_dovoz]
-        h_dovoz = Hoblovani.objects.filter(get_material=True)
+        h_dovoz = Hoblovani.objects.filter(get_material=True).filter(do_vyroby=True)
         h_dovoz_list = [order.id for order in h_dovoz]
         return JsonResponse({"r_odvoz":r_odvoz_list,
                             "h_odvoz":h_odvoz_list, 

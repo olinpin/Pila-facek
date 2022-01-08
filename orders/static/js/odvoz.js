@@ -105,8 +105,6 @@ $(document).ready(function(){
                 if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0) {
                     // display the headings appropriate
                     if (r_odvoz.length != 0 ||r_dovoz.length != 0) {
-                        console.log(r_odvoz)
-                        console.log("rozmitacka not visible 1")
                         document.getElementById("rozmitacka_heading").style.display = "block";
                     } else {
                         document.getElementById("rozmitacka_heading").style.display = "none";
