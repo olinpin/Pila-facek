@@ -188,6 +188,8 @@ def getOdvoz(request):
     if request.method == "GET":
         r_odvoz = Rozmitacka.objects.filter(get_zbytek=True)
         r_odvoz_list = [order.id for order in r_odvoz]
+        print(r_odvoz)
+        print(r_odvoz_list)
         h_odvoz = Hoblovani.objects.filter(get_zbytek=True)
         h_odvoz_list = [order.id for order in h_odvoz]
 
