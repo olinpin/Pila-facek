@@ -27,7 +27,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
             order.save()
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", 
+    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
@@ -68,7 +68,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
 
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "hotovo", 
+    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "get_material")
     # filter and search the list

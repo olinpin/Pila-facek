@@ -26,6 +26,7 @@ class Rozmitacka(models.Model):
     get_material = models.BooleanField("Materiál", default=False)
     get_zbytek = models.BooleanField("Zbytek", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
+    priority = models.IntegerField("Priorita", default=10)
 
 
     # return function for string
@@ -34,6 +35,7 @@ class Rozmitacka(models.Model):
     class Meta:
         verbose_name_plural = "Rozmítačka"
         verbose_name = "Rozmítačka"
+        ordering = ['priority', '-vytvoreno']
 
 # model of Hoblovani table
 class Hoblovani(models.Model):
@@ -57,6 +59,7 @@ class Hoblovani(models.Model):
     get_material = models.BooleanField("Materiál", default=False)
     get_zbytek = models.BooleanField("Odvoz", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
+    priority = models.IntegerField("Priorita", default=10)
 
     def __str__(self):
         return f"{self.zakaznik}"# - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
@@ -64,4 +67,5 @@ class Hoblovani(models.Model):
     class Meta:
         verbose_name_plural = "Hoblování"
         verbose_name = "Hoblování"
+        ordering = ['priority', '-vytvoreno']
 

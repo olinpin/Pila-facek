@@ -14,8 +14,8 @@ from .models import Rozmitacka, Hoblovani
 def update_models():
     global rozmitacka_model
     global hoblovani_model
-    rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True).order_by("-vytvoreno")
-    hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True).order_by("-vytvoreno")
+    rozmitacka_model = Rozmitacka.objects.all().filter(do_vyroby=True)
+    hoblovani_model = Hoblovani.objects.all().filter(do_vyroby=True)
 
 # Create your views here.
 
@@ -120,7 +120,6 @@ def done(request):
         if counter == 0:
             r.ks_hotovo = r.ks
         r.save()
-        print(r)
         # return successful http response
         return JsonResponse({"code": 400})
 
