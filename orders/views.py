@@ -268,4 +268,5 @@ def check(request):
         return JsonResponse({
             "get_material": order.get_material,
             "get_zbytek": order.get_zbytek,
+            "odpad": order.odpad,
             })
