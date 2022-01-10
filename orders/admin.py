@@ -34,7 +34,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
-    exclude = ("ks_hotovo", "get_material", "get_zbytek")
+    exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad",)
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material,]
 
@@ -75,7 +75,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby",)
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
-    exclude = ("ks_hotovo", "get_material", "get_zbytek",)
+    exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material,]
 
