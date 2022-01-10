@@ -1,7 +1,9 @@
 var r_odvoz = [];
 var r_dovoz = [];
+var r_odpad = [];
 var h_odvoz = [];
 var h_dovoz = [];
+var h_odpad = [];
 
 var attention = false;
 var flash = true;
@@ -11,6 +13,8 @@ var r_dovoz_visible = [];
 var h_dovoz_visible = [];
 var r_odvoz_visible = [];
 var h_odvoz_visible = [];
+var r_odpad_visible = [];
+var h_odpad_visible = [];
 var visible = 0;
 var c_visible = 0;
 // create event listener, that looks for clicks
@@ -76,6 +80,27 @@ document.addEventListener("click", event => {
                     c_visible--
                 }
             }
+        }if (element.parentElement.className == "r+odpad") {
+            if (r_dovoz_visible.includes(id)) {
+                // delete the id from r_odpad_visible, remove the order and subtract one from c_visible
+                const index = r_dovoz_visible.indexOf(id)
+                if (index > -1){
+                    r_odpad_visible.splice(index, 1);
+                    element.parentElement.remove();
+                    c_visible--
+                }
+                
+            }
+        } if (element.parentElement.className == "h+odpad") {
+            if (h_dovoz_visible.includes(id)) {
+                // delete the id from h_odpad_visible, remove the order and subtract one from c_visible
+                const index = h_dovoz_visible.indexOf(id)
+                if (index > -1){
+                    h_odpad_visible.splice(index, 1);
+                    element.parentElement.remove();
+                    c_visible--
+                }
+            }
         }
         
     }
@@ -94,7 +119,9 @@ $(document).ready(function(){
                 h_odvoz  = response.h_odvoz
                 r_dovoz = response.r_dovoz
                 h_dovoz = response.h_dovoz
-                visible = r_odvoz.length + h_odvoz.length + r_dovoz.length + h_dovoz.length
+                r_odpad = response.r_odpad
+                h_odpad = response.h_odpad
+                visible = r_odvoz.length + h_odvoz.length + r_dovoz.length + h_dovoz.length + r_odpad.length + h_odpad.length
                 // check if the visible and c_visible arrays are the same and if the arrays are not empty
                 if (visible != c_visible) {
                     if (r_dovoz_visible != [] || h_dovoz_visible != []){
@@ -102,29 +129,23 @@ $(document).ready(function(){
                     }
                 }
                 // if a table has something inside it, flash the screen
-                if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0) {
+                if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0 || r_odpad.length != 0 || h_odpad.length != 0) {
                     // display the headings appropriate
-                    if (r_odvoz.length != 0 ||r_dovoz.length != 0) {
+                    if (r_odvoz.length != 0 || r_dovoz.length != 0 || r_odpad.length != 0) {
                         document.getElementById("rozmitacka_heading").style.display = "block";
                     } else {
                         document.getElementById("rozmitacka_heading").style.display = "none";
                     }
-                    if (h_odvoz.length != 0 ||h_dovoz.length != 0) {
+                    if (h_odvoz.length != 0 ||h_dovoz.length != 0 || h_odpad.length != 0) {
                         document.getElementById("hoblovani_heading").style.display = "block";
                     } else {
                         document.getElementById("hoblovani_heading").style.display = "none";
                     }
-                    // run 4 for loops that add information for each order from both tables
+                    // run loops that add information for each order from both tables
                     // running them in odvoz.html, because they are jinja2 loops
                     
-                    // ODVOZ //
-                    rozmitackaO()
-                    hoblovaniO()
-                    
-
-                    // DOVOZ //
-                    rozmitackaD()
-                    hoblovaniD()
+                    rozmitackaL()
+                    hoblovaniL()
                     
                     // if attention is true, flash the screen
                     if (attention == true) {

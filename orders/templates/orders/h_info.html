@@ -120,6 +120,13 @@
   <div class="col-sm-9 text-secondary" id="get_odvoz"> {% if order.get_zbytek %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
 </div>
 <hr>
+<div class="row">
+  <div class="col-sm-3">
+    <h6 class="mb-0">Odpad:</h6>
+</div>
+<div class="col-sm-9 text-secondary" id="get_odpad"> {% if order.odpad %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+</div>
+<hr>
 <a href="{% url 'orders:index' %}" ><button type="button" class="btn btn-primary btn-square-mx btn-p hide">Domů</button></a>
 </div>
 

@@ -92,3 +92,19 @@ $.ajax({
     }
 })
 }
+
+function odpad() {
+    $.ajax({
+        type: 'POST',
+        url: URLo,
+        data:{
+        order_id:id,
+        table:table,
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function(data){
+            // if succesfull, change the red cross to a green checkmark
+            document.querySelector("#get_odpad").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
+        }
+    })
+    }
