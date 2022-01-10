@@ -27,7 +27,7 @@ class Rozmitacka(models.Model):
     get_zbytek = models.BooleanField("Zbytek", default=False)
     odpad = models.BooleanField("Odpad", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
-    priority = models.IntegerField("Priorita", default=10)
+    priority = models.IntegerField("Priorita", default=10) 
 
 
     # return function for string
