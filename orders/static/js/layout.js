@@ -107,4 +107,4 @@ function odpad() {
             document.querySelector("#get_odpad").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
         }
     })
-    }
+}
