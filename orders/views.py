@@ -228,6 +228,7 @@ def getOdvoz(request):
         table = request.POST["table"]
         DorO = table.split("+")[1]
         table = table.split("+")[0]
+        order_id = int(order_id.split("d")[1])
         if DorO == "odvoz":
             if table == "r":
                 order = Rozmitacka.objects.get(id=order_id)

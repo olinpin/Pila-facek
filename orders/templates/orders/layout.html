@@ -90,7 +90,11 @@
             </div>-->
           </nav>
 
-
+          {% if user.is_superuser %}
+          <div id="index-button">
+            <button type="button" id="refresh" onClick="window.location.reload()" class="btn btn-primary btn-square-xxl" >Refresh</button>
+          </div>
+          {% endif %}
         {% if good %}
         <div class="row">
         <div class="mx-auto">
@@ -120,7 +124,7 @@
 </html>
 <script>
   // set all jinja2 variables to use in all functions
-  let counter = {{ order.ks_hotovo }}
+  let counter = {{ order.ks_hotovo }};
   var id = {{order.id}};
   var table = "{{ table }}";
   var URLd = "{% url 'orders:done' %}";

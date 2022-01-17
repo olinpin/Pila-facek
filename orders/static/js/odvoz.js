@@ -7,8 +7,9 @@ var h_odpad = [];
 
 var attention = false;
 var flash = true;
-let rozmitacka = document.getElementById("rozmitacka");
-let hoblovani = document.getElementById("hoblovani")
+//let rozmitacka = document.getElementById("rozmitacka");
+let rozmitacka = document.getElementById("r-tbody");
+let hoblovani = document.getElementById("h-tbody");
 var r_dovoz_visible = [];
 var h_dovoz_visible = [];
 var r_odvoz_visible = [];
@@ -26,8 +27,8 @@ document.addEventListener("click", event => {
             type:"POST",
             url: URLgo,
             data:{
-                id:element.parentElement.id,
-                table:element.parentElement.className,
+                id:element.parentElement.parentElement.parentElement.id,
+                table:element.parentElement.parentElement.parentElement.className,
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
             },
             success: function(data){
@@ -36,68 +37,68 @@ document.addEventListener("click", event => {
             }
         })
         // get the id of the order
-        id = parseInt(element.parentElement.id);
+        id = parseInt(element.parentElement.parentElement.parentElement.id.split("d")[1]);
         // check if the class is rozmitacka or hoblovani and odvoz or dovoz
-        if (element.parentElement.className == "r+odvoz") {
+        if (element.parentElement.parentElement.parentElement.className == "r+odvoz") {
             if (r_odvoz_visible.includes(id)) {
                 // delete the id from r_odvoz_visible, remove the order and subtract one from c_visible
                 const index = r_odvoz_visible.indexOf(id)
                 if (index > -1){
                     r_odvoz_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
             }
-        } if (element.parentElement.className == "h+odvoz") {
+        } if (element.parentElement.parentElement.parentElement.className == "h+odvoz") {
             if (h_odvoz_visible.includes(id)) {
                 // delete the id from h_odvoz_visible, remove the order and subtract one from c_visible
                 const index = h_odvoz_visible.indexOf(id)
                 if (index > -1){
                     h_odvoz_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
             }
         }
-        if (element.parentElement.className == "r+dovoz") {
+        if (element.parentElement.parentElement.parentElement.className == "r+dovoz") {
             if (r_dovoz_visible.includes(id)) {
                 // delete the id from r_dovoz_visible, remove the order and subtract one from c_visible
                 const index = r_dovoz_visible.indexOf(id)
                 if (index > -1){
                     r_dovoz_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
                 
             }
-        } if (element.parentElement.className == "h+dovoz") {
+        } if (element.parentElement.parentElement.parentElement.className == "h+dovoz") {
             if (h_dovoz_visible.includes(id)) {
                 // delete the id from h_dovoz_visible, remove the order and subtract one from c_visible
                 const index = h_dovoz_visible.indexOf(id)
                 if (index > -1){
                     h_dovoz_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
             }
-        }if (element.parentElement.className == "r+odpad") {
+        }if (element.parentElement.parentElement.parentElement.className == "r+odpad") {
             if (r_dovoz_visible.includes(id)) {
                 // delete the id from r_odpad_visible, remove the order and subtract one from c_visible
                 const index = r_dovoz_visible.indexOf(id)
                 if (index > -1){
                     r_odpad_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
                 
             }
-        } if (element.parentElement.className == "h+odpad") {
+        } if (element.parentElement.parentElement.parentElement.className == "h+odpad") {
             if (h_dovoz_visible.includes(id)) {
                 // delete the id from h_odpad_visible, remove the order and subtract one from c_visible
                 const index = h_dovoz_visible.indexOf(id)
                 if (index > -1){
                     h_odpad_visible.splice(index, 1);
-                    element.parentElement.remove();
+                    element.parentElement.parentElement.parentElement.remove();
                     c_visible--
                 }
             }

@@ -19,12 +19,12 @@
     padding: 20px;
 }
 
-#hoblovani {
+#hoblovani_heading {
     width: 50%;
-    float: right;
+    float: left;
     padding: 20px;
 }
-#rozmitacka {
+#rozmitacka_heading {
     width: 50%;
     float: left;
     padding: 20px;
