@@ -136,12 +136,23 @@ $(document).ready(function(){
                         document.getElementById("rozmitacka_heading").style.display = "block";
                     } else {
                         document.getElementById("rozmitacka_heading").style.display = "none";
+                        document.getElementById("hoblovani_heading").style.width = "100%";
                     }
                     if (h_odvoz.length != 0 ||h_dovoz.length != 0 || h_odpad.length != 0) {
                         document.getElementById("hoblovani_heading").style.display = "block";
                     } else {
                         document.getElementById("hoblovani_heading").style.display = "none";
+                        document.getElementById("rozmitacka_heading").style.width = "100%";
                     }
+                    if (document.getElementById("hoblovani_heading").style.display == "none" && document.getElementById("rozmitacka_heading").style.display == "block") {
+                        document.getElementById("rozmitacka_heading").style.width = "100%";
+                    } else if (document.getElementById("hoblovani_heading").style.display == "block" && document.getElementById("rozmitacka_heading").style.display == "none") {
+                        document.getElementById("hoblovani_heading").style.width = "100%";
+                    } else if (document.getElementById("hoblovani_heading").style.display == "block" && document.getElementById("rozmitacka_heading").style.display == "block") {
+                        document.getElementById("rozmitacka_heading").style.width = "50%";
+                        document.getElementById("hoblovani_heading").style.width = "50%";
+                    }
+
                     // run loops that add information for each order from both tables
                     // running them in odvoz.html, because they are jinja2 loops
                     
