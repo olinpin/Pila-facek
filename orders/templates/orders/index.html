@@ -10,9 +10,11 @@
 <!-- .table-wrap changes the height of the table!!!-->
 {% block body %}
 
+{% if not request.user|has_group:"Vozickar" %}
 <div id="index-button">
-  <button type="button" id="refresh" onClick="window.location.reload()" class="btn btn-primary btn-square-xxl" >Refresh</button>
+  <button type="button" id="refresh" onClick="window.location.reload()" class="btn btn-primary btn-square-xl" >Refresh</button>
 </div>
+{% endif %}
 
 {% if request.user|has_group:"Rozmitac" %}
 <div class="container px-3 my-5 clearfix ">
