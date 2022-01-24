@@ -116,7 +116,8 @@
         {% if request.user|has_group:"Vozickar" %}
         <div id="buttons">
           <button type="button" class="btn btn-danger btn-square-xl" style="margin-top: 5vh; margin-right: 2vw;" onclick="attention = false; document.body.style.background = '#eee'">Vidím</button>
-          <button type="button" class="btn btn-primary btn-square-xl" style="margin-top: 5vh; margin-left: 2vw;" id="refresh" onClick="window.location.reload()" >Refresh</button>
+          {% block button %}
+          {% endblock %}
         </div>
         {% endif %}
         {% block body %}

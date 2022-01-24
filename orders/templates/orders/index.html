@@ -7,7 +7,14 @@
 <!-- My own CSS -->
 <link rel="stylesheet" href="{% static 'css/index.css'%}">
 {% endblock %}
-<!-- .table-wrap changes the height of the table!!!-->
+
+
+<!-- refresh button -->
+{% block button %}
+<button type="button" class="btn btn-primary btn-square-xl" style="margin-top: 5vh; margin-left: 2vw;" id="refresh" onClick="window.location.reload()" >Refresh</button>
+{% endblock %}
+
+
 {% block body %}
 
 {% if not request.user|has_group:"Vozickar" %}
@@ -16,6 +23,8 @@
 </div>
 {% endif %}
 
+
+<!-- .table-wrap changes the height of the table!!!-->
 {% if request.user|has_group:"Rozmitac" %}
 <div class="container px-3 my-5 clearfix ">
     <!-- Rozmitacka table -->
