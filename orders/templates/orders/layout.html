@@ -67,7 +67,7 @@
                     <a class="nav-link" href="{% url 'orders:odvoz' %}">Dovoz a Odvoz</a>
                   </li>
                   <li class="nav-item">
-                    <button type="button" class="btn btn-danger" onclick="attention = false; document.body.style.background = '#eee'">Vidím</button>
+                    <button type="button" class="btn btn-danger" onclick="attention = false; document.body.style.background = '#eee'; localStorage.setItem('attention', 'false')">Vidím</button>
                   </li>
                   {% endif %}
                   
@@ -115,7 +115,7 @@
         {% endif %}
         {% if request.user|has_group:"Vozickar" %}
         <div id="buttons">
-          <button type="button" class="btn btn-danger btn-square-xl" style="margin-top: 5vh; margin-right: 2vw;" onclick="attention = false; document.body.style.background = '#eee'">Vidím</button>
+          <button type="button" class="btn btn-danger btn-square-xl" style="margin-top: 5vh; margin-right: 2vw;" onclick="attention = false; document.body.style.background = '#eee'; localStorage.setItem('attention', 'false')">Vidím</button>
           {% block button %}
           {% endblock %}
         </div>
@@ -140,8 +140,13 @@
 {% if request.user|has_group:"Vozickar" %}
 <script>
   $(document).ready(function(){
-    var c_visible;
+    var c_visible = localStorage.getItem("c_visible");
     var flash;
+    if (localStorage.getItem("attention") == "true") {
+      attention = true;
+    } else if (localStorage.getItem("attention") == "false") {
+      attention = false;
+    };
     // create a reccuring function
     setInterval(function(){
         // get the orders, that need to get rid of material
@@ -160,6 +165,8 @@
                 // check if the visible and c_visible arrays are the same and if the arrays are not empty
                 if (visible != c_visible) {
                         attention = true;
+                        localStorage.setItem("c_visible", visible.toString())
+                        localStorage.setItem("attention", "true")
                 }
                 // if a table has something inside it, flash the screen
                 if (r_odvoz.length != 0 || h_odvoz.length != 0 || r_dovoz.length != 0 || h_dovoz.length != 0 || r_odpad.length != 0 || h_odpad.length != 0) {
