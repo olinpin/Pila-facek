@@ -37,7 +37,7 @@
               <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'orders:index' %}">Domů</a>
-                </li>
+                </li> 
                 {% if user.is_authenticated %}
                 {% if request.user|has_group:"Rozmitac" %}
                 <li class="nav-item dropdown">
