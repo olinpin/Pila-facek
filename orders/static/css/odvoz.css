@@ -1,13 +1,4 @@
-.btn-square-xl {
-    width: 16vw !important;
-    max-width: 100% !important;
-    max-height: 100% !important;
-    height: 16vw !important;
-    text-align: center;
-    padding: 0px;
-    font-size: 3.5vw !important;
-    margin-bottom: 5px;
-}
+
 
 .button {
     display: flex;

@@ -8,8 +8,11 @@
 <link rel="stylesheet" href="{% static 'css/odvoz.css' %}">
 {% endblock %}
 
+
+<!-- <h1 class="heading" style="display: flex; flex: 1;">Dovoz a Odvoz</h1>-->
+
 {% block body %}
-<h1 class="heading">Dovoz a Odvoz</h1>
+
 {% csrf_token %}
 <div class="orders" id="orders">
     <div class="container px-3 my-5 clearfix" id="rozmitacka_heading" style="display:none;">
