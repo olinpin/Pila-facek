@@ -36,7 +36,7 @@ class Rozmitacka(models.Model):
     class Meta:
         verbose_name_plural = "Rozmítačka"
         verbose_name = "Rozmítačka"
-        ordering = ['priority', '-vytvoreno']
+        ordering = ['-priority', '-vytvoreno']
 
 # model of Hoblovani table
 class Hoblovani(models.Model):
@@ -69,5 +69,5 @@ class Hoblovani(models.Model):
     class Meta:
         verbose_name_plural = "Hoblování"
         verbose_name = "Hoblování"
-        ordering = ['priority', '-vytvoreno']
+        ordering = ['-priority', '-vytvoreno']
 
