@@ -4,6 +4,8 @@ from .models import Rozmitacka, Hoblovani
 from django.db import models
 from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
+from django.utils.html import mark_safe
+
 
 # change the english date format in admin display
 en_formats.DATE_FORMAT = "d.m.Y"
@@ -20,6 +22,7 @@ cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 @admin.register(Rozmitacka)
 class RozmitackaAdmin(admin.ModelAdmin):
     list_per_page = 50
+    save_on_top = True
     # checks do_vyroby a get_material fields True
     def do_vyroby_a_material(modeladmin, request, queryset):
         for order in queryset:
@@ -27,9 +30,11 @@ class RozmitackaAdmin(admin.ModelAdmin):
             order.get_material = True
             order.save()
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
+    def button(self, obj):
+        return mark_safe('<input type="submit" name="_save" class="default" value="Save">')
     # what shows in the list
     list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "ks_hotovo", "ks")
+                    "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
@@ -69,9 +74,11 @@ class HoblovaniAdmin(admin.ModelAdmin):
             order.save()
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
 
+    def button(self, obj):
+        return mark_safe('<input type="submit" name="_save" class="default" value="Save">')
     # what shows in the list
     list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "ks_hotovo", "ks")
+                    "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby",)
