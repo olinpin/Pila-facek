@@ -19,6 +19,7 @@ cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 
 @admin.register(Rozmitacka)
 class RozmitackaAdmin(admin.ModelAdmin):
+    list_per_page = 50
     # checks do_vyroby a get_material fields True
     def do_vyroby_a_material(modeladmin, request, queryset):
         for order in queryset:
@@ -59,6 +60,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
 
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
+    list_per_page = 50
     # checks do_vyroby a get_material fields True
     def do_vyroby_a_material(modeladmin, request, queryset):
         for order in queryset:
