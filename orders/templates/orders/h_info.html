@@ -143,6 +143,9 @@
   <button type="button" id="odpad" class="btn btn-primary btn-square-xl btn-o" onclick="odpad()">Odpad</button>
   
   <a href="{% url 'orders:index' %}" ><button type="button" class="btn btn-primary btn-square-xxl btn-p hide">Domů</button></a>
+  {% if order.image %}
+  <img src="{{ order.image.url }}" style="width: 32vw !important;">
+  {% endif %}
 </div>
 {% endif %}
 {% endblock %}

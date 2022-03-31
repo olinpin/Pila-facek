@@ -77,7 +77,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Save">')
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
+    list_display = ("zakaznik", "image_preview", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "get_material")
     # filter and search the list
@@ -87,6 +87,13 @@ class HoblovaniAdmin(admin.ModelAdmin):
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material,]
+
+    readonly_fields = ("image_preview",)
+    def image_preview(self, obj):
+        return obj.image_preview
+
+    image_preview.short_description = "Image"
+    image_preview.allow_tags = True
 
     class Meta:
         ordering = ("pozadovane_datum_vyroby", "zakaznik",)

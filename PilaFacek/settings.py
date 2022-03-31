@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tr4++72&t9n_(&(p+#69rn_ya460lgc&v!0x!%yh=kvl&gcd^='
+SECRET_KEY = '(4w0n69xeph$n3b%u_sczaw)4k_u=p@5c_$4a$t(qamv6f5_vf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -98,7 +98,11 @@ DATABASES = {
 
         'PORT': '5432',
         
-        
+        # 'NAME': 'oliverhnat',
+        # 'USER': 'oliverhnat',
+        # 'PASSWORD':'',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
 
     }
 
@@ -127,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'cs' #'en-us' #cs
+LANGUAGE_CODE = 'en-us' #cs
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -146,6 +150,12 @@ STATIC_URL = '/static/'
 STATIC_FILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'static_files')
+
+# Media files
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = 'media/'
+
 
 
 

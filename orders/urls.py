@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = "orders"
 urlpatterns = [
@@ -21,4 +23,4 @@ urlpatterns = [
     path('getOdvoz', views.getOdvoz, name="getOdvoz"),
     path('check', views.check, name="check"),
     path('odpad', views.odpad, name="odpad"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

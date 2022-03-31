@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import signals
 from django.dispatch import receiver
+from django.utils.html import mark_safe
 
 # Create your models here.
 
@@ -62,6 +63,14 @@ class Hoblovani(models.Model):
     odpad = models.BooleanField("Odpad", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
     priority = models.IntegerField("Priorita", default=10)
+    image = models.ImageField(upload_to='media/images', blank=True)
+
+    @property
+    def image_preview(self):
+        if self.image:
+            return mark_safe(f'<img src="{self.image.url}" width="100" height="100" />')
+        return ""
+   
 
     def __str__(self):
         return f"{self.zakaznik}"# - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
