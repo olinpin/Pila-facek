@@ -92,7 +92,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     def image_preview(self, obj):
         return obj.image_preview
 
-    image_preview.short_description = "Image"
+    image_preview.short_description = "Obrázek"
     image_preview.allow_tags = True
 
     class Meta:
@@ -110,5 +110,6 @@ class HoblovaniAdmin(admin.ModelAdmin):
         form.base_fields["kapovani"].label = "Kapování"
         form.base_fields["misto_hoblovani"].label = "Místo hoblování"
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
+        form.base_fields["image"].label = "Obrázek"
         
         return form
