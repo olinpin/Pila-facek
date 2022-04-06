@@ -113,3 +113,5 @@ class HoblovaniAdmin(admin.ModelAdmin):
         form.base_fields["image"].label = "Obrázek"
         
         return form
+
+    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")

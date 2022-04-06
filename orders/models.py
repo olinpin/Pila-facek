@@ -64,13 +64,31 @@ class Hoblovani(models.Model):
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
     priority = models.IntegerField("Priorita", default=10)
     image = models.ImageField(upload_to='media/images', blank=True)
+    do_susarny = models.BooleanField("Do sušárny", default=True)
+    suche = models.BooleanField("Suché", default=False)
 
     @property
     def image_preview(self):
         if self.image:
             return mark_safe(f'<img src="{self.image.url}" width="100" height="100" />')
         return ""
-   
+    
+    # save the suche and do_susarny in another variable
+    __suche_original = None
+    __do_susarny_original = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__suche_original = self.suche
+        self.__do_susarny_original = self.do_susarny
+
+    # check which of the suche or do_susarny has changed and change the other one accordingly
+    def save(self, *args, **kwargs):
+        if self.__suche_original != self.suche:
+            self.do_susarny = not self.suche
+        elif self.__do_susarny_original != self.do_susarny:
+            self.suche = not self.do_susarny
+        return super(Hoblovani, self).save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.zakaznik}"# - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
