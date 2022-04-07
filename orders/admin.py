@@ -32,6 +32,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
+    button.short_description = 'Uložit'
     # what shows in the list
     list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
@@ -60,6 +61,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["baleni"].label = "Balení (proklad)"
         form.base_fields["kapovani"].label = "Kapování"
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
+        form.base_fields["button"].label = "Uložit"
         
         return form
 
@@ -76,6 +78,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
 
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
+    button.short_description = 'Uložit'
     # what shows in the list
     list_display = ("zakaznik", "image_preview", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
