@@ -4,5 +4,6 @@
     "editor.guides.bracketPairs":"active",
     "editorUnnecessaryCode.border": "#FF0000",
     "python.languageServer": "Pylance",
-    "terminal.integrated.shellArgs.osx": ["source ~/Desktop/Programming/Python/VIRTUAL_ENVIRONMENTS/Work/PilaEnv/bin/activate"]
+    "terminal.integrated.shellArgs.osx": ["source ~/Desktop/Programming/Python/VIRTUAL_ENVIRONMENTS/Work/PilaEnv/bin/activate"],
+    "cornflakes.linter.executablePath": "~/Desktop/Programming/Python/VIRTUAL_ENVIRONMENTS/Work/PilaEnv/bin/flake8"
 }

@@ -30,6 +30,20 @@ DEBUG = True
 ALLOWED_HOSTS = ["0.0.0.0", 'https://pila-facek.herokuapp.com', '*',]
 
 
+# Django-storages
+
+AWS_ACCESS_KEY_ID='AKIAVFDXSBJADSKOYIOQ'
+AWS_SECRET_ACCESS_KEY='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'
+AWS_STORAGE_BUCKET_NAME='hoblovani'
+AWS_URL= 'https://hoblovani.s3.amazonaws.com/'
+
+# AWS S3 SETTINGS
+
+AWS_DEFAULT_ACL = None
+AWS_S3_REGION_NAME = 'eu-central-1'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'orders',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -131,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'cs' #en-us #cs
+LANGUAGE_CODE = 'en-us' #cs
 
 TIME_ZONE = 'Europe/Berlin'
 
@@ -145,17 +160,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = AWS_URL + '/static/'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 STATIC_FILES_DIRS = [os.path.join(BASE_DIR,'static')]
 
-STATIC_ROOT = os.path.join(BASE_DIR,'static_files')
+#STATIC_ROOT = os.path.join(BASE_DIR,'static_files')
 
 # Media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = 'media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+MEDIA_URL = AWS_URL + '/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
 
