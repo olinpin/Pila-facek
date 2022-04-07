@@ -13,6 +13,7 @@ filelock==3.3.2
 flake8==4.0.1
 gunicorn==20.1.0
 heroku==0.1.4
+heroku3==5.1.4
 idna==3.3
 importlib-metadata==4.2.0
 Jinja2==3.0.3
