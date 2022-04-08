@@ -22,7 +22,6 @@ cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 @admin.register(Rozmitacka)
 class RozmitackaAdmin(admin.ModelAdmin):
     list_per_page = 50
-    save_on_top = True
     # checks do_vyroby a get_material fields True
     def do_vyroby_a_material(modeladmin, request, queryset):
         for order in queryset:
@@ -61,7 +60,6 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["baleni"].label = "Balení (proklad)"
         form.base_fields["kapovani"].label = "Kapování"
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
-        form.base_fields["button"].label = "Uložit"
         
         return form
 
@@ -81,8 +79,8 @@ class HoblovaniAdmin(admin.ModelAdmin):
     button.short_description = 'Uložit'
     # what shows in the list
     list_display = ("zakaznik", "image_preview", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
-    list_editable = ("hotovo", "kontrola", "do_vyroby", "get_material")
+                    "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
+    list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby",)
     search_fields = ("zakaznik__startswith", )
