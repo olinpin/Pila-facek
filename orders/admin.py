@@ -62,6 +62,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
         
         return form
+    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
 
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
