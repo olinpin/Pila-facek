@@ -144,7 +144,9 @@
   
   <a href="{% url 'orders:index' %}" ><button type="button" class="btn btn-primary btn-square-xxl btn-p hide">Domů</button></a>
   {% if order.image %}
-  <img src="{{ order.image.url }}" style="width: 32vw !important;">
+  <a href="{{ order.image.url }}" target="_blank">
+    <img src="{{ order.image.url }}" style="width: 32vw !important;">
+  </a>
   {% endif %}
 </div>
 {% endif %}
