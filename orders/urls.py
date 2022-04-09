@@ -23,4 +23,5 @@ urlpatterns = [
     path('getOdvoz', views.getOdvoz, name="getOdvoz"),
     path('check', views.check, name="check"),
     path('odpad', views.odpad, name="odpad"),
+    path('h/<int:h_id>/pdf_export', views.pdf_export, name="pdf_export"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

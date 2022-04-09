@@ -1,9 +1,8 @@
 from django.db import models
-from django.db.models import signals
-from django.dispatch import receiver
 from django.utils.html import mark_safe
 
 # Create your models here.
+
 
 # model of Rozmitacka table
 class Rozmitacka(models.Model):

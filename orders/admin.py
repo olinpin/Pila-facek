@@ -6,6 +6,18 @@ from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
 
+# pdf generation
+from reportlab.pdfgen import canvas
+from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
+import PIL.Image
+from reportlab.lib.units import cm
+from reportlab.lib import colors
+import io
+from django.http import FileResponse, HttpResponse
+from reportlab.rl_config import defaultPageSize
+from reportlab.pdfbase.pdfmetrics import stringWidth
+from reportlab.lib.pagesizes import A4, landscape
+
 
 # change the english date format in admin display
 en_formats.DATE_FORMAT = "d.m.Y"
@@ -16,7 +28,6 @@ cs_formats.DATE_FORMAT = "d.m.Y"
 cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 
 # Register your models here.
-
 
 
 @admin.register(Rozmitacka)
@@ -62,6 +73,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
         
         return form
+    
     fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
 
 @admin.register(Hoblovani)
@@ -75,6 +87,39 @@ class HoblovaniAdmin(admin.ModelAdmin):
             order.save()
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
 
+    def createPDF(modeladmin, request, queryset):
+        response = HttpResponse()
+        response['Content-Disposition'] = 'attachment; filename=somefilename.pdf'
+
+        elements = []
+        doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=0, topMargin=0.3 * cm, bottomMargin=0, pagesize=landscape(A4))
+        data = [("Zákazník", "Materiál", "Požadovaný rozmer", "Poznámka", "Kusy", "Balení (proklad)", "Kvalita", "Impregnace", "Kapování", "Místo hoblování", "Vyrobit do", "Priorita",),]
+        images = []
+        names = []
+        for order in queryset:
+            try:
+                img = Image(order.image)
+                img.drawHeight = 18 * cm
+                img.drawWidth = 18 * cm
+                images.append(img)
+                names.append(order.zakaznik)
+            except:
+                pass
+            data.append((order.zakaznik, order.skladovy_material, f"{order.pozadovany_rozmer} x {order.pozadovana_delka}", order.poznamka, f"{order.ks} {order.jednotky}", order.baleni, order.kvalita, order.impregnace, order.kapovani, order.misto_hoblovani, order.pozadovane_datum_vyroby, order.priority))
+        table = Table(data)
+        table.setStyle(TableStyle([('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
+                                        ('BOX', (0, 0), (-1, -1), 0.25, colors.black)]))
+        elements.append(table)
+        try:
+            for i in range(len(images)):
+                elements.append(PageBreak())
+                elements.append(Paragraph(names[i]))
+                elements.append(images[i])
+        except:
+            pass
+        doc.build(elements)
+        return response
+    createPDF.short_description = "Vytvořit PDF"
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
@@ -88,7 +133,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
-    actions = [do_vyroby_a_material,]
+    actions = [do_vyroby_a_material, createPDF,]
 
     readonly_fields = ("image_preview",)
     def image_preview(self, obj):

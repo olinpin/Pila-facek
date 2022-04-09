@@ -1,11 +1,13 @@
 # import needed modules
-from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse, FileResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .groups import group_required
 from .models import Rozmitacka, Hoblovani
+from reportlab.pdfgen import canvas
+import io
 
 ### FUNCTIONS IN THIS FILE ### 
 
@@ -271,3 +273,13 @@ def check(request):
             "get_zbytek": order.get_zbytek,
             "odpad": order.odpad,
             })
+
+# PDF export
+def pdf_export(request, h_id):
+    buffer = io.BytesIO()
+    x = canvas.Canvas(buffer)
+    x.drawString(100, 100, "Let's generate this pdf file.")
+    x.showPage()
+    x.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='attempt1.pdf')
