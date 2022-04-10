@@ -7,16 +7,12 @@ from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
 
 # pdf generation
-from reportlab.pdfgen import canvas
 from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
-import PIL.Image
 from reportlab.lib.units import cm
 from reportlab.lib import colors
-import io
-from django.http import FileResponse, HttpResponse
-from reportlab.rl_config import defaultPageSize
-from reportlab.pdfbase.pdfmetrics import stringWidth
+from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4, landscape
+import datetime
 
 
 # change the english date format in admin display
@@ -89,7 +85,8 @@ class HoblovaniAdmin(admin.ModelAdmin):
 
     def createPDF(modeladmin, request, queryset):
         response = HttpResponse()
-        response['Content-Disposition'] = 'attachment; filename=somefilename.pdf'
+        date = datetime.datetime.now().strftime("%Y-%m-%d")
+        response['Content-Disposition'] = f'attachment; filename=hoblovani-{date}.pdf'
 
         elements = []
         doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=0, topMargin=0.3 * cm, bottomMargin=0, pagesize=landscape(A4))
