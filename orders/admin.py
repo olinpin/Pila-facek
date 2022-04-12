@@ -104,8 +104,8 @@ class HoblovaniAdmin(admin.ModelAdmin):
                 pass
             data.append((order.zakaznik, order.skladovy_material, f"{order.pozadovany_rozmer} x {order.pozadovana_delka}", order.poznamka, f"{order.ks} {order.jednotky}", order.baleni, order.kvalita, order.impregnace, order.kapovani, order.misto_hoblovani, order.pozadovane_datum_vyroby, order.priority))
         table = Table(data)
-        table.setStyle(TableStyle([('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
-                                        ('BOX', (0, 0), (-1, -1), 0.25, colors.black)]))
+        table.setStyle(TableStyle([ ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
+                                    ('BOX', (0, 0), (-1, -1), 0.25, colors.black),]))
         elements.append(table)
         try:
             for i in range(len(images)):
@@ -125,7 +125,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
-    list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby",)
+    list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", "do_susarny", "suche")
     search_fields = ("zakaznik__startswith", )
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
