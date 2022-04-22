@@ -83,10 +83,13 @@ class Hoblovani(models.Model):
 
     # check which of the suche or do_susarny has changed and change the other one accordingly
     def save(self, *args, **kwargs):
-        if self.__suche_original != self.suche:
-            self.do_susarny = not self.suche
-        elif self.__do_susarny_original != self.do_susarny:
-            self.suche = not self.do_susarny
+        if not self.do_vyroby:
+            if self.__suche_original != self.suche:
+                self.do_susarny = not self.suche
+            elif self.__do_susarny_original != self.do_susarny:
+                self.suche = not self.do_susarny
+        if self.hotovo and not self.do_vyroby:
+            self.priority = 10
         return super(Hoblovani, self).save(*args, **kwargs)
 
     def __str__(self):
