@@ -63,7 +63,7 @@ class Hoblovani(models.Model):
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
     priority = models.IntegerField("Priorita", default=10)
     image = models.ImageField(upload_to='media/images', blank=True)
-    do_susarny = models.BooleanField("Do sušárny", default=True)
+    do_susarny = models.BooleanField("Připravené", default=True)
     suche = models.BooleanField("Suché", default=False)
 
     @property
