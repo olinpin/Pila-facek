@@ -8,7 +8,7 @@ from django.utils.html import mark_safe
 
 # pdf generation
 from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
-from reportlab.lib.units import cm
+from reportlab.lib.units import cm, inch
 from reportlab.lib import colors
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4, landscape
@@ -90,7 +90,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
 
         elements = []
         doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=0, topMargin=0.3 * cm, bottomMargin=0, pagesize=landscape(A4))
-        data = [("Zákazník", "Materiál", "Požadovaný rozmer", "Poznámka", "Kusy", "Balení (proklad)", "Kvalita", "Impregnace", "Kapování", "Místo hoblování", "Vyrobit do", "Priorita",),]
+        data = [("Zákazník", "Materiál", Paragraph("Požadovaný rozmer"), "Poznámka", "Kusy", Paragraph("Balení (proklad)"), "Kvalita", "Impregnace", "Kapování", Paragraph("Místo hoblování"), "Vyrobit do", "Priorita",),]
         images = []
         names = []
         for order in queryset:
@@ -102,8 +102,10 @@ class HoblovaniAdmin(admin.ModelAdmin):
                 names.append(order.zakaznik)
             except:
                 pass
-            data.append((order.zakaznik, order.skladovy_material, f"{order.pozadovany_rozmer} x {order.pozadovana_delka}", order.poznamka, f"{order.ks} {order.jednotky}", order.baleni, order.kvalita, order.impregnace, order.kapovani, order.misto_hoblovani, order.pozadovane_datum_vyroby, order.priority))
-        table = Table(data)
+            
+            data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {order.pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(order.impregnace), Paragraph(order.kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority))
+        
+        table = Table(data, colWidths=[inch*0.95])
         table.setStyle(TableStyle([ ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
                                     ('BOX', (0, 0), (-1, -1), 0.25, colors.black),]))
         elements.append(table)
@@ -116,6 +118,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
             pass
         doc.build(elements)
         return response
+    
     createPDF.short_description = "Vytvořit PDF"
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
