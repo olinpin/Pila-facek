@@ -45,7 +45,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
-    search_fields = ("zakaznik__startswith", )
+    search_fields = ("zakaznik", )
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad",)
     # actions which the admin page can do to orders
@@ -134,7 +134,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", "do_susarny", "suche")
-    search_fields = ("zakaznik__startswith", )
+    search_fields = ("zakaznik", )
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
