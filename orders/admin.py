@@ -39,8 +39,12 @@ class RozmitackaAdmin(admin.ModelAdmin):
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
+
+    def rozmery(self, obj):
+        return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
+
     # what shows in the list
-    list_display = ("zakaznik", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
+    list_display = ("zakaznik", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
@@ -128,8 +132,12 @@ class HoblovaniAdmin(admin.ModelAdmin):
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
+    
+    def rozmery(self, obj):
+        return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
+    
     # what shows in the list
-    list_display = ("zakaznik", "image_preview", "pozadovane_datum_vyroby", "vytvoreno", "priority", "hotovo", 
+    list_display = ("zakaznik", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
