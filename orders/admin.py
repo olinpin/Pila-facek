@@ -8,6 +8,9 @@ from django.utils.html import mark_safe
 
 # pdf generation
 from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.units import cm, inch
 from reportlab.lib import colors
 from django.http import HttpResponse
@@ -94,10 +97,11 @@ class HoblovaniAdmin(admin.ModelAdmin):
         response = HttpResponse()
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         response['Content-Disposition'] = f'attachment; filename=hoblovani-{date}.pdf'
-
+        pdfmetrics.registerFont(TTFont('Verdana', 'Verdana.ttf'))
+        style = ParagraphStyle(name="Normal", fontName="Verdana", fontSize=10, leading=12)
         elements = []
         doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=0, topMargin=0.3 * cm, bottomMargin=0, pagesize=landscape(A4))
-        data = [("Zákazník", "Materiál", Paragraph("Požadovaný rozmer"), "Poznámka", "Kusy", Paragraph("Balení (proklad)"), "Kvalita", "Impregnace", "Kapování", Paragraph("Místo hoblování"), "Vyrobit do", "Priorita", "Obrázek",),]
+        data = [("Zákazník", "Materiál", Paragraph("Požadovaný rozměr", style), "Poznámka", "Kusy", Paragraph("Balení (proklad)", style), "Kvalita", "Impregnace", "Kapování", Paragraph("Místo hoblování", style), "Vyrobit do", "Priorita", "Obrázek",),]
         images = []
         names = []
         for order in queryset:
@@ -122,14 +126,14 @@ class HoblovaniAdmin(admin.ModelAdmin):
                 imgMin = Image(order.image)
                 imgMin.drawHeight = doc.width/13
                 imgMin.drawWidth = doc.width/13-1
-                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority, imgMin))
+                data.append((Paragraph(order.zakaznik, style), Paragraph(order.skladovy_material, style), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka, style), f"{order.ks} {order.jednotky}", Paragraph(order.baleni, style), Paragraph(order.kvalita, style), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani, style), order.pozadovane_datum_vyroby, order.priority, imgMin))
             else:
-                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority))
-        
+                data.append((Paragraph(order.zakaznik, style), Paragraph(order.skladovy_material, style), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka, style), f"{order.ks} {order.jednotky}", Paragraph(order.baleni, style), Paragraph(order.kvalita, style), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani, style), order.pozadovane_datum_vyroby, order.priority))
+
+
         table = Table(data, colWidths=doc.width/13-1)
         table.setStyle(TableStyle([ ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
                                     ('BOX', (0, 0), (-1, -1), 0.25, colors.black),]))
-                                    #('FONT', (0, 0), (-1, 0), 'Helvetica-Bold'),]))
         elements.append(table)
         try:
             for i in range(len(images)):
