@@ -55,6 +55,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material,]
 
+    readonly_fields = ("pozadovana_delka", )
 
     class Meta:
         ordering = ("pozadovane_datum_vyroby", "zakaznik",)
@@ -65,7 +66,9 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["material"].label = "Materiál"
         form.base_fields["umisteni_materialu"].label = "Umístění materiálu"
         form.base_fields["pozadovany_rozmer"].label = "Požadovaný rozměr"
-        form.base_fields["pozadovana_delka"].label = "Požadovaná délka"
+        #form.base_fields["pozadovana_delka"].label = "Požadovaná délka"
+        form.base_fields["pozadovana_delka_cislo"].label = "Požadovaná délka"
+        form.base_fields["pozadovana_delka_jednotky"].label = "Požadovaná délka - jednotky"
         form.base_fields["poznamka"].label = "Poznámka"
         form.base_fields["ks"].label = "Kusů"
         form.base_fields["baleni"].label = "Balení (proklad)"
@@ -74,7 +77,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
         
         return form
     
-    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
+    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
 
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
@@ -117,6 +120,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
         table = Table(data, colWidths=doc.width/13-1)
         table.setStyle(TableStyle([ ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
                                     ('BOX', (0, 0), (-1, -1), 0.25, colors.black),]))
+                                    #('FONT', (0, 0), (-1, 0), 'Helvetica-Bold'),]))
         elements.append(table)
         try:
             for i in range(len(images)):
@@ -148,7 +152,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material, createPDF,]
 
-    readonly_fields = ("image_preview",)
+    readonly_fields = ("image_preview", "pozadovana_delka", )
     def image_preview(self, obj):
         return obj.image_preview
 
@@ -163,7 +167,9 @@ class HoblovaniAdmin(admin.ModelAdmin):
         form.base_fields["zakaznik"].label = "Zákazník"
         form.base_fields["skladovy_material"].label = "Skladový materiál"
         form.base_fields["pozadovany_rozmer"].label = "Požadovaný rozměr"
-        form.base_fields["pozadovana_delka"].label = "Požadovaná délka"
+        #form.base_fields["pozadovana_delka"].label = "Požadovaná délka"
+        form.base_fields["pozadovana_delka_cislo"].label = "Požadovaná délka"
+        form.base_fields["pozadovana_delka_jednotky"].label = "Požadovaná délka - jednotky"
         form.base_fields["poznamka"].label = "Poznámka"
         form.base_fields["ks"].label = "Kusů"
         form.base_fields["baleni"].label = "Balení (proklad)"
@@ -174,4 +180,4 @@ class HoblovaniAdmin(admin.ModelAdmin):
         
         return form
 
-    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
+    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
