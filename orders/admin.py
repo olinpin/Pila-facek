@@ -101,6 +101,15 @@ class HoblovaniAdmin(admin.ModelAdmin):
         images = []
         names = []
         for order in queryset:
+            pozadovana_delka = str(order.pozadovana_delka_cislo) + " " + order.pozadovana_delka_jednotky
+            if order.impregnace:
+                impregnace = "Ano"
+            else:
+                impregnace = "Ne"
+            if order.kapovani:
+                kapovani = "Ano"
+            else:
+                kapovani = "Ne"
             try:
                 img = Image(order.image)
                 img.drawHeight = 18 * cm
@@ -113,9 +122,9 @@ class HoblovaniAdmin(admin.ModelAdmin):
                 imgMin = Image(order.image)
                 imgMin.drawHeight = doc.width/13
                 imgMin.drawWidth = doc.width/13-1
-                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {order.pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(order.impregnace), Paragraph(order.kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority, imgMin))
+                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority, imgMin))
             else:
-                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {order.pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(order.impregnace), Paragraph(order.kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority))
+                data.append((Paragraph(order.zakaznik), Paragraph(order.skladovy_material), Paragraph(f"{order.pozadovany_rozmer} x {pozadovana_delka}"), Paragraph(order.poznamka), f"{order.ks} {order.jednotky}", Paragraph(order.baleni), Paragraph(order.kvalita), Paragraph(impregnace), Paragraph(kapovani), Paragraph(order.misto_hoblovani), order.pozadovane_datum_vyroby, order.priority))
         
         table = Table(data, colWidths=doc.width/13-1)
         table.setStyle(TableStyle([ ('INNERGRID', (0, 0), (-1, -1), 0.25, colors.black),
