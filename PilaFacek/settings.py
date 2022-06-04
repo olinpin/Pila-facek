@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["0.0.0.0", 'https://pila-facek.herokuapp.com', '*',]
 
 
 # Django-storages
+#  https://habr.com/en/post/535054/
 
 AWS_ACCESS_KEY_ID='AKIAVFDXSBJADSKOYIOQ'
 AWS_SECRET_ACCESS_KEY='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'
@@ -103,21 +104,21 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': 'postgres',
+        # 'NAME': 'postgres',
 
-        'USER': 'skzfypxplmxisa',
+        # 'USER': 'skzfypxplmxisa',
 
-        'PASSWORD': 'bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec',
+        # 'PASSWORD': 'bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec',
 
-        'HOST': 'ec2-54-160-96-70.compute-1.amazonaws.com',
+        # 'HOST': 'ec2-54-160-96-70.compute-1.amazonaws.com',
 
-        'PORT': '5432',
+        # 'PORT': '5432',
         
-        # 'NAME': 'oliverhnat',
-        # 'USER': 'oliverhnat',
-        # 'PASSWORD':'',
-        # 'HOST': 'localhost',
-        # 'PORT': '',
+        'NAME': 'oliverhnat',
+        'USER': 'oliverhnat',
+        'PASSWORD':'',
+        'HOST': 'localhost',
+        'PORT': '',
 
     }
 
@@ -146,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'cs' #cs
+LANGUAGE_CODE = 'en-us' #cs
 
 TIME_ZONE = 'Europe/Berlin'
 

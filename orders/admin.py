@@ -74,7 +74,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
         
         return form
     
-    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
+    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "imp", "kapovani", "kap", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
 
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
@@ -174,4 +174,4 @@ class HoblovaniAdmin(admin.ModelAdmin):
         
         return form
 
-    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
+    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "imp", "kapovani", "kap", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
