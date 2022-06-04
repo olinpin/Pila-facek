@@ -17,10 +17,10 @@ class Rozmitacka(models.Model):
     jednotky = models.CharField("Jednotky", default="ks", max_length=128)
     kvalita = models.CharField(blank=True, max_length=128)
     baleni = models.CharField("Balení", blank=True, max_length=128)
-    impregnace = models.CharField(max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
-    kapovani = models.CharField("Kapování", max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
-    imp = models.BooleanField("Impregnace", default=False)
-    kap = models.BooleanField("Kapování", default=False)
+    #impregnace = models.CharField(max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
+    #kapovani = models.CharField("Kapování", max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
+    impregnace = models.BooleanField("Impregnace", default=False)
+    kapovani = models.BooleanField("Kapování", default=False)
     pozadovane_datum_vyroby = models.DateField("Vyrobit do")
     hotovo = models.BooleanField("Hotovo", default=False)
     kontrola = models.BooleanField("Kontrola", default=False)
@@ -54,10 +54,10 @@ class Hoblovani(models.Model):
     jednotky = models.CharField("Jednotky", default="ks", max_length=128)
     kvalita = models.CharField(blank=True, max_length=128)
     baleni = models.CharField("Balení", blank=True, max_length=128)
-    impregnace = models.CharField(max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
-    kapovani = models.CharField("Kapování", max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
-    imp = models.BooleanField("Impregnace", default=False)
-    kap = models.BooleanField("Kapování", default=False)
+    #impregnace = models.CharField(max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
+    #kapovani = models.CharField("Kapování", max_length=128, choices=[("Ano", "Ano"), ("Ne", "Ne")])
+    impregnace = models.BooleanField("Impregnace", default=False)
+    kapovani = models.BooleanField("Kapování", default=False)
     misto_hoblovani = models.CharField(blank=True, max_length=128)
     pozadovane_datum_vyroby = models.DateField("Vyrobit do")
     hotovo = models.BooleanField("Hotovo", default=False)
@@ -97,14 +97,6 @@ class Hoblovani(models.Model):
         if self.hotovo and not self.do_vyroby:
             self.priority = 10
         
-        if self.kapovani == "Ano":
-            self.kap = True
-        else:
-            self.kap = False
-        if self.impregnace == "Ano":
-            self.imp = True
-        else:
-            self.imp = False
         return super(Hoblovani, self).save(*args, **kwargs)
 
     def __str__(self):
