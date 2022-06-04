@@ -97,7 +97,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
         response = HttpResponse()
         date = datetime.datetime.now().strftime("%Y-%m-%d")
         response['Content-Disposition'] = f'attachment; filename=hoblovani-{date}.pdf'
-        pdfmetrics.registerFont(TTFont('Verdana', 'Verdana.ttf'))
+        pdfmetrics.registerFont(TTFont('Verdana', 'orders/fonts/verdana/verdana.ttf'))
         style = ParagraphStyle(name="Normal", fontName="Verdana", fontSize=10, leading=12)
         elements = []
         doc = SimpleDocTemplate(response, rightMargin=0, leftMargin=0, topMargin=0.3 * cm, bottomMargin=0, pagesize=landscape(A4))
