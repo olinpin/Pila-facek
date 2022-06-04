@@ -98,46 +98,48 @@ WSGI_APPLICATION = 'PilaFacek.wsgi.application'
    #     'NAME': str(BASE_DIR / 'db.sqlite3'),
     #}
 #}
-# DATABASES = {
-
-#     'default': {
-
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
-#         # 'NAME': 'postgres',
-
-#         # 'USER': 'skzfypxplmxisa',
-
-#         # 'PASSWORD': 'bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec',
-
-#         # 'HOST': 'ec2-54-160-96-70.compute-1.amazonaws.com',
-
-#         # 'PORT': '5432',
-        
-#         'NAME': 'oliverhnat',
-#         'USER': 'oliverhnat',
-#         'PASSWORD':'',
-#         'HOST': 'localhost',
-#         'PORT': '',
-
-#     }
-
-# }
-
 DATABASES = {
+
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'),
-        'PORT': '5432'
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'postgres',
+
+        'USER': 'skzfypxplmxisa',
+
+        'PASSWORD': 'bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec',
+
+        'HOST': 'ec2-54-160-96-70.compute-1.amazonaws.com',
+
+        'PORT': '5432',
+        
+        # 'NAME': 'oliverhnat',
+        # 'USER': 'oliverhnat',
+        # 'PASSWORD':'',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
+
     }
+
 }
 
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+### DATABASE URL -     postgres://skzfypxplmxisa:bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec@ec2-54-160-96-70.compute-1.amazonaws.com:5432/dete55dbbevo42 ###
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('DATABASE_NAME'),
+#         'USER': os.environ.get('DATABASE_USER'),
+#         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+#         'HOST': os.environ.get('DATABASE_HOST'),
+#         'PORT': '5432'
+#     }
+# }
+
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=600)
+# DATABASES['default'].update(db_from_env)
 
 
 # Password validation
