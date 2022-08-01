@@ -145,6 +145,26 @@ def count(request):
         r.save()
         return JsonResponse({"code": 400})
 
+def countBaliky(request):
+    update_models()
+    print("got here")
+    if request.method == "POST":
+        # extract the variables
+        baliky = request.POST["baliky"]
+        id = request.POST["id"]
+        table = request.POST["table"]
+        # check which tables
+        if table == "r":
+            r = Rozmitacka.objects.get(id=id)
+        elif table == "h":
+            r = Hoblovani.objects.get(id=id)
+        else:
+            return JsonResponse({"code": 500})
+        # change the number to the counter variable
+        r.baliky = baliky
+        r.save()
+        return JsonResponse({"code": 400})
+
 # this function changes order's field "get_material" to True if it's called
 def needMaterial(request):
     update_models()

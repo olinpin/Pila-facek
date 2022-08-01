@@ -128,12 +128,14 @@
 <script>
   // set all jinja2 variables to use in all functions
   let counter = {{ order.ks_hotovo }};
+  let baliky = {{ order.baliky }};
   var id = {{order.id}};
   var table = "{{ table }}";
   var URLd = "{% url 'orders:done' %}";
   var ks = {{ order.ks }};
   var URLno = "{% url 'orders:needOdvoz' %}";
   var URLc = "{% url 'orders:count' %}";
+  var URLcb = "{% url 'orders:countBaliky' %}";
   var URLnm = "{% url 'orders:needMaterial' %}";
   var URLo = "{% url 'orders:odpad' %}";
 </script>

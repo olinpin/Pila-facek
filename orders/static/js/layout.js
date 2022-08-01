@@ -1,21 +1,39 @@
 function increase(by) {
-    // increment the counter on the screen 
-    counter += by
-    document.querySelector("#c_done").innerHTML = counter;
-
-    count()
+    button = document.querySelector("#change")
+    if(button.innerHTML == "Balíky") {
+        baliky += by
+        document.querySelector("#c_baliky").innerHTML = baliky
+        count_baliky()
+    } else if (button.innerHTML == "Kusy") {
+        // increment the counter on the screen 
+        counter += by
+        document.querySelector("#c_done").innerHTML = counter;
+        count()
+    }
 }
 
 function decrease(by) {
-    // decrement the counter on the screen 
-    if (counter > 0+by-1) {
-        counter -= by
+    // decrement the counter on the screen
+    button = document.querySelector("#change")
+    if(button.innerHTML == "Balíky") {
+        if (baliky > 0+by-1) {
+            baliky -= by
+        }
+        else {
+        baliky = 0
+        }
+        document.querySelector("#c_baliky").innerHTML = baliky
+        count_baliky()
+    } else if (button.innerHTML == "Kusy") {
+        if (counter > 0+by-1) {
+            counter -= by
+        }
+        else {
+        counter = 0
+        }
+        document.querySelector("#c_done").innerHTML = counter;
+        count()
     }
-    else {
-    counter = 0
-    }
-    document.querySelector("#c_done").innerHTML = counter;
-    count()
 }
 
 function count() {
@@ -28,6 +46,25 @@ function count() {
         id:id,
         table:table,
         counter: counter,
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+        },
+        success: function(data){
+        // alert(data)
+        }
+    })
+
+}
+
+function count_baliky() {
+    // Give the current counter value to the server
+    
+    $.ajax({
+        type: 'POST',
+        url: URLcb,
+        data:{
+        id:id,
+        table:table,
+        baliky: baliky,
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success: function(data){
@@ -107,4 +144,45 @@ function odpad() {
             document.querySelector("#get_odpad").innerHTML = '<i style="color:green" class="bi bi-check-circle-fill">'
         }
     })
+}
+
+function change() {
+    button = document.querySelector("#change")
+    if(button.innerHTML == "Balíky") {
+        button.innerHTML = "Kusy"
+        switch_all()
+    } else if (button.innerHTML == "Kusy") {
+        button.innerHTML = "Balíky"
+        switch_all()
+    }
+}
+
+function switch_all() {
+    negative_1 = document.querySelector("#decrease_more")
+    negative_10 = document.querySelector("#decrease")
+    positive_1 = document.querySelector("#increase_more")
+    positive_10 = document.querySelector("#increase")
+    if (button.innerHTML == "Kusy") {
+        negative_1.style.backgroundColor = "#dc3545"
+        negative_1.style.borderColor = "#dc3545"
+        negative_10.style.backgroundColor = "#dc3545"
+        negative_10.style.borderColor = "#dc3545"
+        positive_1.style.backgroundColor = "#198754"
+        positive_1.style.borderColor = "#198754"
+        positive_10.style.backgroundColor = "#198754"
+        positive_10.style.borderColor = "#198754"
+        negative_1.style.color = "white"
+        negative_10.style.color = "white"
+    } else if(button.innerHTML == "Balíky") {
+        positive_1.style.backgroundColor = "#007bff"
+        positive_1.style.borderColor = "#007bff"
+        positive_10.style.backgroundColor = "#007bff"
+        positive_10.style.borderColor = "#007bff"
+        negative_1.style.backgroundColor = "#ffc107"
+        negative_1.style.borderColor = "#ffc107"
+        negative_10.style.backgroundColor = "#ffc107"
+        negative_10.style.borderColor = "#ffc107"
+        negative_1.style.color = "black"
+        negative_10.style.color = "black"
+    }
 }

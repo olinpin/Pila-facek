@@ -89,6 +89,13 @@
         <hr>
   <div class="row">
           <div class="col-sm-3">
+            <h6 class="mb-0">Balíky: </h6>
+          </div>
+          <div id="c_baliky" class="col-sm-9 text-secondary"> {{ order.baliky }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
             <h6 class="mb-0">Impregnace:</h6>
           </div>
           <div class="col-sm-9 text-secondary"> {% if order.impregnace == True %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
@@ -140,10 +147,11 @@
 {% csrf_token %}
 {% if not request.user|group:"Vozickar" %}
 <div id="buttons">
+  <button type="button" id="change" class="btn btn-primary btn-square-xxl btn-p" onclick="change()">Kusy</button>
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
-  <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(10)">-10</button>
-  <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(10)">+10</button>
+  <button type="button" id="decrease_more" class="btn btn-danger btn-square-xl" onclick="decrease(10)">-10</button>
+  <button type="button" id="increase_more" class="btn btn-success btn-square-xl" onclick="increase(10)">+10</button>
   <button type="button" id="material" class="btn btn-primary btn-square-xl" onclick="material()">Více materiálu</button>
   <button type="button" id="odvoz" class="btn btn-secondary btn-square-xl" onclick="odvoz()">Odvoz materiálu</button>
   <button type="button" id="done" class="btn btn-warning btn-square-xl" onclick="done(); odvoz();">Hotovo</button>
