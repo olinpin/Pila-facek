@@ -128,8 +128,9 @@
 <script>
   // set all jinja2 variables to use in all functions
   let counter = {{ order.ks_hotovo }};
-  let baliky = {{ order.baliky }};
-  var id = {{order.id}};
+  let baliky_celkem = {{ order.baliky_celkem }};
+  let last_balik = {{ order.last_balik }}
+  var id = {{ order.id }};
   var table = "{{ table }}";
   var URLd = "{% url 'orders:done' %}";
   var ks = {{ order.ks }};

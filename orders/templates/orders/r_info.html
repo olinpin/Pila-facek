@@ -67,10 +67,24 @@
         <hr>
   <div class="row">
           <div class="col-sm-3">
-            <h6 class="mb-0" >Množství {{ order.jednotky }}:</h6>
+            <h6 class="mb-0" >Celkem {{ order.jednotky }}:</h6>
         </div>
         <div class="col-sm-9 text-secondary">
             <div id="c_done" style="display:inline-block"> {{ order.ks_hotovo }}</div>/{{ order.ks }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kusů v posledním balíku: </h6>
+          </div>
+          <div id="last_balik" class="col-sm-9 text-secondary">{{order.last_balik}}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Celkem balíků: </h6>
+          </div>
+          <div id="baliky_celkem" class="col-sm-9 text-secondary"> {{order.baliky_celkem}}</div>
         </div>
         <hr>
   <div class="row">
@@ -85,13 +99,6 @@
             <h6 class="mb-0">Balení (proklad):</h6>
           </div>
           <div class="col-sm-9 text-secondary"> {{ order.baleni }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Balíky: </h6>
-          </div>
-          <div id="c_baliky" class="col-sm-9 text-secondary"> {{ order.baliky }}</div>
         </div>
         <hr>
   <div class="row">
@@ -147,7 +154,7 @@
 {% csrf_token %}
 {% if not request.user|group:"Vozickar" %}
 <div id="buttons">
-  <button type="button" id="change" class="btn btn-primary btn-square-xxl btn-p" onclick="change()">Kusy</button>
+  <button type="button" id="balik" class="btn btn-primary btn-square-xxl btn-p" onclick="balik()">Balík</button>
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
   <button type="button" id="decrease_more" class="btn btn-danger btn-square-xl" onclick="decrease(10)">-10</button>

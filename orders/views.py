@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .groups import group_required
-from .models import Rozmitacka, Hoblovani
+from .models import Rozmitacka, Hoblovani, Baliky
 from reportlab.pdfgen import canvas
 import io
 
@@ -147,22 +147,27 @@ def count(request):
 
 def countBaliky(request):
     update_models()
-    print("got here")
     if request.method == "POST":
         # extract the variables
         baliky = request.POST["baliky"]
         id = request.POST["id"]
         table = request.POST["table"]
+        done = request.POST["d"]
         # check which tables
         if table == "r":
             r = Rozmitacka.objects.get(id=id)
+            balik, _ = Baliky.objects.get_or_create(rozmitacka=r, done=False)
         elif table == "h":
             r = Hoblovani.objects.get(id=id)
+            balik, _ = Baliky.objects.get_or_create(hoblovani=r, done=False)
         else:
             return JsonResponse({"code": 500})
         # change the number to the counter variable
-        r.baliky = baliky
-        r.save()
+        balik.ks = baliky
+        print(done)
+        if done == 'true':
+            balik.done = True
+        balik.save()
         return JsonResponse({"code": 400})
 
 # this function changes order's field "get_material" to True if it's called

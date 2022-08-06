@@ -1,7 +1,5 @@
 from django.contrib import admin
-from django.contrib.admin.options import ModelAdmin
-from .models import Rozmitacka, Hoblovani
-from django.db import models
+from .models import Rozmitacka, Hoblovani, Baliky
 from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
@@ -27,6 +25,10 @@ cs_formats.DATE_FORMAT = "d.m.Y"
 cs_formats.DATETIME_FORMAT = "d.m.Y H:i" #:s for seconds
 
 # Register your models here.
+
+class BalikyInline(admin.TabularInline):
+    model = Baliky
+    fields = ('ks', 'done')
 
 
 @admin.register(Rozmitacka)
@@ -80,7 +82,10 @@ class RozmitackaAdmin(admin.ModelAdmin):
         
         return form
     
-    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "baliky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
+    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
+
+    inlines = [BalikyInline]
+
 
 @admin.register(Hoblovani)
 class HoblovaniAdmin(admin.ModelAdmin):
@@ -239,4 +244,10 @@ class HoblovaniAdmin(admin.ModelAdmin):
         
         return form
 
-    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "baliky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
+    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
+
+    inlines = [BalikyInline]
+
+@admin.register(Baliky)
+class BalikyAdmin(admin.ModelAdmin):
+    pass

@@ -1,39 +1,30 @@
 function increase(by) {
-    button = document.querySelector("#change")
-    if(button.innerHTML == "Balíky") {
-        baliky += by
-        document.querySelector("#c_baliky").innerHTML = baliky
-        count_baliky()
-    } else if (button.innerHTML == "Kusy") {
-        // increment the counter on the screen 
-        counter += by
-        document.querySelector("#c_done").innerHTML = counter;
-        count()
-    }
+    // increment the counter on the screen 
+    counter += by
+    last_balik += by
+    document.querySelector("#c_done").innerHTML = counter;
+    document.querySelector("#last_balik").innerHTML = last_balik;
+    count()
+    count_baliky(false)
 }
 
 function decrease(by) {
     // decrement the counter on the screen
-    button = document.querySelector("#change")
-    if(button.innerHTML == "Balíky") {
-        if (baliky > 0+by-1) {
-            baliky -= by
-        }
-        else {
-        baliky = 0
-        }
-        document.querySelector("#c_baliky").innerHTML = baliky
-        count_baliky()
-    } else if (button.innerHTML == "Kusy") {
-        if (counter > 0+by-1) {
-            counter -= by
-        }
-        else {
-        counter = 0
-        }
-        document.querySelector("#c_done").innerHTML = counter;
-        count()
+    if (counter > 0+by-1) {
+        counter -= by
     }
+    else {
+    counter = 0
+    }
+    if (last_balik > 0+by-1) {
+        last_balik -= by
+    } else {
+        last_balik = 0
+    }
+    document.querySelector("#c_done").innerHTML = counter;
+    document.querySelector("#last_balik").innerHTML = last_balik;
+    count()
+    count_baliky(false)
 }
 
 function count() {
@@ -55,7 +46,7 @@ function count() {
 
 }
 
-function count_baliky() {
+function count_baliky(d) {
     // Give the current counter value to the server
     
     $.ajax({
@@ -64,7 +55,8 @@ function count_baliky() {
         data:{
         id:id,
         table:table,
-        baliky: baliky,
+        baliky: last_balik,
+        d: d,
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
         },
         success: function(data){
@@ -146,43 +138,11 @@ function odpad() {
     })
 }
 
-function change() {
-    button = document.querySelector("#change")
-    if(button.innerHTML == "Balíky") {
-        button.innerHTML = "Kusy"
-        switch_all()
-    } else if (button.innerHTML == "Kusy") {
-        button.innerHTML = "Balíky"
-        switch_all()
-    }
-}
-
-function switch_all() {
-    negative_1 = document.querySelector("#decrease_more")
-    negative_10 = document.querySelector("#decrease")
-    positive_1 = document.querySelector("#increase_more")
-    positive_10 = document.querySelector("#increase")
-    if (button.innerHTML == "Kusy") {
-        negative_1.style.backgroundColor = "#dc3545"
-        negative_1.style.borderColor = "#dc3545"
-        negative_10.style.backgroundColor = "#dc3545"
-        negative_10.style.borderColor = "#dc3545"
-        positive_1.style.backgroundColor = "#198754"
-        positive_1.style.borderColor = "#198754"
-        positive_10.style.backgroundColor = "#198754"
-        positive_10.style.borderColor = "#198754"
-        negative_1.style.color = "white"
-        negative_10.style.color = "white"
-    } else if(button.innerHTML == "Balíky") {
-        positive_1.style.backgroundColor = "#007bff"
-        positive_1.style.borderColor = "#007bff"
-        positive_10.style.backgroundColor = "#007bff"
-        positive_10.style.borderColor = "#007bff"
-        negative_1.style.backgroundColor = "#ffc107"
-        negative_1.style.borderColor = "#ffc107"
-        negative_10.style.backgroundColor = "#ffc107"
-        negative_10.style.borderColor = "#ffc107"
-        negative_1.style.color = "black"
-        negative_10.style.color = "black"
-    }
+function balik() {
+    var last = document.querySelector("#last_balik")
+    last_balik = parseInt(last.innerHTML)
+    count_baliky(true)
+    last.innerHTML = 0
+    baliky_celkem += 1
+    document.querySelector("#baliky_celkem").innerHTML = baliky_celkem;
 }

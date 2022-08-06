@@ -13,7 +13,6 @@ class Rozmitacka(models.Model):
     pozadovana_delka = models.CharField("Požadovaná délka", blank=True, max_length=128)
     pozadovana_delka_cislo = models.FloatField("Požadovaná délka", default=0)
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
-    baliky = models.IntegerField("Balíky", default=100)
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
     ks = models.IntegerField("Kusů", default=1)
     ks_hotovo = models.IntegerField("Kusů hotovo", default=0)
@@ -33,8 +32,6 @@ class Rozmitacka(models.Model):
     priority = models.IntegerField("Priorita", default=10) 
 
 
-
-
     # return function for string
     def __str__(self):
         return f"{self.zakaznik}"
@@ -42,6 +39,16 @@ class Rozmitacka(models.Model):
         verbose_name_plural = "Rozmítačka"
         verbose_name = "Rozmítačka"
         ordering = ['-priority', '-vytvoreno']
+    
+    @property
+    def baliky_celkem(self):
+        baliky = Baliky.objects.filter(rozmitacka=self)
+        return baliky.count()
+
+    @property
+    def last_balik(self):
+        balik, created = Baliky.objects.get_or_create(rozmitacka=self, done=False)
+        return balik.ks
 
 # model of Hoblovani table
 class Hoblovani(models.Model):
@@ -51,7 +58,6 @@ class Hoblovani(models.Model):
     pozadovana_delka = models.CharField("Požadovaná délka", blank=True, max_length=128)
     pozadovana_delka_cislo = models.FloatField("Požadovaná délka", default=0)
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
-    baliky = models.IntegerField("Balíky", default=100)
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
     ks = models.IntegerField("Kusů", default=1)
     ks_hotovo = models.IntegerField("Kusů hotovo", default=0)
@@ -109,3 +115,34 @@ class Hoblovani(models.Model):
         verbose_name = "Hoblování"
         ordering = ['-priority', '-vytvoreno']
 
+    @property
+    def baliky_celkem(self):
+        baliky = Baliky.objects.filter(hoblovani=self)
+        return baliky.count()
+
+    @property
+    def last_balik(self):
+        balik, created = Baliky.objects.get_or_create(hoblovani=self, done=False)
+        return balik.ks
+
+class Baliky(models.Model):
+    ks = models.IntegerField("Kusů", default=0)
+    done = models.BooleanField("Hotovo", default=False)
+    hoblovani = models.ForeignKey(Hoblovani, on_delete=models.CASCADE, blank=True, null=True)
+    rozmitacka = models.ForeignKey(Rozmitacka, on_delete=models.CASCADE, blank=True, null=True)
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                name="%(app_label)s_%(class)s_hoblovani_nebo_rozmitacka",
+                check=(
+                    models.Q(hoblovani__isnull=True, rozmitacka__isnull=False)
+                    | models.Q(hoblovani__isnull=False, rozmitacka__isnull=True)
+                ),
+            )
+        ]
+        verbose_name_plural = "Balíky"
+        verbose_name = "Balík"
+
+    def __str__(self):
+        return f"{self.ks} ks, {self.hoblovani or self.rozmitacka} - {'hoblovani' if self.hoblovani else 'rozmitacka'}"
