@@ -42,7 +42,7 @@ class Rozmitacka(models.Model):
     
     @property
     def baliky_celkem(self):
-        baliky = Baliky.objects.filter(rozmitacka=self)
+        baliky = Baliky.objects.filter(rozmitacka=self, done=True)
         return baliky.count()
 
     @property
