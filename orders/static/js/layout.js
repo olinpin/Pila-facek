@@ -139,10 +139,9 @@ function odpad() {
 }
 
 function balik() {
-    var last = document.querySelector("#last_balik")
-    last_balik = parseInt(last.innerHTML)
     count_baliky(true)
-    last.innerHTML = 0
+    last_balik = 0
+    document.querySelector("#last_balik").innerHTML = last_balik;
     baliky_celkem += 1
     document.querySelector("#baliky_celkem").innerHTML = baliky_celkem;
 }

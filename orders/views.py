@@ -164,7 +164,6 @@ def countBaliky(request):
             return JsonResponse({"code": 500})
         # change the number to the counter variable
         balik.ks = baliky
-        print(done)
         if done == 'true':
             balik.done = True
         balik.save()
