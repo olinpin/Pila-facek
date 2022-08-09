@@ -44,6 +44,7 @@ class Rozmitacka(models.Model):
     def baliky_celkem(self):
         baliky = Baliky.objects.filter(rozmitacka=self, done=True)
         return baliky.count()
+    baliky_celkem.fget.short_description = "Balíky"
 
     @property
     def last_balik(self):
@@ -119,6 +120,7 @@ class Hoblovani(models.Model):
     def baliky_celkem(self):
         baliky = Baliky.objects.filter(hoblovani=self)
         return baliky.count()
+    baliky_celkem.fget.short_description = "Balíky"
 
     @property
     def last_balik(self):

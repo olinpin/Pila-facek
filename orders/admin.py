@@ -3,6 +3,7 @@ from .models import Rozmitacka, Hoblovani, Baliky
 from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
+from django.db.models import Count
 
 # pdf generation
 from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
@@ -47,10 +48,11 @@ class RozmitackaAdmin(admin.ModelAdmin):
 
     def rozmery(self, obj):
         return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
-
+    rozmery.short_description = "Rozměry"
+        
     # what shows in the list
     list_display = ("zakaznik", "vytvoreno", "priority", "rozmery", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "button", "ks_hotovo", "ks")
+                    "kontrola", "do_vyroby", "get_material", "button", "kusy_baliky", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
@@ -61,6 +63,11 @@ class RozmitackaAdmin(admin.ModelAdmin):
     actions = [do_vyroby_a_material,]
 
     readonly_fields = ("pozadovana_delka", )
+
+    def kusy_baliky(self, obj):
+        return f"{obj.ks_hotovo} / {obj.baliky_celkem}"
+    kusy_baliky.short_description = "Kusů hotovo / Balíky"
+
 
     class Meta:
         ordering = ("pozadovane_datum_vyroby", "zakaznik",)
@@ -203,7 +210,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     
     def rozmery(self, obj):
         return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
-    
+    rozmery.short_description = "Rozměry"
     # what shows in the list
     list_display = ("zakaznik", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
@@ -244,10 +251,11 @@ class HoblovaniAdmin(admin.ModelAdmin):
         
         return form
 
+    def kusy_baliky(self, obj):
+        return f"{obj.ks_hotovo} / {obj.baliky_celkem}"
+    kusy_baliky.short_description = "Kusů hotovo / Balíky"
+
     fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
 
     inlines = [BalikyInline]
 
-@admin.register(Baliky)
-class BalikyAdmin(admin.ModelAdmin):
-    pass
