@@ -3,14 +3,14 @@ from .models import Rozmitacka, Hoblovani, Baliky
 from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
-from django.db.models import Count
+import copy
 
 # pdf generation
 from reportlab.platypus import Table, SimpleDocTemplate, TableStyle, Image, PageBreak, Paragraph
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.lib.units import cm, inch
+from reportlab.lib.units import cm
 from reportlab.lib import colors
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4, landscape
@@ -46,6 +46,16 @@ class RozmitackaAdmin(admin.ModelAdmin):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
 
+    def duplicate(modeladmin, request, queryset):
+        new_qs = copy.copy(queryset)
+        for obj in new_qs:
+            obj.id = None
+            obj.ks = 0
+            obj.ks_hotovo = 0
+            obj.pozadovane_datum_vyroby = datetime.datetime.today() + datetime.timedelta(days=30)
+        Rozmitacka.objects.bulk_create(new_qs)
+    duplicate.short_description = "Zkopírovat"
+
     def rozmery(self, obj):
         return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
     rozmery.short_description = "Rozměry"
@@ -60,7 +70,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad",)
     # actions which the admin page can do to orders
-    actions = [do_vyroby_a_material,]
+    actions = [do_vyroby_a_material, duplicate]
 
     readonly_fields = ("pozadovana_delka", )
 
@@ -104,6 +114,16 @@ class HoblovaniAdmin(admin.ModelAdmin):
             order.get_material = True
             order.save()
     do_vyroby_a_material.short_description = "Zaškrtnout do výroby a materiál"
+
+    def duplicate(modeladmin, request, queryset):
+        new_qs = copy.copy(queryset)
+        for obj in new_qs:
+            obj.id = None
+            obj.ks = 0
+            obj.ks_hotovo = 0
+            obj.pozadovane_datum_vyroby = datetime.datetime.today() + datetime.timedelta(days=30)
+        Hoblovani.objects.bulk_create(new_qs)
+    duplicate.short_description = "Zkopírovat"
 
     def create_pdf_with_pictures(modeladmin, request, queryset):
         response = HttpResponse()
@@ -221,7 +241,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     # exclude in the form
     exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
-    actions = [do_vyroby_a_material, create_pdf_with_pictures, create_pdf_without_pictures, ]
+    actions = [do_vyroby_a_material, create_pdf_with_pictures, create_pdf_without_pictures, duplicate, ]
 
     readonly_fields = ("image_preview", "pozadovana_delka", )
     def image_preview(self, obj):
