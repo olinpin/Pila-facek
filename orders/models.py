@@ -10,7 +10,6 @@ class Rozmitacka(models.Model):
     material = models.CharField("Materiál", blank=True, max_length=128)
     umisteni_materialu = models.CharField("Umístění materiálu", blank=True, max_length=128)
     pozadovany_rozmer = models.CharField("Požadovaný rozměr", blank=True, max_length=128)
-    pozadovana_delka = models.CharField("Požadovaná délka", blank=True, max_length=128)
     pozadovana_delka_cislo = models.FloatField("Požadovaná délka", default=0)
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
@@ -39,7 +38,11 @@ class Rozmitacka(models.Model):
         verbose_name_plural = "Rozmítačka"
         verbose_name = "Rozmítačka"
         ordering = ['-priority', '-vytvoreno']
-    
+
+    @property
+    def pozadovana_delka(self):
+        return f"{self.pozadovana_delka_cislo} {self.pozadovana_delka_jednotky}"
+
     @property
     def baliky_celkem(self):
         baliky = Baliky.objects.filter(rozmitacka=self, done=True)
@@ -56,7 +59,6 @@ class Hoblovani(models.Model):
     zakaznik = models.CharField("Zákazník", blank=True, max_length=128)
     skladovy_material = models.CharField("Skladový materiál", blank=True, max_length=128)
     pozadovany_rozmer = models.CharField("Požadovaný rozměr", blank=True, max_length=128)
-    pozadovana_delka = models.CharField("Požadovaná délka", blank=True, max_length=128)
     pozadovana_delka_cislo = models.FloatField("Požadovaná délka", default=0)
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
@@ -95,6 +97,10 @@ class Hoblovani(models.Model):
         super().__init__(*args, **kwargs)
         self.__suche_original = self.suche
         self.__do_susarny_original = self.do_susarny
+    
+    @property
+    def pozadovana_delka(self):
+        return f"{self.pozadovana_delka_cislo} {self.pozadovana_delka_jednotky}"
 
     # check which of the suche or do_susarny has changed and change the other one accordingly
     def save(self, *args, **kwargs):
@@ -106,7 +112,7 @@ class Hoblovani(models.Model):
         if self.hotovo and not self.do_vyroby:
             self.priority = 10
         
-        return super(Hoblovani, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.zakaznik}"# - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
