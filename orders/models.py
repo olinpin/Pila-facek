@@ -30,10 +30,10 @@ class Rozmitacka(models.Model):
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
     priority = models.IntegerField("Priorita", default=10) 
 
-
     # return function for string
     def __str__(self):
         return f"{self.zakaznik}"
+
     class Meta:
         verbose_name_plural = "Rozmítačka"
         verbose_name = "Rozmítačka"
@@ -53,6 +53,12 @@ class Rozmitacka(models.Model):
     def last_balik(self):
         balik, created = Baliky.objects.get_or_create(rozmitacka=self, done=False)
         return balik.ks
+
+    @property
+    def rozmery(self):
+        return f"{self.pozadovany_rozmer} / {self.pozadovana_delka}"
+    rozmery.fget.short_description = "Rozměry"
+
 
 # model of Hoblovani table
 class Hoblovani(models.Model):
@@ -88,7 +94,7 @@ class Hoblovani(models.Model):
         if self.image:
             return mark_safe(f'<img src="{self.image.url}" width="100" height="100" />')
         return ""
-    
+
     # save the suche and do_susarny in another variable
     __suche_original = None
     __do_susarny_original = None
@@ -97,10 +103,15 @@ class Hoblovani(models.Model):
         super().__init__(*args, **kwargs)
         self.__suche_original = self.suche
         self.__do_susarny_original = self.do_susarny
-    
+
     @property
     def pozadovana_delka(self):
         return f"{self.pozadovana_delka_cislo} {self.pozadovana_delka_jednotky}"
+
+    @property
+    def rozmery(self):
+        return f"{self.pozadovany_rozmer} / {self.pozadovana_delka}"
+    rozmery.fget.short_description = "Rozměry"
 
     # check which of the suche or do_susarny has changed and change the other one accordingly
     def save(self, *args, **kwargs):
@@ -115,7 +126,7 @@ class Hoblovani(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.zakaznik}"# - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
+        return f"{self.zakaznik}"  # - {self.pozadovane_datum_vyroby.strftime('%d.%m.%Y')},  {'Hotovo' if self.hotovo == True else f'{self.ks_hotovo}/{self.ks}' }, Kontrola - {'Ano' if self.kontrola == True else 'Ne' }"
 
     class Meta:
         verbose_name_plural = "Hoblování"
@@ -124,7 +135,7 @@ class Hoblovani(models.Model):
 
     @property
     def baliky_celkem(self):
-        baliky = Baliky.objects.filter(hoblovani=self)
+        baliky = Baliky.objects.filter(hoblovani=self, done=True)
         return baliky.count()
     baliky_celkem.fget.short_description = "Balíky"
 
@@ -132,6 +143,7 @@ class Hoblovani(models.Model):
     def last_balik(self):
         balik, created = Baliky.objects.get_or_create(hoblovani=self, done=False)
         return balik.ks
+
 
 class Baliky(models.Model):
     ks = models.IntegerField("Kusů", default=0)

@@ -32,14 +32,7 @@
           <div class="col-sm-3">
             <h6 class="mb-0">Požadovaný rozměr:</h6>
           </div>
-          <div class="col-sm-9 text-secondary"> {{ order.pozadovany_rozmer }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Požadovaná délka:</h6>
-          </div>
-          <div class="col-sm-9 text-secondary"> {{ order.pozadovana_delka }}</div>
+          <div class="col-sm-9 text-secondary"> {{ order.rozmery }}</div>
         </div>
         <hr>
   <div class="row">
@@ -55,6 +48,20 @@
         </div>
         <div class="col-sm-9 text-secondary">
             <div id="c_done" style="display:inline-block"> {{ order.ks_hotovo }}</div>/{{ order.ks }}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Kusů v posledním balíku: </h6>
+          </div>
+          <div id="last_balik" class="col-sm-9 text-secondary">{{order.last_balik}}</div>
+        </div>
+        <hr>
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Celkem balíků hotovo: </h6>
+          </div>
+          <div id="baliky_celkem" class="col-sm-9 text-secondary"> {{order.baliky_celkem}}</div>
         </div>
         <hr>
   <div class="row">
@@ -133,6 +140,7 @@
 {% if not request.user|group:"Vozickar" %}
 <div id="buttons">
       {% csrf_token %}
+  <button type="button" id="balik" class="btn btn-primary btn-square-xxl btn-p" onclick="balik()">Balík</button>
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(1)">-1</button>
   <button type="button" id="increase" class="btn btn-success btn-square-xl" onclick="increase(1)">+1</button>
   <button type="button" id="decrease" class="btn btn-danger btn-square-xl" onclick="decrease(10)">-10</button>

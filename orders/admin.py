@@ -227,10 +227,10 @@ class HoblovaniAdmin(admin.ModelAdmin):
     def button(self, obj):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
-    
-    def rozmery(self, obj):
-        return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
-    rozmery.short_description = "Rozměry"
+
+    # def rozmery(self, obj):
+    #     return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
+    # rozmery.short_description = "Rozměry"
     # what shows in the list
     list_display = ("zakaznik", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
