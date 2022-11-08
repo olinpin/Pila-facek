@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", 'https://pila-facek.herokuapp.com', '*',]
+ALLOWED_HOSTS = ["0.0.0.0", 'https://pila-facek.herokuapp.com', '*', ]
 
 
 # Django-storages
@@ -101,25 +101,37 @@ WSGI_APPLICATION = 'PilaFacek.wsgi.application'
    #     'NAME': str(BASE_DIR / 'db.sqlite3'),
     #}
 #}
-DATABASES = {
+if "RDS_DB_NAME" in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    DATABASES = {
 
-    'default': {
+        'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': os.environ.get('DATABSE_NAME', 'oliverhnat'),
+            'NAME': os.environ.get('DATABASE_NAME', 'oliverhnat'),
 
-        'USER': os.environ.get('DATABSE_USER', 'oliverhnat'),
+            'USER': os.environ.get('DATABASE_USER', 'oliverhnat'),
 
-        'PASSWORD': os.environ.get('DATABSE_PASSWORD', ''),
+            'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'oliverhnat'),
 
-        'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
+            'HOST': os.environ.get('DATABASE_HOST', 'localhost'),
 
-        'PORT': os.environ.get('DATABSE_PORT', '5400'),
+            'PORT': os.environ.get('DATABASE_PORT', '5400'),
+
+        }
 
     }
-
-}
 
 ### DATABASE URL -     postgres://skzfypxplmxisa:bf22eeec3c27539067610c317cb54a9c758916220661a7d5752eee4156aba2ec@ec2-54-160-96-70.compute-1.amazonaws.com:5432/dete55dbbevo42 ###
 
