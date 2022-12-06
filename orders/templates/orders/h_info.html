@@ -9,6 +9,7 @@
   var URLch = "{% url 'orders:check' %}"
 </script>
 <script type="text/javascript" src="{% static 'js/info.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block body %}
@@ -23,7 +24,11 @@
         <hr>
   <div class="row">
           <div class="col-sm-3">
-            <h6 class="mb-0">Skladový materiál:</h6>
+            <h6 class="mb-0">Skladový materiál:
+              {% if order.modrin %}
+              <p class="fa fa-tree" style="color: blue;"></p>
+              {% endif %}
+            </h6>
           </div>
           <div class="col-sm-9 text-secondary"> {{ order.skladovy_material }}</div>
         </div>
@@ -35,59 +40,61 @@
           <div class="col-sm-9 text-secondary"> {{ order.rozmery }}</div>
         </div>
         <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Poznámka:</h6>
-          </div>
-          <div class="col-sm-9 text-secondary"> {{ order.poznamka }}</div>
-        </div>
-        <hr>
-  <div class="row">
+        <div class="row">
           <div class="col-sm-3">
             <h6 class="mb-0" >Množství {{ order.jednotky }}:</h6>
-        </div>
-        <div class="col-sm-9 text-secondary">
+          </div>
+          <div class="col-sm-9 text-secondary">
             <div id="c_done" style="display:inline-block"> {{ order.ks_hotovo }}</div>/{{ order.ks }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Kusů v posledním balíku: </h6>
           </div>
-          <div id="last_balik" class="col-sm-9 text-secondary">{{order.last_balik}}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Celkem balíků hotovo: </h6>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Kusů v posledním balíku: </h6>
+            </div>
+            <div id="last_balik" class="col-sm-9 text-secondary">{{order.last_balik}}</div>
           </div>
-          <div id="baliky_celkem" class="col-sm-9 text-secondary"> {{order.baliky_celkem}}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Kvalita:</h6>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Celkem balíků hotovo: </h6>
+            </div>
+            <div id="baliky_celkem" class="col-sm-9 text-secondary"> {{order.baliky_celkem}}</div>
           </div>
-          <div class="col-sm-9 text-secondary"> {{ order.kvalita }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Balení (proklad):</h6>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Kvalita:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary"> {{ order.kvalita }}</div>
           </div>
-          <div class="col-sm-9 text-secondary"> {{ order.baleni }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Impregnace:</h6>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Balení (proklad):</h6>
+            </div>
+            <div class="col-sm-9 text-secondary"> {{ order.baleni }}</div>
           </div>
-          <div class="col-sm-9 text-secondary"> {% if order.impregnace == True %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Kapování:</h6>
+          <hr>
+          {% if order.poznamka %}
+        <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Poznámka:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary"> {{ order.poznamka }}</div>
+          </div>
+          <hr>
+          {% endif %}
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Impregnace:</h6>
+            </div>
+            <div class="col-sm-9 text-secondary"> {% if order.impregnace == True %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Kapování:</h6>
           </div>
           <div class="col-sm-9 text-secondary"> {% if order.kapovani == True %}<i style="color:green" class="bi bi-check-circle-fill"></i>{% else %}<i style="color:red"class="bi bi-x-circle-fill"></i>{% endif %}</div>
         </div>

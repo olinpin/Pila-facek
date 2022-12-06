@@ -8,6 +8,7 @@
   var URLch = "{% url 'orders:check' %}"
 </script>
 <script type="text/javascript" src="{% static 'js/info.js' %}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block body %}
@@ -22,7 +23,11 @@
         <hr>
   <div class="row">
           <div class="col-sm-3">
-            <h6 class="mb-0">Materiál:</h6>
+            <h6 class="mb-0">Materiál: 
+              {% if order.modrin %}
+              <p class="fa fa-tree" style="color: blue;"></p>
+              {% endif %}
+            </h6>
           </div>
           <div class="col-sm-9 text-secondary"> {{ order.material }}</div>
         </div>
@@ -39,13 +44,6 @@
             <h6 class="mb-0">Požadovaný rozměr:</h6>
           </div>
           <div class="col-sm-9 text-secondary"> {{ order.rozmery }}</div>
-        </div>
-        <hr>
-  <div class="row">
-          <div class="col-sm-3">
-            <h6 class="mb-0">Poznámka:</h6>
-          </div>
-          <div class="col-sm-9 text-secondary"> {{ order.poznamka }}</div>
         </div>
         <hr>
   <div class="row">
@@ -84,6 +82,15 @@
           <div class="col-sm-9 text-secondary"> {{ order.baleni }}</div>
         </div>
         <hr>
+        {% if order.poznamka %}
+  <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Poznámka:</h6>
+          </div>
+          <div class="col-sm-9 text-secondary"> {{ order.poznamka }}</div>
+        </div>
+        <hr>
+        {% endif %}
   <div class="row">
           <div class="col-sm-3">
             <h6 class="mb-0">Impregnace:</h6>

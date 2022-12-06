@@ -28,7 +28,8 @@ class Rozmitacka(models.Model):
     get_zbytek = models.BooleanField("Zbytek", default=False)
     odpad = models.BooleanField("Odpad", default=False)
     vytvoreno = models.DateTimeField("Vytvořeno", auto_now_add=True)
-    priority = models.IntegerField("Priorita", default=10) 
+    priority = models.IntegerField("Priorita", default=10)
+    modrin = models.BooleanField("Modřín", default=False)
 
     # return function for string
     def __str__(self):
@@ -88,6 +89,7 @@ class Hoblovani(models.Model):
     image = models.ImageField(upload_to='media/images', blank=True)
     do_susarny = models.BooleanField("Do sušárny", default=True)
     suche = models.BooleanField("Připravené", default=False)
+    modrin = models.BooleanField("Modřín", default=False)
 
     @property
     def image_preview(self):

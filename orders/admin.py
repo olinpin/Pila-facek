@@ -32,6 +32,8 @@ class BalikyInline(admin.TabularInline):
     fields = ('ks', 'done')
 
 
+admin.site.site_url = '/app'
+
 @admin.register(Rozmitacka)
 class RozmitackaAdmin(admin.ModelAdmin):
     list_per_page = 50
@@ -97,9 +99,10 @@ class RozmitackaAdmin(admin.ModelAdmin):
         form.base_fields["kapovani"].label = "Kapování"
         form.base_fields["pozadovane_datum_vyroby"].label = "Požadované datum výroby"
         
+        
         return form
     
-    fields = ("zakaznik", "material", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby",)
+    fields = ("zakaznik", "material", "modrin", "umisteni_materialu", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "priority", "pozadovane_datum_vyroby")
 
     inlines = [BalikyInline]
 
@@ -275,7 +278,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
         return f"{obj.ks_hotovo} / {obj.baliky_celkem}"
     kusy_baliky.short_description = "Kusů hotovo / Balíky"
 
-    fields = ("zakaznik", "skladovy_material", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
+    fields = ("zakaznik", "skladovy_material", "modrin", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
 
     inlines = [BalikyInline]
 
