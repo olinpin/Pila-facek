@@ -52,7 +52,11 @@
                     <td class="p-4">
                         <div class="media align-items-center">
                         <div class="media-body">
-                            <a href="{% url 'orders:r_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
+                            <a href="{% url 'orders:r_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}
+                              {% if order.modrin %}
+                              <p class="fa fa-tree" style="color: blue;"></p>
+                              {% endif %}
+                            </a>
                             <small>
                             <span class="text-muted">{{ order.jednotky }} hotovo:</span>
                             {{order.ks_hotovo}}/{{order.ks}} &nbsp;
@@ -117,7 +121,11 @@
                     <td class="p-4">
                         <div class="media align-items-center">
                         <div class="media-body">
-                            <a href="{% url 'orders:h_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}</a>
+                            <a href="{% url 'orders:h_info' order.id %}" class="d-block text-dark">{{order.zakaznik}}
+                              {% if order.modrin %}
+                              <p class="fa fa-tree" style="color: blue;"></p>
+                              {% endif %}
+                            </a>
                             <small>
                             <span class="text-muted">{{ order.jednotky }} hotovo:</span>
                             {{order.ks_hotovo}}/{{order.ks}} &nbsp;

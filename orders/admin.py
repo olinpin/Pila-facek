@@ -48,6 +48,11 @@ class RozmitackaAdmin(admin.ModelAdmin):
         return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
     button.short_description = 'Uložit'
 
+    def modrin_name(self, obj):
+        if obj.modrin:
+            return mark_safe('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><p class="fa fa-tree" style="color: blue;"></p>')
+    modrin_name.short_description = ""
+
     def duplicate(modeladmin, request, queryset):
         new_qs = copy.copy(queryset)
         for obj in new_qs:
@@ -63,7 +68,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     rozmery.short_description = "Rozměry"
         
     # what shows in the list
-    list_display = ("zakaznik", "vytvoreno", "priority", "rozmery", "hotovo", 
+    list_display = ("zakaznik", "modrin_name", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "kusy_baliky", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
@@ -127,6 +132,11 @@ class HoblovaniAdmin(admin.ModelAdmin):
             obj.pozadovane_datum_vyroby = datetime.datetime.today() + datetime.timedelta(days=30)
         Hoblovani.objects.bulk_create(new_qs)
     duplicate.short_description = "Zkopírovat"
+
+    def modrin_name(self, obj):
+        if obj.modrin:
+            return mark_safe('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><p class="fa fa-tree" style="color: blue;"></p>')
+    modrin_name.short_description = ""
 
     def create_pdf_with_pictures(modeladmin, request, queryset):
         response = HttpResponse()
@@ -235,7 +245,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     #     return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
     # rozmery.short_description = "Rozměry"
     # what shows in the list
-    list_display = ("zakaznik", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
+    list_display = ("zakaznik", "modrin_name", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list

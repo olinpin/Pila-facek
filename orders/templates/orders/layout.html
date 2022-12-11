@@ -17,6 +17,8 @@
         <!-- My own CSS -->
         <link rel="stylesheet" href="{% static 'css/layout.css'%}">
         <!-- My own JS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
         <script>
           var URLgo = "{% url 'orders:getOdvoz' %}";
@@ -46,7 +48,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for order in rozmitacka|slice:":10" %}
-                        <a class="dropdown-item" href="{% url 'orders:r_info' order.id %}">{{ order.zakaznik }} - {{ order.pozadovane_datum_vyroby }}</a>
+                        <a class="dropdown-item" href="{% url 'orders:r_info' order.id %}">{{ order.zakaznik }}
+                          {% if order.modrin %}
+                          <p class="fa fa-tree" style="color: blue;"></p>
+                          {% endif %}
+                          - {{ order.pozadovane_datum_vyroby }}</a>
                         {% endfor %}
                     </div>
                   </li>
@@ -58,7 +64,11 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         {% for order in hoblovani|slice:":10" %}
-                        <a class="dropdown-item" href="{% url 'orders:h_info' order.id %}">{{ order.zakaznik }} - {{ order.pozadovane_datum_vyroby }}</a>
+                        <a class="dropdown-item" href="{% url 'orders:h_info' order.id %}">{{ order.zakaznik }}
+                          {% if order.modrin %}
+                          <p class="fa fa-tree" style="color: blue;"></p>
+                          {% endif %}
+                          - {{ order.pozadovane_datum_vyroby }}</a>
                         {% endfor %}
                     </div>
                   </li>
