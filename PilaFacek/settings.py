@@ -26,16 +26,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if "RDS_DB_NAME":
+    DEBUG = False
+else:
+    DEBUG = True
 
 if DEBUG:
     SECRET_KEY = "reouwaghsljfhldkghbvsldf"
 else:
 # SECURITY WARNING: keep the secret key used in production secret!
-    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SECRET_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 
-ALLOWED_HOSTS = ["0.0.0.0", 'https://pila-facek.herokuapp.com', '*', ]
+ALLOWED_HOSTS = ['www.pilafacek.cz', "pilafacek.cz", "https://www.pilafacek.cz/"]
 
 
 # Django-storages
@@ -216,5 +219,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Login information
 
 LOGIN_URL = '/app/login'
+
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 django_on_heroku.settings(locals())
