@@ -10,17 +10,8 @@ function increase(by) {
 
 function decrease(by) {
     // decrement the counter on the screen
-    if (counter > 0+by-1) {
-        counter -= by
-    }
-    else {
-    counter = 0
-    }
-    if (last_balik > 0+by-1) {
-        last_balik -= by
-    } else {
-        last_balik = 0
-    }
+    counter -= by
+    last_balik -= by
     document.querySelector("#c_done").innerHTML = counter;
     document.querySelector("#last_balik").innerHTML = last_balik;
     count()
@@ -43,12 +34,10 @@ function count() {
         // alert(data)
         }
     })
-
 }
 
 function count_baliky(d) {
     // Give the current counter value to the server
-    
     $.ajax({
         type: 'POST',
         url: URLcb,
