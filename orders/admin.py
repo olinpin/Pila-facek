@@ -58,7 +58,6 @@ class RozmitackaAdmin(admin.ModelAdmin):
         for obj in new_qs:
             obj.id = None
             obj.ks = 0
-            obj.ks_hotovo = 0
             obj.pozadovane_datum_vyroby = datetime.datetime.today() + datetime.timedelta(days=30)
         Rozmitacka.objects.bulk_create(new_qs)
     duplicate.short_description = "Zkopírovat"
@@ -75,7 +74,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", )
     search_fields = ("zakaznik", )
     # exclude in the form
-    exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad",)
+    exclude = ("get_material", "get_zbytek", "odpad",)
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material, duplicate]
 
@@ -128,7 +127,6 @@ class HoblovaniAdmin(admin.ModelAdmin):
         for obj in new_qs:
             obj.id = None
             obj.ks = 0
-            obj.ks_hotovo = 0
             obj.pozadovane_datum_vyroby = datetime.datetime.today() + datetime.timedelta(days=30)
         Hoblovani.objects.bulk_create(new_qs)
     duplicate.short_description = "Zkopírovat"
@@ -246,13 +244,13 @@ class HoblovaniAdmin(admin.ModelAdmin):
     # rozmery.short_description = "Rozměry"
     # what shows in the list
     list_display = ("zakaznik", "modrin_name", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks_hotovo", "ks")
+                    "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", "do_susarny", "suche")
     search_fields = ("zakaznik", )
     # exclude in the form
-    exclude = ("ks_hotovo", "get_material", "get_zbytek", "odpad", )
+    exclude = ("get_material", "get_zbytek", "odpad", )
     # actions which the admin page can do to orders
     actions = [do_vyroby_a_material, create_pdf_with_pictures, create_pdf_without_pictures, duplicate, ]
 

@@ -4,7 +4,6 @@ function increase(by) {
     last_balik += by
     document.querySelector("#c_done").innerHTML = counter;
     document.querySelector("#last_balik").innerHTML = last_balik;
-    count()
     count_baliky(false)
 }
 
@@ -14,27 +13,9 @@ function decrease(by) {
     last_balik -= by
     document.querySelector("#c_done").innerHTML = counter;
     document.querySelector("#last_balik").innerHTML = last_balik;
-    count()
     count_baliky(false)
 }
 
-function count() {
-    // Give the current counter value to the server
-    
-    $.ajax({
-        type: 'POST',
-        url: URLc,
-        data:{
-        id:id,
-        table:table,
-        counter: counter,
-        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-        },
-        success: function(data){
-        // alert(data)
-        }
-    })
-}
 
 function count_baliky(d) {
     // Give the current counter value to the server

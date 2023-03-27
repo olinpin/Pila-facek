@@ -14,7 +14,6 @@ class Rozmitacka(models.Model):
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
     ks = models.IntegerField("Kusů", default=1)
-    ks_hotovo = models.IntegerField("Kusů hotovo", default=0)
     jednotky = models.CharField("Jednotky", default="ks", max_length=128)
     kvalita = models.CharField(blank=True, max_length=128)
     baleni = models.CharField("Balení", blank=True, max_length=128)
@@ -60,6 +59,11 @@ class Rozmitacka(models.Model):
         return f"{self.pozadovany_rozmer} / {self.pozadovana_delka}"
     rozmery.fget.short_description = "Rozměry"
 
+    @property
+    def ks_hotovo(self):
+        baliky = Baliky.objects.filter(rozmitacka=self)
+        return baliky.aggregate(models.Sum('ks'))['ks__sum'] or 0
+
 
 # model of Hoblovani table
 class Hoblovani(models.Model):
@@ -70,7 +74,6 @@ class Hoblovani(models.Model):
     pozadovana_delka_jednotky = models.CharField("Požadovaná délka - jednotky", blank=True, max_length=128, default="m")
     poznamka = models.CharField("Poznámka", blank=True, max_length=128)
     ks = models.IntegerField("Kusů", default=1)
-    ks_hotovo = models.IntegerField("Kusů hotovo", default=0)
     jednotky = models.CharField("Jednotky", default="ks", max_length=128)
     kvalita = models.CharField(blank=True, max_length=128)
     baleni = models.CharField("Balení", blank=True, max_length=128)
@@ -145,6 +148,11 @@ class Hoblovani(models.Model):
     def last_balik(self):
         balik, created = Baliky.objects.get_or_create(hoblovani=self, done=False)
         return balik.ks
+
+    @property
+    def ks_hotovo(self):
+        baliky = Baliky.objects.filter(hoblovani=self)
+        return baliky.aggregate(models.Sum('ks'))['ks__sum'] or 0
 
 
 class Baliky(models.Model):

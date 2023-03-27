@@ -120,30 +120,12 @@ def done(request):
         # change the hotovo value for the order to "True"
         r.hotovo = True
         if counter == 0:
-            r.ks_hotovo = r.ks
+            if r.baliky_celkem == 0:
+                Baliky.objects.create(rozmitacka=r, ks=r.ks, done=True)
         r.save()
         # return successful http response
         return JsonResponse({"code": 400})
 
-# this function makes the "ks_hotovo" attribute of order to the right amount of ks
-def count(request):
-    update_models()
-    if request.method == "POST":
-        # extract the variables
-        counter = request.POST["counter"]
-        id = request.POST["id"]
-        table = request.POST["table"]
-        # check which tables
-        if table == "r":
-            r = Rozmitacka.objects.get(id=id)
-        elif table == "h":
-            r = Hoblovani.objects.get(id=id)
-        else:
-            return JsonResponse({"code": 500})
-        # change the number to the counter variable
-        r.ks_hotovo = counter
-        r.save()
-        return JsonResponse({"code": 400})
 
 def countBaliky(request):
     update_models()
