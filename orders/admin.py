@@ -244,7 +244,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     # rozmery.short_description = "Rozměry"
     # what shows in the list
     list_display = ("zakaznik", "modrin_name", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
-                    "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "ks")
+                    "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "kusy_baliky", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
     list_filter = ("hotovo", "vytvoreno", "kontrola", "do_vyroby", "do_susarny", "suche")
