@@ -65,9 +65,13 @@ class RozmitackaAdmin(admin.ModelAdmin):
     def rozmery(self, obj):
         return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
     rozmery.short_description = "Rozměry"
+
+    def name(self, obj):
+        res = mark_safe(f"{obj.zakaznik}" + (self.modrin_name(obj) or ""))
+        return res
         
     # what shows in the list
-    list_display = ("zakaznik", "modrin_name", "vytvoreno", "priority", "rozmery", "hotovo", 
+    list_display = ("name", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "button", "kusy_baliky", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby","get_material")
     # filter and search the list
@@ -135,6 +139,10 @@ class HoblovaniAdmin(admin.ModelAdmin):
         if obj.modrin:
             return mark_safe('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><p class="fa fa-tree" style="color: blue;"></p>')
     modrin_name.short_description = ""
+
+    def name(self, obj):
+        res = mark_safe(f"{obj.zakaznik}" + (self.modrin_name(obj) or ""))
+        return res
 
     def create_pdf_with_pictures(modeladmin, request, queryset):
         response = HttpResponse()
@@ -243,7 +251,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
     #     return f"{obj.pozadovany_rozmer} / {obj.pozadovana_delka}"
     # rozmery.short_description = "Rozměry"
     # what shows in the list
-    list_display = ("zakaznik", "modrin_name", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
+    list_display = ("name", "image_preview", "vytvoreno", "priority", "rozmery", "hotovo", 
                     "kontrola", "do_vyroby", "get_material", "do_susarny", "suche", "button", "kusy_baliky", "ks")
     list_editable = ("hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "get_material")
     # filter and search the list
