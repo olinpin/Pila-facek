@@ -82,7 +82,7 @@ class RozmitackaAdmin(admin.ModelAdmin):
 
     def kusy_baliky(self, obj):
         return f"{obj.ks_hotovo} / {obj.baliky_celkem}"
-    kusy_baliky.short_description = "Kusů hotovo / Balíky"
+    kusy_baliky.short_description = "Hotovo / Balíky"
 
 
     class Meta:
@@ -284,7 +284,7 @@ class HoblovaniAdmin(admin.ModelAdmin):
 
     def kusy_baliky(self, obj):
         return f"{obj.ks_hotovo} / {obj.baliky_celkem}"
-    kusy_baliky.short_description = "Kusů hotovo / Balíky"
+    kusy_baliky.short_description = "Hotovo / Balíky"
 
     fields = ("zakaznik", "skladovy_material", "modrin", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
 
