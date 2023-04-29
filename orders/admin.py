@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Rozmitacka, Hoblovani, Baliky
+from .models import Rozmitacka, Hoblovani, Baliky, Oprava
 from django.conf.locale.en import formats as en_formats
 from django.conf.locale.cs import formats as cs_formats
 from django.utils.html import mark_safe
@@ -297,4 +297,18 @@ class HoblovaniAdmin(admin.ModelAdmin):
     fields = ("zakaznik", "skladovy_material", "modrin", "pozadovany_rozmer", "pozadovana_delka", "pozadovana_delka_cislo", "pozadovana_delka_jednotky", "poznamka", "ks", "jednotky", "kvalita", "baleni", "misto_hoblovani", "impregnace", "kapovani", "hotovo", "kontrola", "do_vyroby", "do_susarny", "suche", "priority", "pozadovane_datum_vyroby", "image", "image_preview")
 
     inlines = [BalikyInline]
+
+
+
+
+@admin.register(Oprava)
+class OpravaAdmin(admin.ModelAdmin):
+    list_display = ("date_added", "description", "est_finish_date", "date_finished", "done", "button")
+    list_editable = ("done", )
+    list_filter = ("done", "date_added")
+
+
+    def button(self, obj):
+        return mark_safe('<input type="submit" name="_save" class="default" value="Uložit">')
+    button.short_description = 'Uložit'
 
