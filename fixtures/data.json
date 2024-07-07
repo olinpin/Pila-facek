@@ -1,0 +1,1488 @@
+[
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2022-10-05T09:55:15.158Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2022-10-05T09:55:29.248Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Do v\\u00fdroby\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2022-10-05T09:57:35.993Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Po\\u017eadovan\\u00e1 d\\u00e9lka\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 4,
+        "fields": {
+            "action_time": "2022-10-05T10:04:38.411Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 5,
+        "fields": {
+            "action_time": "2022-10-05T10:08:52.726Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 6,
+        "fields": {
+            "action_time": "2022-10-05T10:13:42.688Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Po\\u017eadovan\\u00e1 d\\u00e9lka\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 7,
+        "fields": {
+            "action_time": "2022-12-06T13:25:02.020Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Kontrola\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 8,
+        "fields": {
+            "action_time": "2022-12-06T13:25:16.295Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Hotovo\", \"Kontrola\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 9,
+        "fields": {
+            "action_time": "2022-12-06T13:25:21.530Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Do v\\u00fdroby\", \"Materi\\u00e1l\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 10,
+        "fields": {
+            "action_time": "2022-12-06T17:00:30.476Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 11,
+        "fields": {
+            "action_time": "2022-12-06T17:01:35.565Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"name\": \"Bal\\u00edk\", \"object\": \"8 ks, f - rozmitacka\", \"fields\": [\"Hotovo\"]}}, {\"changed\": {\"name\": \"Bal\\u00edk\", \"object\": \"0 ks, f - rozmitacka\", \"fields\": [\"Hotovo\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 12,
+        "fields": {
+            "action_time": "2022-12-06T17:02:02.260Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"8 ks, f - rozmitacka\"}}, {\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"0 ks, f - rozmitacka\"}}, {\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"0 ks, f - rozmitacka\"}}, {\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"0 ks, f - rozmitacka\"}}, {\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"20 ks, f - rozmitacka\"}}, {\"deleted\": {\"name\": \"Bal\\u00edk\", \"object\": \"20 ks, f - rozmitacka\"}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2022-12-06T17:02:34.257Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Do v\\u00fdroby\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2022-12-06T17:18:56.954Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Pozn\\u00e1mka\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2022-12-06T17:23:14.114Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2022-12-11T11:46:37.493Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2022-12-11T11:47:58.787Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2022-12-11T11:48:04.485Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2022-12-11T11:51:26.440Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2022-12-11T11:56:44.445Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "f",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2023-02-02T00:51:56.838Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "UNILES",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2023-02-02T00:53:01.690Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "UNILES",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Do v\\u00fdroby\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2023-03-29T13:50:08.753Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "UNILES",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Mod\\u0159\\u00edn\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2023-04-26T08:55:39.732Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "1",
+            "object_repr": "SeznamOprav object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 4,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 4,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 4,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 4,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 5,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 5,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 5,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 5,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 6,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 6,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 6,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 6,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add Hoblování",
+            "content_type": 7,
+            "codename": "add_hoblovani"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change Hoblování",
+            "content_type": 7,
+            "codename": "change_hoblovani"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete Hoblování",
+            "content_type": 7,
+            "codename": "delete_hoblovani"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view Hoblování",
+            "content_type": 7,
+            "codename": "view_hoblovani"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add Rozmítačka",
+            "content_type": 8,
+            "codename": "add_rozmitacka"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change Rozmítačka",
+            "content_type": 8,
+            "codename": "change_rozmitacka"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete Rozmítačka",
+            "content_type": 8,
+            "codename": "delete_rozmitacka"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view Rozmítačka",
+            "content_type": 8,
+            "codename": "view_rozmitacka"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add Balík",
+            "content_type": 9,
+            "codename": "add_baliky"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change Balík",
+            "content_type": 9,
+            "codename": "change_baliky"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete Balík",
+            "content_type": 9,
+            "codename": "delete_baliky"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view Balík",
+            "content_type": 9,
+            "codename": "view_baliky"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add seznam oprav",
+            "content_type": 10,
+            "codename": "add_seznamoprav"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change seznam oprav",
+            "content_type": 10,
+            "codename": "change_seznamoprav"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete seznam oprav",
+            "content_type": 10,
+            "codename": "delete_seznamoprav"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view seznam oprav",
+            "content_type": 10,
+            "codename": "view_seznamoprav"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add opravy",
+            "content_type": 10,
+            "codename": "add_opravy"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change opravy",
+            "content_type": 10,
+            "codename": "change_opravy"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete opravy",
+            "content_type": 10,
+            "codename": "delete_opravy"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view opravy",
+            "content_type": 10,
+            "codename": "view_opravy"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add oprava",
+            "content_type": 10,
+            "codename": "add_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change oprava",
+            "content_type": 10,
+            "codename": "change_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete oprava",
+            "content_type": 10,
+            "codename": "delete_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view oprava",
+            "content_type": 10,
+            "codename": "view_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add Oprava",
+            "content_type": 11,
+            "codename": "add_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change Oprava",
+            "content_type": 11,
+            "codename": "change_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete Oprava",
+            "content_type": 11,
+            "codename": "delete_oprava"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view Oprava",
+            "content_type": 11,
+            "codename": "view_oprava"
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$oOrFpe3fQjL0vlwKRqTWtU$MHbmHPOdq5/5msBceWrJwO6epG5DkCDp7W7JI3L2LEc=",
+            "last_login": "2024-07-07T11:54:34.006Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-10-05T09:54:15.760Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "auth",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "orders",
+            "model": "hoblovani"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "orders",
+            "model": "rozmitacka"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "orders",
+            "model": "baliky"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "orders",
+            "model": "oprava"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "maintenance",
+            "model": "oprava"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "1ydp9u9cmiswhyowzfe79lharhxueq88",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1p2XvY:Aag2zvb2GsmIyjChK1pEooVY-oLx_lco6zg77T1KQh8",
+            "expire_date": "2022-12-20T13:24:04.885Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "ax7594abmnlceinwpvjcd9usbvjjp7yl",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pgsPq:6YoNGhMi7VU3eilXbaSvHyzE3ah6BlpePIS1IbfnyHM",
+            "expire_date": "2023-04-10T19:22:02.985Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "citb245nvsnt5ptxnm9jt9gdpw8cp0r0",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1sQQTS:eFsldQYvyW2cKUePR_NjWKWqQZL5Yts0AX0kJEHELDw",
+            "expire_date": "2024-07-21T11:54:34.008Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "fdabgv2bskm1pwycfqouibocz1b14elw",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pNNnl:h1URQvPvEQWOsaMqEeFLwlTf6XS-XAMtE-NWBGeXPEU",
+            "expire_date": "2023-02-16T00:50:09.376Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "g7zm6chehcz5d6ed0d4m061q8300ozo8",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1prICS:rolbQ6gq2fDtiApitwPp_siBcG-O-2OTuJpGZzRB-AM",
+            "expire_date": "2023-05-09T12:55:16.099Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "h5gyskrdf9w0gneu7sw1q5nuz3dtnza4",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pNOGY:PiZz9QX9yVAfD4o7vvoAhzG4X5_iwqMAeP33Dh2KbxQ",
+            "expire_date": "2023-02-16T01:19:54.363Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "hsfhbaqk4iu91127odfnby4jk3p07hdn",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1psimt:vsKarQxMnox8ALualbumFlFvAkBChzCxljZadPt2ntY",
+            "expire_date": "2023-05-13T11:30:47.763Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "il6r027vjrmd0fzq7iisg1x3hn6t9euc",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pgsA9:Jpk6sUxZbeFGFMIMWgeGTEBerLMkN6JbOwTkK2AjdE0",
+            "expire_date": "2023-04-10T19:05:49.881Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "ir7p8hkmj2lmti6spqduez6v7730sxp7",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1og16k:8TKBoxkiZtrQlGT7evbDr9iiComln7Rpro3KoCGrPvA",
+            "expire_date": "2022-10-19T09:54:30.015Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "pbxxbcplyl6w9jyzaplolf5cnodrcxd0",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1p2bhC:yj9GY2t_05y2gDuwU65YOJ0CSmsatwlqDeToP51lx-M",
+            "expire_date": "2022-12-20T17:25:30.988Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "rvw3ma6n809ezx8muewuskdjvb1t3pyn",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pNOIV:AUozIScyb5eq66eu72Nb9971uV8X6qHSrtqxpNyUsUg",
+            "expire_date": "2023-02-16T01:21:55.646Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "u1b832m8mt7agz8hzdgw2vjdze296d8g",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1p4LAq:HPEJzKri5pC-_ZbkS9MwolhTDkL2zC3CDsSGLzLsHtk",
+            "expire_date": "2022-12-25T12:11:16.974Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "v6wpdi2vty8te6bs3qix5zubig1lhdgp",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1pgsWI:owZZ2rnTKhZKcdO6m45_ndw-mkdD4Edw73JnlnFlmR4",
+            "expire_date": "2023-04-10T19:28:42.779Z"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "x00y8qakzvzf9mabvtklg1b6dkewqknj",
+        "fields": {
+            "session_data": ".eJxVjDsOwjAQBe_iGlnxb9empOcMluNd4wBypDipEHeHSCmgfTPzXiKmba1x67zEicRZKHH63caUH9x2QPfUbrPMc1uXaZS7Ig_a5XUmfl4O9--gpl6_9aCJGBB1gEDGQNFe6QLgDDqV2ZrEjECowHPwRaMzhawd2JINmLV4fwDBRDcK:1rxrhg:cdRcc_GB7yEUnxkBkVtg_TBxgrUhoLAdegQ9qCrIA_A",
+            "expire_date": "2024-05-03T17:07:12.911Z"
+        }
+    },
+    {
+        "model": "orders.rozmitacka",
+        "pk": 1,
+        "fields": {
+            "zakaznik": "f",
+            "material": "f",
+            "umisteni_materialu": "f",
+            "pozadovany_rozmer": "f",
+            "pozadovana_delka_cislo": 54.0,
+            "pozadovana_delka_jednotky": "m",
+            "poznamka": "",
+            "ks": 30,
+            "jednotky": "ks",
+            "kvalita": "gut",
+            "baleni": "yes",
+            "impregnace": true,
+            "kapovani": true,
+            "pozadovane_datum_vyroby": "2023-10-05",
+            "hotovo": true,
+            "kontrola": false,
+            "do_vyroby": true,
+            "get_material": false,
+            "get_zbytek": false,
+            "odpad": false,
+            "vytvoreno": "2022-10-05T09:55:15.155Z",
+            "priority": 10,
+            "modrin": false
+        }
+    },
+    {
+        "model": "orders.rozmitacka",
+        "pk": 2,
+        "fields": {
+            "zakaznik": "UNILES",
+            "material": "Formát 60",
+            "umisteni_materialu": "sklad",
+            "pozadovany_rozmer": "40 x 60",
+            "pozadovana_delka_cislo": 4.0,
+            "pozadovana_delka_jednotky": "m",
+            "poznamka": "",
+            "ks": 3000,
+            "jednotky": "ks",
+            "kvalita": "vše",
+            "baleni": "jeden stabilizační , výška 50 cm",
+            "impregnace": false,
+            "kapovani": false,
+            "pozadovane_datum_vyroby": "2022-12-05",
+            "hotovo": false,
+            "kontrola": false,
+            "do_vyroby": true,
+            "get_material": false,
+            "get_zbytek": false,
+            "odpad": false,
+            "vytvoreno": "2023-02-02T00:51:56.831Z",
+            "priority": 10,
+            "modrin": true
+        }
+    },
+    {
+        "model": "orders.hoblovani",
+        "pk": 1,
+        "fields": {
+            "zakaznik": "f",
+            "skladovy_material": "f",
+            "pozadovany_rozmer": "f",
+            "pozadovana_delka_cislo": 5031.0,
+            "pozadovana_delka_jednotky": "m",
+            "poznamka": "idk",
+            "ks": 132,
+            "jednotky": "ks",
+            "kvalita": "yes",
+            "baleni": "no",
+            "impregnace": true,
+            "kapovani": true,
+            "misto_hoblovani": "maybe",
+            "pozadovane_datum_vyroby": "2024-10-03",
+            "hotovo": false,
+            "kontrola": false,
+            "do_vyroby": true,
+            "get_material": false,
+            "get_zbytek": false,
+            "odpad": false,
+            "vytvoreno": "2022-10-05T10:04:38.409Z",
+            "priority": 10,
+            "image": "",
+            "do_susarny": true,
+            "suche": false,
+            "modrin": true
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 3,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 4,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 5,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 6,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 7,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 8,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 9,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 10,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 11,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 12,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 13,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 14,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 15,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 16,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 17,
+        "fields": {
+            "ks": 2,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 18,
+        "fields": {
+            "ks": 3,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 19,
+        "fields": {
+            "ks": 42,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 20,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 21,
+        "fields": {
+            "ks": 0,
+            "done": false,
+            "hoblovani": 1,
+            "rozmitacka": null
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 26,
+        "fields": {
+            "ks": -9,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 1
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 27,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 28,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 29,
+        "fields": {
+            "ks": 338,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 30,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 31,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 32,
+        "fields": {
+            "ks": 233,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 33,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 34,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 35,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 36,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 37,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 38,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 39,
+        "fields": {
+            "ks": 204,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 40,
+        "fields": {
+            "ks": 179,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 41,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 42,
+        "fields": {
+            "ks": 7,
+            "done": false,
+            "hoblovani": null,
+            "rozmitacka": 2
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 43,
+        "fields": {
+            "ks": 10,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 1
+        }
+    },
+    {
+        "model": "orders.baliky",
+        "pk": 44,
+        "fields": {
+            "ks": 0,
+            "done": true,
+            "hoblovani": null,
+            "rozmitacka": 1
+        }
+    },
+    {
+        "model": "maintenance.oprava",
+        "pk": 1,
+        "fields": {
+            "date_added": "2023-04-26",
+            "placement": "Rozmitacka",
+            "description": "Něco se rozbilo",
+            "replacement_parts": "Máme nebo nemáme, popřípadě lokace",
+            "est_finish_date": "2023-04-30",
+            "person_assigned": "Pepa",
+            "scope": "+- 2 dny",
+            "date_finished": "2023-05-02",
+            "note": "Nějaká random poznámka",
+            "done": false,
+            "work_estimated": "1 den",
+            "test": null
+        }
+    }
+]
